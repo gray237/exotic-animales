@@ -8,9 +8,9 @@ interface Props {
 
 const HomeTabbar = ({ selectedTab, onTabSelect }: Props) => {
   return (
-    <div className="flex items-center flex-wrap gap-5 justify-between">
+    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex items-center gap-1.5 text-sm font-semibold">
-        <div className="flex items-center gap-1.5 md:gap-3">
+        <div className="flex flex-wrap gap-1.5 md:gap-3">
           {productType?.map((item) => (
             <button
               onClick={() => onTabSelect(item?.title)}
@@ -24,8 +24,7 @@ const HomeTabbar = ({ selectedTab, onTabSelect }: Props) => {
       </div>
       <Link
         href={"/shop"}
-        className="border border-darkColor px-4 py-1 rounded-full hover:bg-shop_light_green hover:text-white hover:border-shop_light_green hoverEffect"
-      >
+        className="inline-flex w-fit border border-darkColor px-4 py-1 rounded-full hover:bg-shop_light_green hover:text-white hover:border-shop_light_green hoverEffect font-semibold">
         See all
       </Link>
     </div>

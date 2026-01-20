@@ -42,7 +42,8 @@ const items = [
 
 const HomeBanner = () => {
   return (
-    <section className="relative w-screen -mx-4 sm:-mx-6 md:-mx-8 h-[90vh] sm:h-[95vh] md:h-[85vh] lg:h-[70vh]">
+    <section
+  className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen h-[85vh] sm:h-[90vh] md:h-[80vh] lg:h-[70vh] overflow-hidden">
       {/* PANELS */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:flex h-full">
         {items.map(({ title, image, icon: Icon, href }) => (
@@ -52,7 +53,7 @@ const HomeBanner = () => {
             aria-label={title}
             className="
               group relative overflow-hidden
-              min-h-[50vw] sm:min-h-[45vw] md:min-h-[40vh] lg:min-h-full
+              min-h-[50vw] sm:min-h-[55vw] md:min-h-[40vh] lg:min-h-full
               lg:flex-1
               lg:transition-[flex] lg:duration-700 lg:ease-out
               lg:hover:flex-[1.25]
