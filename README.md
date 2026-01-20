@@ -1,36 +1,25 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Exotic Animals Ranch
 
-## Getting Started
+Welcome to Exotic Animals Ranch, an online destination dedicated to connecting responsible owners with ethically sourced exotic pets. We specialize in offering healthy, well-cared-for animals while providing clear guidance and support throughout the buying process.
 
-First, run the development server:
+Our mission is to make owning an exotic pet safe, transparent, and enjoyable — whether you are a first-time buyer or an experienced enthusiast.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## What We Offer
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Ethically sourced, well-socialized exotic animals
+- Clear care information and guidance for each species
+- Premium and limited-availability pets
+- A smooth and secure online shopping experience
+- Ongoing support before and after purchase
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Our Commitment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Every animal offered by Exotic Animals Ranch is raised with care, health, and welfare as a priority. We work with responsible breeders and ensure all pets are properly evaluated before being listed.
 
-## Learn More
+## Important Notice
 
-To learn more about Next.js, take a look at the following resources:
+Exotic animals require specialized care and responsibility. Buyers are encouraged to research local laws and ensure they are prepared to meet the needs of their chosen pet.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contact
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+For questions, availability, or general inquiries, please visit our website or contact our support team directly. https://exoticanimales.com/# exotic-animales
