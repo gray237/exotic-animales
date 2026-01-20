@@ -1,32 +1,54 @@
-import { cn } from "@/lib/utils";
 import Link from "next/link";
-import React from "react";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
+import { exoticPetsLogo } from "@/images";
 
 const Logo = ({
   className,
-  spanDesign,
 }: {
   className?: string;
-  spanDesign?: string;
 }) => {
   return (
-    <Link href={"/"} className="inline-flex">
-      <h2
-        className={cn(
-          "text-2xl text-shop_dark_green font-black tracking-wider uppercase hover:text-shop_light_green hoverEffect group font-sans",
-          className
-        )}
+    <Link
+      href="/"
+      aria-label="Exotic Pets Ranch home"
+      className={cn(
+        "flex items-center gap-4 min-w-[220px] group transition-transform duration-200 hover:-translate-y-0.5",
+        className
+      )}
+    >
+      {/* Brand mark */}
+      <span
+        aria-hidden="true"
+        className="
+          w-18 h-12 rounded-2xl
+          grid place-items-center
+          bg-linear-to-br from-purple-500/25 to-emerald-400/25
+          border border-black/10
+          shadow-md
+        "
       >
-        Shopcar
+        <Image
+          src={exoticPetsLogo}
+          alt=""
+          width={50}
+          height={50}
+          priority
+          className="object-contain"
+        />
+      </span>
+
+      {/* Brand text */}
+      <span className="hidden sm:block leading-tight">
         <span
-          className={cn(
-            "text-shop_light_green group-hover:text-shop_dark_green hoverEffect",
-            spanDesign
-          )}
-        >
-          t
+          className="block font-extrabold tracking-tight text-lg text-gray-700 leading-snug">
+          E.A Ranch
         </span>
-      </h2>
+        <span
+          className="block text-sm mt-0.3 text-shop_dark_green/80 leading-snug">
+          Exotic Pets For Sale
+        </span>
+      </span>
     </Link>
   );
 };

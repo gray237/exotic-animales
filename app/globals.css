@@ -5,7 +5,11 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-poppins: "Poppins", sans-serif;
+  /* ================= Fonts ================= */
+  --font-body: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-head: "Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  /* ================= Colors ================= */
   --color-shop_light_pink: #fcf0e4;
   --color-shop_dark_green: #063c28;
   --color-shop_btn_dark_green: #063d29;
@@ -15,12 +19,16 @@
   --color-darkColor: #151515;
   --color-lightColor: #52525b;
   --color-lightOrange: #fca99b;
-  --color-shop_light_green: #3b9c3c;
   --color-deal-bg: #f1f3f8;
 }
 
 :root {
-  --font-poppins: "Poppins", sans-serif;
+  /* ================= Fonts ================= */
+  --font-body: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-head: "Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  font-family: var(--font-body);
+
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -152,3 +160,97 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* ================================
+   Category Description
+   ================================ */
+.prose {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.7;
+}
+
+.prose h4,
+.prose h5 {
+  color: #111827;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.prose p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #374151;
+}
+
+/* ================================
+   Shop With Us Section
+   ================================ */
+.container .flex {
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .container .flex {
+    flex-direction: column;
+  }
+}
+
+.container img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+
+.long-description {
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  color: #333;
+  overflow: hidden; /* helps contain the floated image */
+}
+
+.long-description img,
+.long-description .float-right {
+  float: right;
+  margin-left: 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.long-description h5 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #063c28; /* dark green */
+}
+
+.long-description p {
+  margin-bottom: 1rem;
+}
+
+.long-description ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.long-description li {
+  margin-bottom: 0.5rem;
+}
+
+.long-description a {
+  color: #063c28;
+  text-decoration: underline;
+}
+
+.long-description a:hover {
+  color: #3b9c3c;
+}
+
+.clear-both {
+  clear: both;
+}
+

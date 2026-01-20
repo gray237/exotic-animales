@@ -43,6 +43,20 @@ export const categoryType = defineType({
         hotspot: true,
       },
     }),
+    defineField({
+      name: "bannerImage",
+      title: "Banner Image",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
+      name: "whyShopWithUs",
+      title: "Why Shop With Us",
+      type: "text",
+      rows: 5,
+    }),
   ],
   preview: {
     select: {

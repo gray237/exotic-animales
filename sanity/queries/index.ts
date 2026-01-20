@@ -34,6 +34,27 @@ const getCategories = async (quantity?: number) => {
   }
 };
 
+const getCategoryBySlug = async (slug: string) => {
+  try {
+    const query = `
+      *[_type == "category" && slug.current == $slug][0]{
+        ...,
+        "bannerImage": bannerImage.asset->url,
+        "categoryImage": categoryImage.asset->url,
+        "shopWithUs": {
+          "title": shopWithUsTitle,
+          "text": shopWithUsText
+        }
+      }
+    `;
+    const { data } = await sanityFetch({ query, params: { slug } });
+    return data;
+  } catch (error) {
+    console.error("Error fetching category by slug:", error);
+    return null;
+  }
+};
+
 const getAllBrands = async () => {
   try {
     const { data } = await sanityFetch({ query: BRANDS_QUERY });
@@ -153,6 +174,7 @@ const getOthersBlog = async (slug: string, quantity: number) => {
 };
 export {
   getCategories,
+  getCategoryBySlug,
   getAllBrands,
   getLatestBlogs,
   getDealProducts,

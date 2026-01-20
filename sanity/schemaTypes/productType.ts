@@ -34,6 +34,53 @@ export const productType = defineType({
       title: "Description",
       type: "string",
     }),
+    // NEW field: longDescription for full product description
+    defineField({
+      name: "longDescription",
+      title: "Long Description",
+      type: "text",
+    }),
+    // NEW field: additionalInfo for tabular data
+    defineField({
+      name: "additionalInfo",
+      title: "Additional Information",
+      type: "array",
+      of: [
+        defineField({
+          name: "infoItem",
+          title: "Info Item",
+          type: "object",
+          fields: [
+            defineField({ name: "label", title: "Label", type: "string" }),
+            defineField({ name: "value", title: "Value", type: "string" }),
+          ],
+        }),
+      ],
+    }),
+    // NEW field: reviews
+    defineField({
+      name: "reviews",
+      title: "Reviews",
+      type: "array",
+      of: [
+        defineField({
+          name: "reviewItem",
+          title: "Review Item",
+          type: "object",
+          fields: [
+            defineField({ name: "name", title: "Name", type: "string" }),
+            defineField({ name: "rating", title: "Rating", type: "number" }),
+            defineField({ name: "comment", title: "Comment", type: "text" }),
+          ],
+        }),
+      ],
+    }),
+    defineField({
+      name: "bannerImage",
+      title: "Banner Image",
+      type: "image",
+      options: { hotspot: true },
+    }),
     defineField({
       name: "price",
       title: "Price",
@@ -83,9 +130,12 @@ export const productType = defineType({
       type: "string",
       options: {
         list: [
-          { title: "Gadget", value: "gadget" },
-          { title: "Appliances", value: "appliances" },
-          { title: "Refrigerators", value: "refrigerators" },
+          { title: "Mammals", value: "mammals" },
+          { title: "Reptiles", value: "reptiles" },
+          { title: "Amphibians", value: "amphibians" },
+          { title: "Birds", value: "birds" },
+          { title: "Arthropods", value: "arthropods" },
+          { title: "Fish", value: "fish" },
           { title: "Others", value: "others" },
         ],
       },

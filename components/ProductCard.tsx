@@ -12,7 +12,7 @@ import AddToCartButton from "./AddToCartButton";
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
-    <div className="text-sm border-[1px] rounded-md border-darkBlue/20 group bg-white">
+    <div className="text-sm border rounded-md border-darkBlue/20 group bg-white">
       <div className="relative group overflow-hidden bg-shop_light_bg">
         {product?.images && (
           <Link href={`/product/${product?.slug?.current}`}>
@@ -22,14 +22,15 @@ const ProductCard = ({ product }: { product: Product }) => {
               width={500}
               height={500}
               priority
-              className={`w-full h-64 object-contain overflow-hidden transition-transform bg-shop_light_bg duration-500 
+              className={`w-full h-64 object-cover object-center overflow-hidden transition-transform bg-shop_light_bg duration-500
               ${product?.stock !== 0 ? "group-hover:scale-105" : "opacity-50"}`}
             />
+
           </Link>
         )}
         <ProductSideMenu product={product} />
         {product?.status === "sale" ? (
-          <p className="absolute top-2 left-2 z-10 text-xs border border-darkColor/50 px-2 rounded-full group-hover:border-lightGreen hover:text-shop_dark_green hoverEffect">
+          <p className="absolute top-2 left-2 z-10 bg-white/50 text-xs border ≈ px-3 py-0.5 rounded-full group-hover:border-lightGreen hover:text-white hover:bg-shop_dark_green hoverEffect">
             Sale!
           </p>
         ) : (
@@ -51,21 +52,11 @@ const ProductCard = ({ product }: { product: Product }) => {
             {product.categories.map((cat) => cat).join(", ")}
           </p>
         )}
-        <Title className="text-sm line-clamp-1">{product?.name}</Title>
-        <div className="flex items-center gap-2">
-          <div className="flex items-center">
-            {[...Array(5)].map((_, index) => (
-              <StarIcon
-                key={index}
-                className={
-                  index < 4 ? "text-shop_light_green" : " text-lightText"
-                }
-                fill={index < 4 ? "#93D991" : "#ababab"}
-              />
-            ))}
-          </div>
-          <p className="text-lightText text-xs tracking-wide">5 Reviews</p>
-        </div>
+        <Link href={`/product/${product?.slug?.current}`}>
+          <Title className="text-sm line-clamp-1 hover:text-shop_dark_green transition-colors duration-200">
+            {product?.name}
+          </Title>
+        </Link>
 
         <div className="flex items-center gap-2.5">
           <p className="font-medium">In Stock</p>

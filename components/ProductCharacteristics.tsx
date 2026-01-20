@@ -22,7 +22,7 @@ const ProductCharacteristics = async ({
         <AccordionTrigger>{product?.name}: Characteristics</AccordionTrigger>
         <AccordionContent>
           <p className="flex items-center justify-between">
-            Brand:{" "}
+            Breeder:{" "}
             {brand && (
               <span className="font-semibold tracking-wide">
                 {brand[0]?.brandName}

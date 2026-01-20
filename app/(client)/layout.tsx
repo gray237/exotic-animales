@@ -5,10 +5,10 @@ import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s - Shopcart online store",
-    default: "Shopcart online store",
+    template: "%s - Exotic Pets Store - E.A Ranch",
+    default: "Exotic Pet Store - E.A Ranch",
   },
-  description: "Shopcart online store, Your one stop shop for all your needs",
+  description: "Exotic Animales Ranch is a USDA-Licensed breeder of exotic animals & conservation of endangered species. We offer baby hedgehogs, sugar gliders, fennec foxes, lemurs, turtles, colorful snakes, axolotls, lizards, and more.",
 };
 
 export default function RootLayout({

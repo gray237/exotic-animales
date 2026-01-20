@@ -21,7 +21,7 @@ const OrdersPage = async () => {
 
   return (
     <div>
-      <Container className="py-10">
+      <Container className="py-10 max-w-6xl">
         {orders?.length ? (
           <Card className="w-full">
             <CardHeader>
@@ -45,7 +45,7 @@ const OrdersPage = async () => {
                       <TableHead>Total</TableHead>
                       <TableHead>Status</TableHead>
                       <TableHead className="hidden sm:table-cell">
-                        Invoice Number
+                        Delivery Option
                       </TableHead>
                       <TableHead className="text-center">Action</TableHead>
                     </TableRow>

@@ -1,30 +1,163 @@
+import { smallExoticPetsSale } from "@/images";
+
 export const headerData = [
-  { title: "Home", href: "/" },
-  { title: "Shop", href: "/shop" },
-  { title: "Blog", href: "/blog" },
-  { title: "Hot Deal", href: "/deal" },
-  //   { title: "Contact", href: "/contact" },
+  {
+    title: "Home",
+    href: "/",
+  },
+
+  {
+    title: "Pet Store",
+    href: "/shop",
+    children: {
+      type: "mega",
+      align: "center",
+
+      sections: [
+        {
+          title: "Exotic Pets",
+          links: [
+            {
+              title: "Placental Mammals",
+              href: "/category/placental-mammals",
+            },
+            {
+              title: "Marsupials",
+              href: "/category/marsupials",
+            },
+            {
+              title: "Rodents",
+              href: "/category/rodents",
+            },
+            {
+              title: "Axolotls",
+              href: "/category/axolotls",
+            },
+          ],
+        },
+
+        {
+          title: "Pet Supplies",
+          links: [
+            {
+              title: "Pet Care Kits",
+              href: "/category/pet-care-kits",
+            },
+            {
+              title: "Exotic Pet Foods",
+              href: "/category/exotic-pet-foods",
+            },
+            {
+              title: "Pet Homes & Cages",
+              href: "/category/pet-homes-cages",
+            },
+            {
+              title: "Feeding & Water Dishes",
+              href: "/category/pet-dishes",
+            },
+            {
+              title: "Heaters & Lighting",
+              href: "/category/heaters-lighting",
+            },
+            {
+              title: "Terrarium & Cage Supplies",
+              href: "/category/cage-supplies",
+            },
+          ],
+        },
+      ],
+
+      featured: {
+        title: "Featured",
+        items: [
+          {
+            title: "Hand-Raised",
+            href: "/hand-raised",
+          },
+          {
+            title: "Mum-Raised",
+            href: "/mum-raised",
+          },
+          {
+            title: "Learn More",
+            href: "/about-us",
+          },
+        ],
+        image: smallExoticPetsSale,
+      },
+    },
+  },
+
+  {
+    title: "Deals",
+    href: "/deals",
+  },
+
+  {
+    title: "Info",
+    href: "#",
+    children: {
+      type: "dropdown",
+      links: [
+        {
+          title: "FAQ",
+          href: "/faq",
+        },
+        {
+          title: "Pet Care Sheets",
+          href: "/care-sheets",
+        },
+        {
+          title: "About E.A Ranch",
+          href: "/about",
+        },
+        {
+          title: "Payment Options",
+          href: "/payment",
+        },
+        {
+          title: "Terms & Conditions",
+          href: "/terms",
+        },
+        {
+          title: "Pet Delivery & Pickup",
+          href: "/delivery",
+        },
+      ],
+    },
+  },
+
+  {
+    title: "Blog",
+    href: "/blog",
+  },
+
+  {
+    title: "Contact",
+    href: "/contact",
+  },
 ];
+
 export const quickLinksData = [
+  { title: "FAQs", href: "/faq" },
   { title: "About us", href: "/about" },
   { title: "Contact us", href: "/contact" },
+  { title: "Pet Care Sheets", href: "/care-sheets" },
+  { title: "Payment Options", href: "/payment" },
   { title: "Terms & Conditions", href: "/terms" },
-  { title: "Privacy Policy", href: "/privacy" },
-  { title: "FAQs", href: "/faqs" },
-  { title: "Help", href: "/help" },
 ];
 export const categoriesData = [
-  { title: "Mobiles", href: "mobiles" },
-  { title: "Appliances", href: "appliances" },
-  { title: "Smartphones", href: "smartphones" },
-  { title: "Air Conditioners", href: "air-conditioners" },
-  { title: "Washing Machine", href: "washing-machine" },
-  { title: "Kitchen Appliances", href: "kitchen-appliances" },
-  { title: "gadget accessories", href: "gadget-accessories" },
+  { title: "Axolotls", href: "axolotls" },
+  { title: "Rodents", href: "rodents" },
+  { title: "Marsupials", href: "marsupials" },
+  { title: "Placental Mammals", href: "placental-mammals" },
+  { title: "Pet Care Kits ", href: "pet-care-kits" },
+  { title: "Exotic Pet Foods", href: "exotic-pet-foods" },
 ];
 export const productType = [
-  { title: "Gadget", value: "gadget" },
-  { title: "Appliances", value: "appliances" },
-  { title: "Refrigerators", value: "refrigerators" },
+  { title: "Mammals", value: "mammals" },
+  { title: "Reptiles", value: "reptiles" },
+  { title: "Amphibians", value: "amphibians" },
+  { title: "Birds", value: "birds" },
   { title: "Others", value: "others" },
 ];

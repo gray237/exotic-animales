@@ -17,20 +17,56 @@ const DEAL_PRODUCTS = defineQuery(
   }`
 );
 
-const PRODUCT_BY_SLUG_QUERY = defineQuery(
-  `*[_type == "product" && slug.current == $slug] | order(name asc) [0]`
-);
+const PRODUCT_BY_SLUG_QUERY = `*[_type == "product" && slug.current == $slug][0]{
+  ...,
+  description,
+  longDescription,
+  additionalInfo,
+  reviews,
+  "bannerImage": bannerImage.asset->url
+}`;
+
 
 const BRAND_QUERY = defineQuery(`*[_type == "product" && slug.current == $slug]{
   "brandName": brand->title
   }`);
 
-const MY_ORDERS_QUERY =
-  defineQuery(`*[_type == 'order' && clerkUserId == $userId] | order(orderData desc){
-...,products[]{
-  ...,product->
+const MY_ORDERS_QUERY = defineQuery(`
+*[_type == "order" && clerkUserId == $userId] | order(orderDate desc) {
+  _id,
+  orderNumber,
+  orderDate,
+  status,
+  totalPrice,
+  amountDiscount,
+
+  paymentMethod,
+
+  customerName,
+  email,
+
+  address {
+    name,
+    address,
+    city,
+    state,
+    zip,
+    country,
+    phone
+  },
+
+  products[] {
+    quantity,
+    product->{
+      _id,
+      name,
+      price,
+      images
+    }
+  }
 }
-}`);
+`);
+
 const GET_ALL_BLOG = defineQuery(
   `*[_type == 'blog'] | order(publishedAt desc)[0...$quantity]{
   ...,  

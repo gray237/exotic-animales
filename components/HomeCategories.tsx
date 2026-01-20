@@ -13,17 +13,17 @@ const HomeCategories = ({ categories }: { categories: Category[] }) => {
         {categories?.map((category) => (
           <div
             key={category?._id}
-            className="bg-shop_light_bg p-5 flex items-center gap-3 group"
+            className="bg-shop_light_bg p-5 flex items-center gap-3 group rounded-md"
           >
             {category?.image && (
-              <div className="overflow-hidden border border-shop_orange/30 hover:border-shop_orange hoverEffect w-20 h-20 p-1">
+              <div className="overflow-hidden border border-shop_orange/30 hover:border-shop_orange hoverEffect w-36 h-36 md:w-40 md:h-40 p-2 rounded-md">
                 <Link href={`/category/${category?.slug?.current}`}>
                   <Image
                     src={urlFor(category?.image).url()}
-                    alt="categoryImage"
+                    alt={category?.title || "Category image"}
                     width={500}
                     height={500}
-                    className="w-full h-full object-contain group-hover:scale-110 hoverEffect"
+                    className="w-full h-full object-cover group-hover:scale-110 hoverEffect"
                   />
                 </Link>
               </div>
@@ -32,7 +32,7 @@ const HomeCategories = ({ categories }: { categories: Category[] }) => {
               <h3 className="text-base font-semibold">{category?.title}</h3>
               <p className="text-sm">
                 <span className="font-bold text-shop_dark_green">{`(${category?.productCount})`}</span>{" "}
-                items Available
+                Pets Available
               </p>
             </div>
           </div>

@@ -15,6 +15,7 @@ const FavoriteButton = ({
 }) => {
   const { favoriteProduct, addToFavorite } = useStore();
   const [existingProduct, setExistingProduct] = useState<Product | null>(null);
+
   useEffect(() => {
     const availableItem = favoriteProduct.find(
       (item) => item?._id === product?._id
@@ -22,7 +23,7 @@ const FavoriteButton = ({
     setExistingProduct(availableItem || null);
   }, [product, favoriteProduct]);
 
-  const handleFavorite = (e: React.MouseEvent<HTMLSpanElement>) => {
+  const handleFavorite = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     if (product?._id) {
       addToFavorite(product).then(() => {
@@ -34,29 +35,44 @@ const FavoriteButton = ({
       });
     }
   };
+
+  const IconPill = ({ children }: { children: React.ReactNode }) => (
+    <div className="flex items-center justify-center h-9 w-9 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 shadow-sm hover:shadow-md transition cursor-pointer">
+      {children}
+    </div>
+  );
+
+  // 🔒 Hide completely if no favorite products and not in product page mode
+  if (!showProduct && (!favoriteProduct || favoriteProduct.length === 0)) return null;
+
   return (
     <>
       {!showProduct ? (
-        <Link href={"/wishlist"} className="group relative">
-          <Heart className="w-5 h-5 hover:text-shop_light_green hoverEffect" />
-          <span className="absolute -top-1 -right-1 bg-shop_dark_green text-white h-3.5 w-3.5 rounded-full text-xs font-semibold flex items-center justify-center">
-            {favoriteProduct?.length ? favoriteProduct?.length : 0}
-          </span>
+        <Link href="/wishlist" className="relative">
+          <IconPill>
+            <Heart className="w-5 h-5 text-gray-700 dark:text-gray-200 hover:text-shop_light_green hoverEffect" />
+            {favoriteProduct?.length ? (
+              <span className="absolute -top-1 -right-1 bg-shop_dark_green text-white h-4 w-4 rounded-full text-xs font-semibold flex items-center justify-center">
+                {favoriteProduct.length}
+              </span>
+            ) : null}
+          </IconPill>
         </Link>
       ) : (
-        <button
-          onClick={handleFavorite}
-          className="group relative hover:text-shop_light_green hoverEffect border border-shop_light_green/80 hover:border-shop_light_green p-1.5 rounded-sm"
-        >
-          {existingProduct ? (
-            <Heart
-              fill="#3b9c3c"
-              className="text-shop_light_green/80 group-hover:text-shop_light_green hoverEffect mt-.5 w-5 h-5"
-            />
-          ) : (
-            <Heart className="text-shop_light_green/80 group-hover:text-shop_light_green hoverEffect mt-.5 w-5 h-5" />
-          )}
-        </button>
+        <div onClick={handleFavorite}>
+          <IconPill>
+            {existingProduct ? (
+              <Heart
+                fill="#3b9c3c"
+                className="w-5 h-5 text-shop_light_green hover:text-shop_light_green hoverEffect"
+              />
+            ) : (
+              <Heart
+                className="w-5 h-5 text-shop_light_green/80 hover:text-shop_light_green hoverEffect"
+              />
+            )}
+          </IconPill>
+        </div>
       )}
     </>
   );

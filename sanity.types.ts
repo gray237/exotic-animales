@@ -550,84 +550,39 @@ export type DEAL_PRODUCTSResult = Array<{
   variant?: "appliances" | "gadget" | "others" | "refrigerators";
   isFeatured?: boolean;
 }>;
-// Variable: PRODUCT_BY_SLUG_QUERY
-// Query: *[_type == "product" && slug.current == $slug] | order(name asc) [0]
-export type PRODUCT_BY_SLUG_QUERYResult = {
-  _id: string;
-  _type: "product";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-  slug?: Slug;
-  images?: Array<{
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-    _key: string;
-  }>;
-  description?: string;
-  price?: number;
-  discount?: number;
-  categories?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }>;
-  stock?: number;
-  brand?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "brand";
-  };
-  status?: "hot" | "new" | "sale";
-  variant?: "appliances" | "gadget" | "others" | "refrigerators";
-  isFeatured?: boolean;
-} | null;
 // Variable: BRAND_QUERY
 // Query: *[_type == "product" && slug.current == $slug]{  "brandName": brand->title  }
 export type BRAND_QUERYResult = Array<{
   brandName: string | null;
 }>;
 // Variable: MY_ORDERS_QUERY
-// Query: *[_type == 'order' && clerkUserId == $userId] | order(orderData desc){...,products[]{  ...,product->}}
+// Query: *[_type == "order" && clerkUserId == $userId] | order(orderDate desc) {  _id,  orderNumber,  orderDate,  status,  totalPrice,  amountDiscount,  paymentMethod,  customerName,  email,  address {    name,    address,    city,    state,    zip,    country,    phone  },  products[] {    quantity,    product->{      _id,      name,      price,      images    }  }}
 export type MY_ORDERS_QUERYResult = Array<{
   _id: string;
-  _type: "order";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  orderNumber?: string;
-  invoice?: {
-    id?: string;
-    number?: string;
-    hosted_invoice_url?: string;
-  };
-  stripeCheckoutSessionId?: string;
-  stripeCustomerId?: string;
-  clerkUserId?: string;
-  customerName?: string;
-  email?: string;
-  stripePaymentIntentId?: string;
+  orderNumber: string | null;
+  orderDate: string | null;
+  status: "cancelled" | "delivered" | "out_for_delivery" | "paid" | "pending" | "processing" | "shipped" | null;
+  totalPrice: number | null;
+  amountDiscount: number | null;
+  paymentMethod: null;
+  customerName: string | null;
+  email: string | null;
+  address: {
+    name: string | null;
+    address: string | null;
+    city: string | null;
+    state: string | null;
+    zip: string | null;
+    country: null;
+    phone: null;
+  } | null;
   products: Array<{
+    quantity: number | null;
     product: {
       _id: string;
-      _type: "product";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      name?: string;
-      slug?: Slug;
-      images?: Array<{
+      name: string | null;
+      price: number | null;
+      images: Array<{
         asset?: {
           _ref: string;
           _type: "reference";
@@ -638,43 +593,9 @@ export type MY_ORDERS_QUERYResult = Array<{
         crop?: SanityImageCrop;
         _type: "image";
         _key: string;
-      }>;
-      description?: string;
-      price?: number;
-      discount?: number;
-      categories?: Array<{
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "category";
-      }>;
-      stock?: number;
-      brand?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "brand";
-      };
-      status?: "hot" | "new" | "sale";
-      variant?: "appliances" | "gadget" | "others" | "refrigerators";
-      isFeatured?: boolean;
+      }> | null;
     } | null;
-    quantity?: number;
-    _key: string;
   }> | null;
-  totalPrice?: number;
-  currency?: string;
-  amountDiscount?: number;
-  address?: {
-    state?: string;
-    zip?: string;
-    city?: string;
-    address?: string;
-    name?: string;
-  };
-  status?: "cancelled" | "delivered" | "out_for_delivery" | "paid" | "pending" | "processing" | "shipped";
-  orderDate?: string;
 }>;
 // Variable: GET_ALL_BLOG
 // Query: *[_type == 'blog'] | order(publishedAt desc)[0...$quantity]{  ...,       blogcategories[]->{    title}    }
@@ -865,9 +786,8 @@ declare module "@sanity/client" {
     "*[_type=='brand'] | order(name asc) ": BRANDS_QUERYResult;
     " *[_type == 'blog' && isLatest == true]|order(name asc){\n      ...,\n      blogcategories[]->{\n      title\n    }\n    }": LATEST_BLOG_QUERYResult;
     "*[_type == 'product' && status == 'hot'] | order(name asc){\n    ...,\"categories\": categories[]->title\n  }": DEAL_PRODUCTSResult;
-    "*[_type == \"product\" && slug.current == $slug] | order(name asc) [0]": PRODUCT_BY_SLUG_QUERYResult;
     "*[_type == \"product\" && slug.current == $slug]{\n  \"brandName\": brand->title\n  }": BRAND_QUERYResult;
-    "*[_type == 'order' && clerkUserId == $userId] | order(orderData desc){\n...,products[]{\n  ...,product->\n}\n}": MY_ORDERS_QUERYResult;
+    "\n*[_type == \"order\" && clerkUserId == $userId] | order(orderDate desc) {\n  _id,\n  orderNumber,\n  orderDate,\n  status,\n  totalPrice,\n  amountDiscount,\n\n  paymentMethod,\n\n  customerName,\n  email,\n\n  address {\n    name,\n    address,\n    city,\n    state,\n    zip,\n    country,\n    phone\n  },\n\n  products[] {\n    quantity,\n    product->{\n      _id,\n      name,\n      price,\n      images\n    }\n  }\n}\n": MY_ORDERS_QUERYResult;
     "*[_type == 'blog'] | order(publishedAt desc)[0...$quantity]{\n  ...,  \n     blogcategories[]->{\n    title\n}\n    }\n  ": GET_ALL_BLOGResult;
     "*[_type == \"blog\" && slug.current == $slug][0]{\n  ..., \n    author->{\n    name,\n    image,\n  },\n  blogcategories[]->{\n    title,\n    \"slug\": slug.current,\n  },\n}": SINGLE_BLOG_QUERYResult;
     "*[_type == \"blog\"]{\n     blogcategories[]->{\n    ...\n    }\n  }": BLOG_CATEGORIESResult;

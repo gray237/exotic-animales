@@ -18,8 +18,7 @@ const Footer = () => {
           <div className="space-y-4">
             <Logo />
             <SubText>
-              Discover curated furniture collections at Shopcartyt, blending
-              style and comfort to elevate your living spaces.
+              Discover E.A Ranch, your trusted online exotic pet store for a curated selection of pure bred high-quality mammals, rare amphibians and colorful reptiles for sale. We're not just passionate about exotic animals; we're dedicated to sharing our knowledge and ensuring your satisfaction.
             </SubText>
             <SocialMedia
               className="text-darkColor/60"
@@ -71,8 +70,12 @@ const Footer = () => {
         </div>
         <div className="py-6 border-t text-center text-sm text-gray-600">
           <div>
-            © {new Date().getFullYear()} <Logo className="text-sm" />. All
-            rights reserved.
+            © {new Date().getFullYear()} <Link
+                    href={`/`}
+                    className="hover:text-shop_light_green hoverEffect font-medium"
+                  >
+                    Exotic Animals Ranch
+                  </Link>. All Rights Reserved.
           </div>
         </div>
       </Container>
