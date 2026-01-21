@@ -22,7 +22,7 @@ const Header = async () => {
           <Logo />
         </div>
         <HeaderMenu />
-        <div className="w-auto md:w-1/3 flex items-center justify-end gap-2">
+        <div className="flex-1 md:w-1/3 flex items-center justify-end gap-2 min-w-0 flex-nowrap overflow-hidden">
           <SearchBar />
           <CartIcon />
           <FavoriteButton />
