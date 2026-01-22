@@ -1,5 +1,6 @@
 import Container from "@/components/Container";
 import ProductCard from "@/components/ProductCard";
+import NewLitters from "@/components/NewLitters";
 import Title from "@/components/Title";
 import { getDealProducts } from "@/sanity/queries";
 import React from "react";
@@ -17,6 +18,7 @@ const DealsPage = async () => {
             <ProductCard key={product?._id} product={product} />
           ))}
         </div>
+        <NewLitters />
       </Container>
     </div>
   );

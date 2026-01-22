@@ -36,7 +36,7 @@ const items = [
     title: "Pet Care Sheets",
     image: exoticPetCare,
     icon: ClipboardList,
-    href: "#",
+    href: "/care-sheets",
   },
 ];
 
@@ -45,7 +45,8 @@ const HomeBanner = () => {
     <section
   className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen h-[85vh] sm:h-[90vh] md:h-[80vh] lg:h-[70vh] overflow-hidden">
       {/* PANELS */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:flex h-full">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:flex h-full">
+
         {items.map(({ title, image, icon: Icon, href }) => (
           <Link
             key={title}

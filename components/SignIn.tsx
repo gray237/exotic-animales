@@ -7,7 +7,7 @@ const SignIn = () => {
     <SignInButton mode="modal">
       <button
         className="
-          flex items-center justify-center text-sm h-9 px-2 rounded-xl border border-purple-400/36
+          flex items-center justify-center text-sm h-9 px-3 rounded-xl border border-purple-400/36
           bg-linear-to-br from-purple-500/22 to-teal-400/14 font-semibold shadow-lg overflow-hidden transition-transform duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0 active:scale-[0.99]"
       >
         Login

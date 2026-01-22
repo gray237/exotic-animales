@@ -42,6 +42,15 @@ import exoticPetStore from "./sections/exotic-pet-store.jpg";
 import exoticPetFeeders from "./sections/exotic-pet-feeders.jpg";
 import exoticPetCare from "./sections/exotic-pet-care.jpg";
 import exoticPetsRanch from "./sections/exotic-pets-ranch.jpg";
+import drRachel1 from "./sections/dr-rachel-exotic-pet-vets.jpg";
+import drRachel2 from "./sections/dr-rachel-exotic-pet-vet.jpg";
+import axolotlLitter from "./sections/baby-axolotl-litter.png";
+import leopardGeckoLitter from "./sections/baby-leopard-gecko-litter.png";
+import hedgehogLitter from "./sections/baby-hedgehog-litter.png";
+import prarieDogLitter from "./sections/baby-prairie-dog-litter.png";
+import savannahCatLitter from "./sections/savannah-kitten-litter.png";
+import fennecFoxLitter from "./sections/baby-fennec-fox-litter.png";
+import ballPythonLitter from "./sections/baby-ball-python-litter.png";
 
 
-export { paypalLogo, paypalIcon, zelleIcon, cashappIcon, bitcoinIcon,  bankTransfer, cashApp, sendPaypal, zellePay, emptyCart, banner_1, exoticBanner1, exoticBanner2, exoticBanner3, axolotlCare, ballPythonCare, beardedDragonCare, bloodPythonCare, crestedGeckoCare, deguCare, forestScorpionCare, greenSnakeCare, hamsterCare, jacksonChameleonCare, prairieDogsCare, skunksCare, sugarGliderCare, tarantulaSpiderCare, waterMonitorCare, woodTurtleCare, smallExoticPetsSale, exoticPetsLogo, eaBackground, exoticAnimalsRanch, exoticAnimalsTexas, exoticPetBreeder, guineaPigPremium, axolotlExclusive, bestExoticPets, exoticPetCare, exoticPetFeeders, exoticPetStore, exoticPetAdoption, exoticPetsRanch };
+export { paypalLogo, paypalIcon, zelleIcon, cashappIcon, bitcoinIcon,  bankTransfer, cashApp, sendPaypal, zellePay, emptyCart, banner_1, exoticBanner1, exoticBanner2, exoticBanner3, axolotlCare, ballPythonCare, beardedDragonCare, bloodPythonCare, crestedGeckoCare, deguCare, forestScorpionCare, greenSnakeCare, hamsterCare, jacksonChameleonCare, prairieDogsCare, skunksCare, sugarGliderCare, tarantulaSpiderCare, waterMonitorCare, woodTurtleCare, smallExoticPetsSale, exoticPetsLogo, eaBackground, exoticAnimalsRanch, exoticAnimalsTexas, exoticPetBreeder, guineaPigPremium, axolotlExclusive, bestExoticPets, exoticPetCare, exoticPetFeeders, exoticPetStore, exoticPetAdoption, exoticPetsRanch, drRachel1, drRachel2, leopardGeckoLitter, axolotlLitter, hedgehogLitter, prarieDogLitter, savannahCatLitter, fennecFoxLitter, ballPythonLitter };

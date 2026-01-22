@@ -3,7 +3,11 @@
 
 import React from "react";
 import Image from "next/image";
+import ExoticPetVet from "./ExoticPetVet";
 import { FaCheckCircle, FaDownload } from "react-icons/fa";
+import { RiTruckFill, RiTimeFill, RiStethoscopeFill,
+        RiScissorsFill, RiHeartPulseFill, RiShieldCheckFill,
+        RiRestaurantFill, RiMicroscopeFill, RiHomeHeartFill, } from "react-icons/ri";
 import { axolotlCare, ballPythonCare, beardedDragonCare, bloodPythonCare, crestedGeckoCare, deguCare, forestScorpionCare, greenSnakeCare, hamsterCare, jacksonChameleonCare, prairieDogsCare, skunksCare, sugarGliderCare, tarantulaSpiderCare, waterMonitorCare, woodTurtleCare } from "@/images";
 
 const CARE_SHEETS = [
@@ -184,6 +188,87 @@ const Caresheets = () => {
           </div>
         ))}
       </div>
+      {/* Preventative Exotic Pet Care */}
+      <section className="max-w-7xl mx-auto px-6 py-16">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+            Preventative Care for Your Exotic Companion
+          </h2>
+          <p className="mt-4 text-gray-700 text-lg leading-relaxed">
+            At <strong>Exotic Animales Ranch</strong>, we believe proactive veterinary care is the
+            foundation of a long, healthy life for exotic pets. From reptiles and birds to
+            mammals and invertebrates, our experienced team focuses on prevention, early
+            detection, and species-specific wellness.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {[
+            {
+              icon: <RiScissorsFill className="text-xl" />,
+              title: "Neutering & Reproductive Care",
+              text:
+                "For select exotic species such as rabbits, guinea pigs, and ferrets, reproductive procedures can reduce health risks and unwanted behaviours while supporting long-term wellbeing.",
+            },
+            {
+              icon: <RiHeartPulseFill className="text-xl" />,
+              title: "Specialised Dentistry",
+              text:
+                "Dental disease is common in many exotic pets. We provide professional dental assessments and treatments to prevent pain, infection, and feeding issues.",
+            },
+            {
+              icon: <RiShieldCheckFill className="text-xl" />,
+              title: "Microchipping & Identification",
+              text:
+                "Microchipping offers a safe, permanent method of identification, greatly improving the chances of a safe return should your exotic pet ever become lost.",
+            },
+            {
+              icon: <RiStethoscopeFill className="text-xl" />,
+              title: "Ferret Vasectomies",
+              text:
+                "For male ferrets, vasectomy procedures provide an effective alternative to traditional neutering while minimizing hormonal disruption.",
+            },
+            {
+              icon: <RiHomeHeartFill className="text-xl" />,
+              title: "Hibernation Health Checks",
+              text:
+                "Pre- and post-hibernation examinations for tortoises help ensure your pet enters dormancy safely and recovers smoothly afterward.",
+            },
+            {
+              icon: <RiRestaurantFill className="text-xl" />,
+              title: "Dietary & Husbandry Guidance",
+              text:
+                "We provide expert advice on nutrition, enclosure design, lighting, humidity, and enrichment—tailored to replicate each species’ natural habitat.",
+            },
+            {
+              icon: <RiMicroscopeFill className="text-xl" />,
+              title: "Diagnostics & Disease Screening",
+              text:
+                "Blood testing, faecal analysis, and infectious disease screening allow us to detect hidden issues early, including conditions such as PBFD in birds.",
+            },
+            {
+              icon: <RiStethoscopeFill className="text-xl" />,
+              title: "Post-Purchase & Annual Health Exams",
+              text:
+                "Whether welcoming a new exotic pet or maintaining ongoing health, routine examinations help us assess weight, skin, eyes, beak, scales, and overall condition.",
+            },
+          ].map((item) => (
+            <div
+              key={item.title}
+              className="flex gap-4 bg-white rounded-2xl p-6 shadow-md"
+            >
+              <div className="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 bg-purple-100 text-purple-500 shrink-0">
+                {item.icon}
+              </div>
+              <div>
+                <h3 className="font-semibold text-gray-900">{item.title}</h3>
+                <p className="mt-1 text-gray-600 leading-relaxed">{item.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+      <ExoticPetVet />
     </div>
   );
 };

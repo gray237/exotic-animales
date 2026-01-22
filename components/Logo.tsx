@@ -13,7 +13,7 @@ const Logo = ({
       href="/"
       aria-label="Exotic Pets Ranch home"
       className={cn(
-        "flex items-center gap-4 min-w-[220px] group transition-transform duration-200 hover:-translate-y-0.5",
+        "flex items-center gap-2 min-w-[220px] group transition-transform duration-200 hover:-translate-y-0.5",
         className
       )}
     >
