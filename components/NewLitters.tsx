@@ -155,7 +155,7 @@ const NewLitters = () => {
               slideShadows: false,
             }}
             breakpoints={{
-              320: { slidesPerView: 1, spaceBetween: 20 },
+              320: { slidesPerView: 2, spaceBetween: 20 },
               640: { slidesPerView: 2, spaceBetween: 40 },
               1024: { slidesPerView: 3, spaceBetween: 80 },
             }}
@@ -169,7 +169,7 @@ const NewLitters = () => {
                   i
                 )}`}
               >
-                <div className="relative w-full max-w-[300px] h-[440px] lg:h-[480px] flex-shrink-0 mx-auto">
+                <div className="relative w-full max-w-[300px] h-[440px] lg:h-[480px] shrink-0 mx-auto">
                   <Image
                     src={item.image}
                     alt={item.name}
