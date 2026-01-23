@@ -2,7 +2,7 @@ import React from "react";
 import AboutHero from "@/components/AboutHero";
 import NewLitters from "@/components/NewLitters";
 
-const CareSheets = () => {
+const NewLitter = () => {
   return (
     <div className="flex flex-col">
       <AboutHero />
@@ -11,4 +11,4 @@ const CareSheets = () => {
   );
 };
 
-export default CareSheets;
+export default NewLitter;

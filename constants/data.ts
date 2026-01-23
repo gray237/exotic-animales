@@ -48,10 +48,6 @@ export const headerData = [
               href: "/category/exotic-pet-foods",
             },
             {
-              title: "Pet Homes & Cages",
-              href: "/category/pet-homes-cages",
-            },
-            {
               title: "Feeding & Water Dishes",
               href: "/category/pet-dishes",
             },
@@ -61,7 +57,7 @@ export const headerData = [
             },
             {
               title: "Terrarium & Cage Supplies",
-              href: "/category/cage-supplies",
+              href: "/category/terrarium-cage-supplies",
             },
           ],
         },

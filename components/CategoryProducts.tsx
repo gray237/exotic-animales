@@ -13,28 +13,32 @@ import ProductCard from "./ProductCard";
 interface Props {
   categories: Category[];
   slug: string;
-  whyShopWithUs?: {
-    title: string;
-    description: string;
-    image?: string;
-  };
-  longDescription?: string;
 }
 
-const CategoryProducts = ({
-  categories,
-  slug,
-  whyShopWithUs,
-  longDescription,
-}: Props) => {
+const CategoryProducts = ({ categories, slug }: Props) => {
   const [currentSlug, setCurrentSlug] = useState(slug);
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
   const router = useRouter();
+
+  // Update limit dynamically on resize
+  useEffect(() => {
+    const updateLimit = () => {
+      if (window.innerWidth < 1024) setLimit(12); // mobile + tablet
+      else setLimit(15); // desktop
+    };
+
+    updateLimit(); // initial
+    window.addEventListener("resize", updateLimit);
+    return () => window.removeEventListener("resize", updateLimit);
+  }, []);
 
   const handleCategoryChange = (newSlug: string) => {
     if (newSlug === currentSlug) return;
     setCurrentSlug(newSlug);
+    setPage(1); // reset pagination on category change
     router.push(`/category/${newSlug}`, { scroll: false });
   };
 
@@ -51,7 +55,7 @@ const CategoryProducts = ({
       const data = await client.fetch(query, { categorySlug });
       setProducts(data);
     } catch (error) {
-      console.error("Error fetching products:", error);
+      console.error(error);
       setProducts([]);
     } finally {
       setLoading(false);
@@ -60,26 +64,30 @@ const CategoryProducts = ({
 
   useEffect(() => {
     fetchProducts(currentSlug);
-  }, [router]);
+  }, [currentSlug]);
+
+  const totalPages = Math.ceil(products.length / limit);
+  const visibleProducts = products.slice((page - 1) * limit, page * limit);
 
   return (
     <div className="w-full">
-
-      {/* ===== Product Section ===== */}
-      <div className="container mx-auto py-8 flex flex-col md:flex-row gap-6">
+      {/* ===== CATEGORY BUTTONS + PRODUCT GRID ===== */}
+      <div className="container mx-auto mt-5 flex flex-col md:flex-row gap-6">
         {/* Category Buttons */}
         <div className="flex md:flex-col gap-2 md:w-56 w-full">
-          {categories?.map((item) => (
+          {categories.map((item) => (
             <Button
-              key={item?._id}
-              onClick={() => handleCategoryChange(item?.slug?.current as string)}
-              className={`w-full text-left justify-start font-medium capitalize rounded-md py-2 transition-colors ${
-                item?.slug?.current === currentSlug
+              key={item._id}
+              onClick={() =>
+                handleCategoryChange(item.slug?.current as string)
+              }
+              className={`w-full text-left justify-start font-medium capitalize rounded-md py-2 ${
+                item.slug?.current === currentSlug
                   ? "bg-shop_orange text-white"
                   : "bg-transparent hover:bg-shop_orange/10 text-darkColor"
               }`}
             >
-              {item?.title}
+              {item.title}
             </Button>
           ))}
         </div>
@@ -87,64 +95,43 @@ const CategoryProducts = ({
         {/* Products Grid */}
         <div className="flex-1">
           {loading ? (
-            <div className="flex flex-col items-center justify-center py-10 min-h-80 space-y-4 text-center bg-gray-50 rounded-lg w-full">
-              <div className="flex items-center space-x-2 text-shop_orange">
-                <Loader2 className="w-5 h-5 animate-spin" />
-                <span>Loading products...</span>
-              </div>
+            <div className="flex justify-center py-10">
+              <Loader2 className="animate-spin text-shop_orange" />
             </div>
-          ) : products?.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5">
-              {products.map((product: Product) => (
-                <AnimatePresence key={product._id}>
-                  <motion.div>
+          ) : products.length ? (
+            <>
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2.5">
+                {visibleProducts.map((product) => (
+                  <motion.div key={product._id}>
                     <ProductCard product={product} />
                   </motion.div>
-                </AnimatePresence>
-              ))}
-            </div>
+                ))}
+              </div>
+
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <div className="mt-8 flex justify-center gap-2">
+                  {Array.from({ length: totalPages }).map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setPage(i + 1)}
+                      className={`px-4 py-2 rounded-md text-sm font-medium transition ${
+                        page === i + 1
+                          ? "bg-shop_orange text-white"
+                          : "border border-gray-300 hover:bg-gray-100"
+                      }`}
+                    >
+                      {i + 1}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </>
           ) : (
-            <NoProductAvailable
-              selectedTab={currentSlug}
-              className="mt-0 w-full"
-            />
+            <NoProductAvailable selectedTab={currentSlug} />
           )}
         </div>
       </div>
-
-      {/* ===== Category Description ===== */}
-      {longDescription && (
-        <div className="container mx-auto mt-14 prose prose-lg text-gray-800 max-w-4xl">
-          <div
-            className="leading-relaxed space-y-4"
-            dangerouslySetInnerHTML={{ __html: longDescription }}
-          />
-        </div>
-      )}
-
-      {/* ===== Shop With Us Section ===== */}
-      {whyShopWithUs && (
-        <div className="container mx-auto mt-16 flex flex-col md:flex-row items-center gap-10">
-          {/* Left – Category Image */}
-          {whyShopWithUs.image && (
-            <div className="md:w-1/2 w-full">
-              <img
-                src={whyShopWithUs.image}
-                alt={whyShopWithUs.title}
-                className="w-full h-auto object-cover rounded-xl"
-              />
-            </div>
-          )}
-
-          {/* Right – Text */}
-          <div className="md:w-1/2 w-full space-y-3">
-            <h4 className="text-2xl font-bold text-darkColor">{whyShopWithUs.title}</h4>
-            <p className="text-gray-700 leading-relaxed text-base">
-              {whyShopWithUs.description}
-            </p>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

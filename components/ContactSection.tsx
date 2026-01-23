@@ -1,42 +1,32 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import toast from "react-hot-toast";
+import { Loader2 } from "lucide-react";
 import Image from "next/image";
 import Container from "./Container";
 import { guineaPigPremium } from "@/images";
 import { FaPaperPlane } from "react-icons/fa";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Shield,
-  RefreshCw,
-  CheckSquare,
-  User,
-  AtSign,
-  Building,
-  PawPrint,
-  CreditCard,
-  Flag,
-  Lightbulb,
-} from "lucide-react";
+import { Mail, Phone, MapPin, Shield, RefreshCw, CheckSquare, User, AtSign, Building, PawPrint, CreditCard, Flag, Lightbulb, } from "lucide-react";
 
-const ContactSection = () => {
-  const [formData, setFormData] = useState({
+  const ContactSection = () => {
+    const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     phone: "",
     company: "",
     intent: "",
-    budget: "",
     priority: "Normal",
     message: "",
     consent: false,
+    companyWebsite: "", // 👈 honeypot
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [charCount, setCharCount] = useState(0);
-  const [successVisible, setSuccessVisible] = useState(false);
 
   const MESSAGE_MAX = 600;
 
@@ -81,11 +71,48 @@ const ContactSection = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
-    setSuccessVisible(true);
-    localStorage.removeItem("contactDraft");
+
+    setIsSubmitting(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to send message");
+      }
+
+      toast.success("Inquiry sent successfully!");
+
+      localStorage.removeItem("contactDraft");
+
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        company: "",
+        intent: "",
+        priority: "Normal",
+        message: "",
+        consent: false,
+        companyWebsite: "",
+      });
+
+      setCharCount(0);
+    } catch (err) {
+      console.error("Contact form error:", err);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -121,9 +148,9 @@ const ContactSection = () => {
                 </div>
 
                 <div className="flex flex-wrap gap-2 mt-4">
-                  <Badge icon={Shield} text="100% Secure Checkout" />
+                  <Badge icon={Shield} text="Secure Checkout" />
                   <Badge icon={RefreshCw} text="New Pet Litters" />
-                  <Badge icon={CheckSquare} text="USDA-Licensed Breeders" />
+                  <Badge icon={CheckSquare} text="USDA Breeders" />
                 </div>
               </div>
 
@@ -188,7 +215,7 @@ const ContactSection = () => {
                   />
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-4 mt-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <SelectField
                     icon={PawPrint}
                     label="Intent *"
@@ -206,20 +233,6 @@ const ContactSection = () => {
                   />
 
                   <SelectField
-                    icon={CreditCard}
-                    label="Budget range"
-                    name="budget"
-                    value={formData.budget}
-                    onChange={handleChange}
-                    options={[
-                      "Under $1,000",
-                      "$1,000 – $3,000",
-                      "$3,000 – $6,000",
-                      "$6,000+",
-                    ]}
-                  />
-
-                  <SelectField
                     icon={Flag}
                     label="Priority *"
                     name="priority"
@@ -229,6 +242,17 @@ const ContactSection = () => {
                     error={errors.priority}
                   />
                 </div>
+
+                <input
+                  type="text"
+                  name="companyWebsite"
+                  value={(formData as any).companyWebsite || ""}
+                  onChange={handleChange}
+                  className="hidden"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+
 
                 <div className="mt-4">
                   <Field
@@ -246,7 +270,7 @@ const ContactSection = () => {
                   </div>
                 </div>
 
-                <label className="flex items-start gap-2 mt-4 text-gray-700">
+                <label className="flex items-start gap-2 mt-2 text-gray-700">
                   <input
                     type="checkbox"
                     name="consent"
@@ -259,30 +283,43 @@ const ContactSection = () => {
                 <div className="flex items-center gap-3 mt-6">
                   <button
                     type="submit"
-                    className="relative inline-flex items-center gap-2
-                               px-[22px] py-[11px]
-                               rounded-[14px] text-gray-800
-                               border border-purple-400/36
-                               bg-linear-to-br from-purple-500/22 to-teal-400/14
-                               font-semibold shadow-lg overflow-hidden
-                               transition-transform duration-200 ease-in-out
-                               hover:-translate-y-1 hover:shadow-xl
-                               active:translate-y-0 active:scale-[0.99]"
+                    disabled={isSubmitting}
+                    className={`relative inline-flex items-center gap-2
+                      px-[22px] py-[11px]
+                      rounded-[14px] font-semibold
+                      border border-purple-400/36
+                      shadow-lg overflow-hidden
+                      transition-all duration-200
+                      ${
+                        isSubmitting
+                          ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                          : "text-gray-800 bg-linear-to-br from-purple-500/22 to-teal-400/14 hover:-translate-y-1 hover:shadow-xl active:scale-[0.99]"
+                      }`}
                   >
-                    <FaPaperPlane className="text-purple-700 text-[14px]" />
-                    <span>Send inquiry</span>
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Sending…</span>
+                      </>
+                    ) : (
+                      <>
+                        <FaPaperPlane className="text-purple-700 text-[14px]" />
+                        <span>Send Inquiry</span>
+                      </>
+                    )}
 
-                    {/* subtle shine */}
-                    <span
-                      className="absolute -top-8 -left-8 w-[120px] h-[120px]
-                                 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.45),transparent_60%)]
-                                 opacity-50 pointer-events-none"
-                    />
+                    {!isSubmitting && (
+                      <span
+                        className="absolute -top-8 -left-8 w-[120px] h-[120px]
+                        bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.45),transparent_60%)]
+                        opacity-50 pointer-events-none"
+                      />
+                    )}
                   </button>
 
                   <div className="ml-auto flex items-center gap-2 text-gray-500">
                     <Shield size={16} />
-                    Secure & private
+                    Secure 
                   </div>
                 </div>
               </form>

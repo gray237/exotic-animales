@@ -59,12 +59,12 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
   );
 
   return (
-    <div className="w-full bg-white">
+    <div className="w-full mb-0 bg-white">
       {/* Centered Tabs */}
       <div className="flex justify-center">
         <TabGroup>
           <TabList className="flex justify-center flex-wrap md:flex-nowrap gap-2 md:gap-4 rounded-full bg-shop_dark_green/10 p-1 w-fit mx-auto">
-            {["Description", "Additional Information", "Reviews"].map((tab) => (
+            {["Description", "More Info", "Reviews"].map((tab) => (
               <Tab
                 key={tab}
                 className={({ selected }) =>
@@ -121,7 +121,7 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
             {/* --- ADDITIONAL INFO --- */}
             <TabPanel>
               <div className="w-full flex justify-center">
-                <div className="max-w-5xl w-full">
+                <div className="max-w-6xl w-full">
                   {product.additionalInfo && product.additionalInfo.length > 0 ? (
                     <table className="w-full border-collapse bg-white rounded-lg shadow-sm overflow-hidden">
                       <tbody>
@@ -151,7 +151,7 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
 
             {/* --- REVIEWS --- */}
             <TabPanel>
-              <div className="w-full space-y-6">
+              <div className="w-full max-w-6xl space-y-6">
                 {reviews.length === 0 && (
                   <p className="text-gray-500">No reviews yet.</p>
                 )}

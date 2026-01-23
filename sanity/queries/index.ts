@@ -10,6 +10,7 @@ import {
   OTHERS_BLOG_QUERY,
   PRODUCT_BY_SLUG_QUERY,
   SINGLE_BLOG_QUERY,
+  RELATED_PRODUCTS_BY_VARIANT_QUERY,
 } from "./query";
 
 const getCategories = async (quantity?: number) => {
@@ -64,6 +65,21 @@ const getAllBrands = async () => {
     return [];
   }
 };
+
+const getRelatedProductsByVariant = async (variant: string, excludeId: string) => {
+  if (!variant) return [];
+  try {
+    const { data } = await sanityFetch({
+      query: RELATED_PRODUCTS_BY_VARIANT_QUERY,
+      params: { variant, excludeId },
+    });
+    return data ?? [];
+  } catch (error) {
+    console.error("Error fetching related products by variant:", error);
+    return [];
+  }
+};
+
 
 const getLatestBlogs = async () => {
   try {
@@ -185,4 +201,5 @@ export {
   getSingleBlog,
   getBlogCategories,
   getOthersBlog,
+  getRelatedProductsByVariant,
 };

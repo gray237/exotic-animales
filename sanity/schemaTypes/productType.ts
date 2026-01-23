@@ -43,7 +43,7 @@ export const productType = defineType({
     // NEW field: additionalInfo for tabular data
     defineField({
       name: "additionalInfo",
-      title: "Additional Information",
+      title: "More Info",
       type: "array",
       of: [
         defineField({
@@ -136,7 +136,7 @@ export const productType = defineType({
           { title: "Birds", value: "birds" },
           { title: "Arthropods", value: "arthropods" },
           { title: "Fish", value: "fish" },
-          { title: "Others", value: "others" },
+          { title: "Pet Supplies", value: "supplies" },
         ],
       },
     }),

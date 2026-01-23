@@ -21,6 +21,7 @@ import {
   eaBackground,
 } from "@/images";
 
+/* SAME DATA — untouched */
 const LITTERS = [
   {
     name: "Leopard Gecko Hatchlings",
@@ -115,30 +116,22 @@ const LITTERS = [
   },
 ];
 
-// ✅ Added forceStackMobile prop
-interface Props {
-  forceStackMobile?: boolean;
-}
+const CategoryLitters = () => {
+  const [activeIndex, setActiveIndex] = useState(3);
 
-const NewLitters: React.FC<Props> = ({ forceStackMobile = false }) => {
-  const [activeIndex, setActiveIndex] = useState(3); // Hedgehogs active
-  const active = LITTERS[activeIndex];
-
-  const getScaleClasses = (index: number) => {
+  const getScale = (index: number) => {
     const diff = Math.abs(index - activeIndex);
-    if (diff === 0) return "scale-100";
-    if (diff === 1) return "scale-90";
-    if (diff === 2) return "scale-80";
-    return "scale-70";
+    if (diff === 0) return "scale-90"; // active slide
+    if (diff === 1) return "scale-60";  // immediate neighbors
+    return "scale-40";                  // outer slides (if any)
   };
 
   return (
-    <section className="max-w-8xl mx-auto my-16 rounded-3xl overflow-hidden shadow-xl bg-white">
-      {/* ✅ flex wrapper conditionally stacks vertically on desktop if forceStackMobile=true */}
-      <div className={`flex flex-col lg:flex-row ${forceStackMobile ? "lg:flex-col" : ""}`}>
-        {/* SLIDER COLUMN */}
+    <section className="w-full rounded-3xl overflow-hidden shadow-xl bg-white">
+      <div className="flex flex-col">
+        {/* SLIDER */}
         <div
-          className="relative lg:w-[65%]"
+          className="relative w-full h-[350px]"
           style={{
             backgroundImage: `url(${eaBackground.src})`,
             backgroundSize: "cover",
@@ -150,9 +143,11 @@ const NewLitters: React.FC<Props> = ({ forceStackMobile = false }) => {
             effect="coverflow"
             centeredSlides
             loop
+            slidesPerView={3} // always max 3 slides
+            spaceBetween={40}
             navigation={{
-              nextEl: ".litters-next",
-              prevEl: ".litters-prev",
+              nextEl: ".category-litters-next",
+              prevEl: ".category-litters-prev",
             }}
             coverflowEffect={{
               rotate: 0,
@@ -160,22 +155,15 @@ const NewLitters: React.FC<Props> = ({ forceStackMobile = false }) => {
               modifier: 2.5,
               slideShadows: false,
             }}
-            breakpoints={{
-              320: { slidesPerView: 2, spaceBetween: 20 },
-              640: { slidesPerView: 2, spaceBetween: 40 },
-              1024: { slidesPerView: 3, spaceBetween: 80 },
-            }}
             onSlideChange={(s) => setActiveIndex(s.realIndex)}
-            className="h-[400px] sm:h-[480px] lg:h-[560px] flex items-center"
+            className="w-full h-full flex items-center"
           >
             {LITTERS.map((item, i) => (
               <SwiperSlide
                 key={i}
-                className={`flex items-center justify-center transition-transform duration-300 ${getScaleClasses(
-                  i
-                )}`}
+                className={`flex justify-center items-center transition-transform duration-300 ${getScale(i)}`}
               >
-                <div className="relative w-full max-w-[300px] h-[440px] lg:h-[480px] shrink-0 mx-auto">
+                <div className="relative w-[280px] h-[350px]">
                   <Image
                     src={item.image}
                     alt={item.name}
@@ -188,43 +176,41 @@ const NewLitters: React.FC<Props> = ({ forceStackMobile = false }) => {
             ))}
           </Swiper>
 
-          {/* NAV BUTTON BAR */}
-          <div className="absolute bottom-0 left-0 w-full bg-black/20 px-10 py-3 flex justify-between items-center z-20">
-            <button className="litters-prev transition-transform hover:-translate-x-2 text-black">
-              <FaChevronLeft size={28} />
+          {/* NAV */}
+          <div className="absolute bottom-0 left-0 w-full bg-black/20 px-6 py-2 flex justify-between z-10">
+            <button className="category-litters-prev text-black">
+              <FaChevronLeft size={24} />
             </button>
-            <button className="litters-next transition-transform hover:translate-x-2 text-black">
-              <FaChevronRight size={28} />
+            <button className="category-litters-next text-black">
+              <FaChevronRight size={24} />
             </button>
           </div>
         </div>
 
-        {/* DETAILS COLUMN */}
-        <aside className="lg:w-[35%] px-6 py-8 flex flex-col justify-between">
-          <div>
-            <h3 className="text-2xl font-bold text-gray-900">{active.name}</h3>
-            <p className="mt-4 text-gray-700 leading-relaxed">{active.intro}</p>
-            {active.details.map((line, i) => (
-              <p key={i} className="mt-2 text-gray-800">
-                {line}
-              </p>
-            ))}
-          </div>
+        {/* DETAILS */}
+        <div className="px-5 py-6">
+          <h3 className="text-xl font-bold text-gray-900">{LITTERS[activeIndex].name}</h3>
+          <p className="mt-3 text-gray-700 leading-relaxed">{LITTERS[activeIndex].intro}</p>
 
-          <div className="mt-8">
+          {LITTERS[activeIndex].details.map((line, i) => (
+            <p key={i} className="mt-2 text-gray-800 text-sm">
+              {line}
+            </p>
+          ))}
+
+          <div className="mt-6">
             <Link
               href="#contact"
-              className="relative inline-flex items-center gap-2 px-6 py-3 rounded-[14px] border border-purple-400/36 bg-linear-to-br from-purple-500/22 to-teal-400/14 text-gray-800 font-semibold shadow-lg overflow-hidden transition-transform duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0 active:scale-[0.99]"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-purple-400/40 bg-linear-to-br from-purple-500/20 to-teal-400/15 text-gray-800 font-semibold shadow-md hover:shadow-lg transition"
             >
-              <FaPaperPlane className="text-purple-700 text-[14px]" />
+              <FaPaperPlane className="text-purple-700 text-sm" />
               <span>Start a Request</span>
-              <span className="absolute -top-10 -left-10 w-[140px] h-[140px] bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.45),transparent_60%)] opacity-55 pointer-events-none transition-all duration-350 ease-in-out hover:opacity-75 hover:translate-x-5 hover:-translate-y-5" />
             </Link>
           </div>
-        </aside>
+        </div>
       </div>
     </section>
   );
 };
 
-export default NewLitters;
+export default CategoryLitters;

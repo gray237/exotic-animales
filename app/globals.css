@@ -153,6 +153,15 @@
   }
 }
 
+.share-btn {
+  @apply w-12 h-12 rounded-full text-white flex items-center justify-center hover:scale-110 transition;
+}
+
+.follow-btn {
+  @apply flex items-center gap-2 text-sm px-4 py-2 border rounded-lg hover:bg-gray-100 transition;
+}
+
+
 body {
   font-family: var(--font-poppins);
 }

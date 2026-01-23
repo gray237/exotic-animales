@@ -67,6 +67,21 @@ const MY_ORDERS_QUERY = defineQuery(`
 }
 `);
 
+// Related products by Product Type (variant)
+const RELATED_PRODUCTS_BY_VARIANT_QUERY = `
+*[_type == "product" && variant == $variant && _id != $excludeId] | order(name asc)[0...6] {
+  _id,
+  name,
+  slug,
+  price,
+  discount,
+  images,
+  stock,
+  variant
+}
+`;
+
+
 const GET_ALL_BLOG = defineQuery(
   `*[_type == 'blog'] | order(publishedAt desc)[0...$quantity]{
   ...,  
@@ -128,4 +143,5 @@ export {
   SINGLE_BLOG_QUERY,
   BLOG_CATEGORIES,
   OTHERS_BLOG_QUERY,
+  RELATED_PRODUCTS_BY_VARIANT_QUERY,
 };
