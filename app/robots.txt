@@ -1,0 +1,22 @@
+# ===========================
+# Robots.txt for ExoticAnimales
+# ===========================
+
+# Allow all search engines full access to main content
+User-agent: *
+Allow: /
+
+# Disallow Next.js internal folders, API routes, and hidden files
+Disallow: /_next/
+Disallow: /api/
+Disallow: /node_modules/
+Disallow: /drafts/
+Disallow: /*.map$
+Disallow: /*?preview=true
+
+# Optional: block search engines from admin/ staging pages (if any)
+# Disallow: /admin/
+# Disallow: /staging/
+
+# Sitemap location
+Sitemap: https://www.exoticanimales.com/sitemap.xml

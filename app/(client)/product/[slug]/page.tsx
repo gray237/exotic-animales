@@ -10,6 +10,7 @@ import {
   getRelatedProductsByVariant,
   getDealProducts,
 } from "@/sanity/queries";
+import { urlFor } from "@/sanity/lib/image";
 import Link from "next/link";
 import { CornerDownLeft, StarIcon, Truck } from "lucide-react";
 import { notFound } from "next/navigation";
@@ -18,6 +19,42 @@ import { FaRegQuestionCircle, FaFire } from "react-icons/fa";
 import { TbTruckDelivery } from "react-icons/tb";
 import ProductTabs from "@/components/ProductTabs";
 import ShareButton from "@/components/ShareButton";
+
+
+// ------------------- DYNAMIC METADATA -------------------
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const product = await getProductBySlug(params.slug);
+
+  if (!product) return { title: "Product Not Found" };
+
+  // Map images from Sanity safely
+  const images: string[] = [
+    ...(product.bannerImage ? [urlFor(product.bannerImage).url()] : []),
+    ...(product.images?.map((img: any) => img && urlFor(img).url()).filter(Boolean) || []),
+  ];
+
+  return {
+    title: `${product.name} | Exotic Animales`,
+    description: product.description || "Find exotic pets, axolotls, sugar gliders, and more!",
+    keywords: `${product.name}, exotic pets, ${product.variant}, buy ${product.name}`,
+    openGraph: {
+      title: product.name,
+      description: product.description,
+      url: `https://www.exoticanimales.com/product/${product.slug.current || product.slug}`,
+      images: images,
+      siteName: "Exotic Animales",
+      type: "product",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: product.name,
+      description: product.description,
+      images: images,
+    },
+  };
+}
+
+// ------------------- PAGE COMPONENT -------------------
 
 const SingleProductPage = async ({
   params,

@@ -14,18 +14,91 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
+import { Metadata } from "next";
 
+// ------------------- DYNAMIC METADATA -------------------
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> => {
+  const { slug } = params;
+
+  // Fetch the blog
+  const blogResult = await getSingleBlog(slug);
+  const blog = Array.isArray(blogResult) ? blogResult[0] : blogResult;
+
+  if (!blog) {
+    return {
+      title: "Blog Not Found | Exotic Animales",
+      description: "The requested blog does not exist.",
+    };
+  }
+
+  // Build blog image URL (if available)
+  const imageUrl = blog.mainImage ? urlFor(blog.mainImage).width(1200).url() : undefined;
+
+  // Use a safe description: fallback to blog title + site info
+  const description = blog.title
+    ? `Read "${blog.title}" on Exotic Animales, your trusted source for exotic pets including axolotls, sugar gliders, fennec foxes, and more.`
+    : "Read this blog on Exotic Animales, your trusted source for exotic pets.";
+
+  return {
+    title: `${blog.title} | Exotic Animales`,
+    description,
+    keywords: `${blog.title}, Exotic Animales, exotic pets, blog`,
+    openGraph: {
+      title: `${blog.title} | Exotic Animales`,
+      description,
+      url: `https://www.exoticanimales.com/blog/${slug}`,
+      siteName: "Exotic Animales",
+      type: "article",
+      images: imageUrl
+        ? [
+            {
+              url: imageUrl,
+              width: 1200,
+              height: 630,
+              alt: blog.title,
+            },
+          ]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${blog.title} | Exotic Animales`,
+      description,
+      images: imageUrl ? [imageUrl] : undefined,
+    },
+  };
+};
+
+// ------------------- PAGE COMPONENT -------------------
 const SingleBlogPage = async ({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) => {
   const { slug } = await params;
-  const blog: SINGLE_BLOG_QUERYResult = await getSingleBlog(slug);
-  if (!blog) return notFound();
+
+// Get result from Sanity
+const blogResult = await getSingleBlog(slug);
+
+// Ensure blogResult is an array, otherwise wrap it in one
+const blogArray: SINGLE_BLOG_QUERYResult[] = Array.isArray(blogResult)
+  ? blogResult
+  : blogResult
+  ? [blogResult]
+  : [];
+
+// Take the first blog or null
+const blog: SINGLE_BLOG_QUERYResult | null = blogArray[0] || null;
+
+// If no blog, return 404
+if (!blog) return notFound();
 
   return (
-    <div className="py-10">
+    <div className="py-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
       <Container className="grid grid-cols-1 lg:grid-cols-4 gap-5">
         <div className="md:col-span-3">
           {blog?.mainImage && (
@@ -41,25 +114,26 @@ const SingleBlogPage = async ({
             <div className="text-xs flex items-center gap-5 my-7">
               <div className="flex items-center relative group cursor-pointer">
                 {blog?.blogcategories?.map(
-                  (item: { title: string }, index: number) => (
-                    <p
-                      key={index}
-                      className="font-semibold text-shop_dark_green tracking-wider"
-                    >
-                      {item?.title}
-                    </p>
-                  )
+                  (item, index) =>
+                    item?.title && ( // only render if title exists
+                      <p
+                        key={index}
+                        className="font-semibold text-shop_dark_green tracking-wider"
+                      >
+                        {item.title}
+                      </p>
+                    )
                 )}
-                <span className="absolute left-0 -bottom-1.5 bg-lightColor/30 inline-block w-full h-[2px] group-hover:bg-shop_dark_green hover:cursor-pointer hoverEffect" />
+                <span className="absolute left-0 -bottom-1.5 bg-lightColor/30 inline-block w-full h-0.5 group-hover:bg-shop_dark_green hover:cursor-pointer hoverEffect" />
               </div>
               <p className="flex items-center gap-1 text-lightColor relative group hover:cursor-pointer hover:text-shop_dark_green hoverEffect">
                 <Pencil size={15} /> {blog?.author?.name}
-                <span className="absolute left-0 -bottom-1.5 bg-lightColor/30 inline-block w-full h-[2px] group-hover:bg-shop_dark_green hoverEffect" />
+                <span className="absolute left-0 -bottom-1.5 bg-lightColor/30 inline-block w-full h-0.5 group-hover:bg-shop_dark_green hoverEffect" />
               </p>
               <p className="flex items-center gap-1 text-lightColor relative group hover:cursor-pointer hover:text-shop_dark_green hoverEffect">
                 <Calendar size={15} />{" "}
                 {dayjs(blog.publishedAt).format("MMMM D, YYYY")}
-                <span className="absolute left-0 -bottom-1.5 bg-lightColor/30 inline-block w-full h-[2px] group-hover:bg-shop_dark_green hoverEffect" />
+                <span className="absolute left-0 -bottom-1.5 bg-lightColor/30 inline-block w-full h-0.5 group-hover:bg-shop_dark_green hoverEffect" />
               </p>
             </div>
             <h2 className="text-2xl font-bold my-5">{blog?.title}</h2>
@@ -162,7 +236,7 @@ const SingleBlogPage = async ({
                             return (
                               <Link
                                 href={value.href}
-                                className="font-medium text-gray-950 underline decoration-gray-400 underline-offset-4 data-[hover]:decoration-gray-600"
+                                className="font-medium text-gray-950 underline decoration-gray-400 underline-offset-4 data-hover:decoration-gray-600"
                               >
                                 {children}
                               </Link>
@@ -205,7 +279,9 @@ const BlogLeft = async ({ slug }: { slug: string }) => {
               key={index}
               className="text-lightColor flex items-center justify-between text-sm font-medium"
             >
-              <p>{blogcategories[0]?.title}</p>
+              {blogcategories && blogcategories.length > 0 && blogcategories[0]?.title && (
+                <p>{blogcategories[0].title}</p>
+              )}
               <p className="text-darkColor font-semibold">{`(1)`}</p>
             </div>
           ))}
@@ -226,7 +302,7 @@ const BlogLeft = async ({ slug }: { slug: string }) => {
                   alt="blogImage"
                   width={100}
                   height={100}
-                  className="w-16 h-16 rounded-full object-cover border-[1px] border-shop_dark_green/10 group-hover:border-shop_dark_green hoverEffect"
+                  className="w-16 h-16 rounded-full object-cover border border-shop_dark_green/10 group-hover:border-shop_dark_green hoverEffect"
                 />
               )}
               <p className="line-clamp-2 text-sm text-lightColor group-hover:text-shop_dark_green hoverEffect">

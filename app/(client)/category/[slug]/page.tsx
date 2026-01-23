@@ -5,6 +5,56 @@ import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import React from "react";
 
+
+// ------------------- DYNAMIC METADATA -------------------
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const { slug } = params;
+  const category = await getCategoryBySlug(slug);
+
+  if (!category) {
+    return {
+      title: "Category Not Found | Exotic Animales",
+      description: "The requested category does not exist.",
+    };
+  }
+
+  const imageUrl = category.bannerImage ? urlFor(category.bannerImage).width(1200).url() : undefined;
+
+  const description = category.description
+    ? category.description.substring(0, 160)
+    : `Explore the ${category.title} category at Exotic Animales and find exotic pets, accessories, and guides.`;
+
+  return {
+    title: `${category.title} | Exotic Animales`,
+    description,
+    keywords: `${category.title}, Exotic Animales, exotic pets, pet products`,
+    openGraph: {
+      title: `${category.title} | Exotic Animales`,
+      description,
+      url: `https://www.exoticanimales.com/category/${slug}`,
+      siteName: "Exotic Animales",
+      type: "website",
+      images: imageUrl
+        ? [
+            {
+              url: imageUrl,
+              width: 1200,
+              height: 630,
+              alt: category.title,
+            },
+          ]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${category.title} | Exotic Animales`,
+      description,
+      images: imageUrl ? [imageUrl] : undefined,
+    },
+  };
+}
+
+// ------------------- PAGE COMPONENT -------------------
 const CategoryPage = async ({
   params,
 }: {

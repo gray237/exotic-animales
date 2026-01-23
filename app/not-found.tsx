@@ -23,10 +23,10 @@ const NotFoundPage = () => {
               href="/"
               className="w-full flex items-center justify-center px-4 py-2 border border-transparent text-sm font-semibold rounded-md text-white bg-shop_dark_green/80 hover:bg-shop_dark_green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amazonOrangeDark hoverEffect"
             >
-              Go to Shopcart&apos;s home page
+              Go to E.A Ranch&apos;s Homepage
             </Link>
             <Link
-              href="/help"
+              href="/faq"
               className="w-full flex items-center justify-center px-4 py-2 border border-gray-300 text-sm font-semibold rounded-md text-amazonBlue bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amazonBlue"
             >
               Help
@@ -37,17 +37,17 @@ const NotFoundPage = () => {
           <p className="text-sm text-gray-600">
             Need help? Visit the{" "}
             <Link
-              href="/help"
+              href="/faq"
               className="font-medium text-amazon-blue hover:text-amazon-blue-dark"
             >
-              Help section
+              FAQ Page
             </Link>{" "}
             or{" "}
             <Link
               href="/contact"
               className="font-medium text-amazon-blue hover:text-amazon-blue-dark"
             >
-              contact us
+              Contact Us
             </Link>
           </p>
         </div>
