@@ -155,5 +155,5 @@ export const productType = [
   { title: "Reptiles", value: "reptiles" },
   { title: "Amphibians", value: "amphibians" },
   { title: "Birds", value: "birds" },
-  { title: "Others", value: "others" },
+  { title: "Pet Supplies", value: "supplies" },
 ];
