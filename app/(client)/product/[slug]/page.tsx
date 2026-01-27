@@ -22,12 +22,21 @@ import ShareButton from "@/components/ShareButton";
 
 
 // ------------------- DYNAMIC METADATA -------------------
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const product = await getProductBySlug(params.slug);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
 
-  if (!product) return { title: "Product Not Found" };
+  const product = await getProductBySlug(slug);
 
-  // Map images from Sanity safely
+  if (!product) {
+    return {
+      title: "Product Not Found | Exotic Animales",
+    };
+  }
+
   const images: string[] = [
     ...(product.bannerImage ? [urlFor(product.bannerImage).url()] : []),
     ...(product.images?.map((img: any) => img && urlFor(img).url()).filter(Boolean) || []),
@@ -35,21 +44,23 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
   return {
     title: `${product.name} | Exotic Animales`,
-    description: product.description || "Find exotic pets, axolotls, sugar gliders, and more!",
+    description:
+      product.description ||
+      "Find exotic pets for sale, axolotls, underground reptiles, sugar gliders, hedgehogs, finger monkeys and more at our reserve - E.A Ranch!",
     keywords: `${product.name}, exotic pets, ${product.variant}, buy ${product.name}`,
     openGraph: {
       title: product.name,
       description: product.description,
-      url: `https://www.exoticanimales.com/product/${product.slug.current || product.slug}`,
-      images: images,
+      url: `https://www.exoticanimales.com/product/${slug}`,
+      images,
       siteName: "Exotic Animales",
-      type: "product",
+      type: "website",
     },
     twitter: {
       card: "summary_large_image",
       title: product.name,
       description: product.description,
-      images: images,
+      images,
     },
   };
 }

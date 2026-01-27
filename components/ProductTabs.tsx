@@ -40,9 +40,26 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
   const [showForm, setShowForm] = useState(false);
 
   const handleAddReview = () => {
-    if (!newReview.name || !newReview.comment) return;
-    setReviews([...reviews, newReview]);
-    setNewReview({ name: "", rating: 0, comment: "" });
+    if (!newReview.name || !newReview.comment || newReview.rating === 0) {
+      alert("Please add your name, rating, and comment.");
+      return;
+    }
+
+    setReviews((prev) => [
+      ...prev,
+      {
+        name: newReview.name.trim(),
+        rating: newReview.rating,
+        comment: newReview.comment.trim(),
+      },
+    ]);
+
+    setNewReview({
+      name: "",
+      rating: 0,
+      comment: "",
+    });
+
     setShowForm(false);
   };
 
@@ -151,7 +168,7 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
 
             {/* --- REVIEWS --- */}
             <TabPanel>
-              <div className="w-full max-w-6xl space-y-6">
+              <div className="w-full max-w-6xl space-y-4">
                 {reviews.length === 0 && (
                   <p className="text-gray-500">No reviews yet.</p>
                 )}
@@ -185,54 +202,73 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
 
                 {/* Add Review Form */}
                 {showForm && (
-                  <div className="mt-6">
-                    <h4 className="font-semibold mb-3 text-lg text-shop_dark_green">
+                  <div className="mt-4 max-w-xl border border-gray-200 rounded-xl p-4 bg-gray-50">
+                    <h4 className="font-semibold mb-3 text-base text-shop_dark_green">
                       Add Your Review
                     </h4>
-                    <input
-                      type="text"
-                      placeholder="Name"
-                      className="border p-2 mb-2 w-full rounded"
-                      value={newReview.name}
-                      onChange={(e) =>
-                        setNewReview({ ...newReview, name: e.target.value })
-                      }
-                    />
-                    <input
-                      type="number"
-                      placeholder="Rating (1–5)"
-                      min={1}
-                      max={5}
-                      className="border p-2 mb-2 w-full rounded"
-                      value={newReview.rating || ""}
-                      onChange={(e) =>
-                        setNewReview({
-                          ...newReview,
-                          rating: Number(e.target.value),
-                        })
-                      }
-                    />
+
+                    {/* Name + Rating row */}
+                    <div className="flex items-center gap-4 mb-3">
+                      {/* Name */}
+                      <input
+                        type="text"
+                        placeholder="Your name"
+                        className="border px-3 py-2 rounded-md w-full text-sm"
+                        value={newReview.name}
+                        onChange={(e) =>
+                          setNewReview({ ...newReview, name: e.target.value })
+                        }
+                      />
+
+                      {/* Star Rating */}
+                      <div className="flex items-center gap-1">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <button
+                            key={star}
+                            type="button"
+                            onClick={() =>
+                              setNewReview({ ...newReview, rating: star })
+                            }
+                            className="focus:outline-none"
+                          >
+                            <svg
+                              className={`w-4 h-4 transition ${
+                                star <= newReview.rating
+                                  ? "text-shop_light_green fill-current"
+                                  : "text-gray-300"
+                              }`}
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 22 20"
+                            >
+                              <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                            </svg>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Comment */}
                     <textarea
-                      placeholder="Comment"
-                      className="border p-2 mb-2 w-full rounded"
+                      placeholder="Write your review..."
+                      className="border px-3 py-2 mb-3 w-full rounded-md text-sm resize-none"
+                      rows={3}
                       value={newReview.comment}
                       onChange={(e) =>
-                        setNewReview({
-                          ...newReview,
-                          comment: e.target.value,
-                        })
+                        setNewReview({ ...newReview, comment: e.target.value })
                       }
                     />
+
+                    {/* Actions */}
                     <div className="flex items-center gap-3">
                       <button
                         onClick={handleAddReview}
-                        className="bg-shop_dark_green text-white px-5 py-2 rounded-full hover:bg-shop_light_green transition"
+                        className="bg-shop_dark_green text-white px-4 py-1.5 rounded-full text-sm hover:bg-shop_light_green transition"
                       >
-                        Submit Review
+                        Submit
                       </button>
                       <button
                         onClick={() => setShowForm(false)}
-                        className="text-gray-500 underline hover:text-gray-700"
+                        className="text-gray-500 text-sm underline hover:text-gray-700"
                       >
                         Cancel
                       </button>
