@@ -51,6 +51,22 @@ import prarieDogLitter from "./sections/baby-prairie-dog-litter.png";
 import savannahCatLitter from "./sections/savannah-kitten-litter.png";
 import fennecFoxLitter from "./sections/baby-fennec-fox-litter.png";
 import ballPythonLitter from "./sections/baby-ball-python-litter.png";
+import adoptAxolotls from "./categories/adopt-axolotls.jpg";
+import adoptCoatimundis from "./categories/adopt-coatimundis.jpg";
+import adoptHoofstock from "./categories/adopt-cows-hoofstock.jpg";
+import adoptFennecFoxes from "./categories/adopt-fennec-bat-eared-foxes.jpg";
+import adoptGeckos from "./categories/adopt-geckos.jpg";
+import adoptHedgehogs from "./categories/adopt-hedgehogs.jpg";
+import adoptWallabies from "./categories/adopt-kangaroos-wallabies.jpg";
+import adoptLemurs from "./categories/adopt-lemurs.jpg";
+import adoptMarmoset from "./categories/adopt-marmoset-monkeys.jpg";
+import adoptPrarieDogs from "./categories/adopt-prairie-dogs-capybaras.jpg";
+import adoptPorcupines from "./categories/adopt-prehensile-porcupines.jpg";
+import adoptSavannahCat from "./categories/adopt-savannah-cat.jpg";
+import adoptSkunks from "./categories/adopt-skunks-weasels.jpg";
+import adoptSnakes from "./categories/adopt-snakes-pythons.jpg";
+import adoptSugarGliders from "./categories/adopt-sugar-gliders.jpg";
+import adoptTurtles from "./categories/adopt-turtles.jpg";
 
 
-export { paypalLogo, paypalIcon, zelleIcon, cashappIcon, bitcoinIcon,  bankTransfer, cashApp, sendPaypal, zellePay, emptyCart, banner_1, exoticBanner1, exoticBanner2, exoticBanner3, axolotlCare, ballPythonCare, beardedDragonCare, bloodPythonCare, crestedGeckoCare, deguCare, forestScorpionCare, greenSnakeCare, hamsterCare, jacksonChameleonCare, prairieDogsCare, skunksCare, sugarGliderCare, tarantulaSpiderCare, waterMonitorCare, woodTurtleCare, smallExoticPetsSale, exoticPetsLogo, eaBackground, exoticAnimalsRanch, exoticAnimalsTexas, exoticPetBreeder, guineaPigPremium, axolotlExclusive, bestExoticPets, exoticPetCare, exoticPetFeeders, exoticPetStore, exoticPetAdoption, exoticPetsRanch, drRachel1, drRachel2, leopardGeckoLitter, axolotlLitter, hedgehogLitter, prarieDogLitter, savannahCatLitter, fennecFoxLitter, ballPythonLitter };
+export { paypalLogo, paypalIcon, zelleIcon, cashappIcon, bitcoinIcon,  bankTransfer, cashApp, sendPaypal, zellePay, emptyCart, banner_1, exoticBanner1, exoticBanner2, exoticBanner3, axolotlCare, ballPythonCare, beardedDragonCare, bloodPythonCare, crestedGeckoCare, deguCare, forestScorpionCare, greenSnakeCare, hamsterCare, jacksonChameleonCare, prairieDogsCare, skunksCare, sugarGliderCare, tarantulaSpiderCare, waterMonitorCare, woodTurtleCare, smallExoticPetsSale, exoticPetsLogo, eaBackground, exoticAnimalsRanch, exoticAnimalsTexas, exoticPetBreeder, guineaPigPremium, axolotlExclusive, bestExoticPets, exoticPetCare, exoticPetFeeders, exoticPetStore, exoticPetAdoption, exoticPetsRanch, drRachel1, drRachel2, leopardGeckoLitter, axolotlLitter, hedgehogLitter, prarieDogLitter, savannahCatLitter, fennecFoxLitter, ballPythonLitter, adoptAxolotls, adoptCoatimundis, adoptHoofstock, adoptFennecFoxes, adoptGeckos, adoptHedgehogs, adoptWallabies, adoptLemurs, adoptMarmoset, adoptPrarieDogs, adoptPorcupines, adoptSavannahCat, adoptSkunks, adoptSnakes, adoptSugarGliders, adoptTurtles };
