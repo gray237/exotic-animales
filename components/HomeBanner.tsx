@@ -18,7 +18,7 @@ const items = [
     title: "Exotic Animals",
     image: exoticPetAdoption,
     icon: PawPrint,
-    href: "#",
+    href: "/adopt-exotic-pets",
   },
   {
     title: "Pet Supplies",
