@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Title } from "./ui/text";
+import Link from "next/link";
 import {
   exoticAnimalsRanch,
   exoticAnimalsTexas,
@@ -8,18 +8,18 @@ import {
 } from "@/images";
 
 
-const FeaturedSection = () => {
+const WelcomeSection = () => {
   return (
     <section className="py-15 px-6 lg:px-24">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* LEFT COLUMN */}
         <div className="space-y-6 max-w-xl">
-          <Title>Exotic Animals Ranch: Hand-Raised & Rare Exotic Pets for Sale</Title>
+          <h1 className="text-2xl font-semibold">Exotic Animales Ranch: Hand-Raised & Rare Exotic Pets for Sale</h1>
           <p className="text-gray-700 leading-relaxed">
-            E.A Ranch is a premier USDA-Licensed exotic animals breeder and conserver for endangered species. We offer the <a href="/shop.html">best selection of exotic pets</a>; baby hedgehogs, sugar gliders, fennec foxes, lemurs, snakes, axolotls, rodents, and more. As a trusted source for hand-raised companion, our professional service starts with family values, ensuring that every animal in our care receive individualized attention and specialized nutrition required to thrive.
+            E.A Ranch is a premier USDA-Licensed exotic pet breeder and conserver for rare animal species. We offer the <Link href="/shop">best selection of exotic pets</Link>; baby hedgehogs, sugar gliders, fennec foxes, lemurs, snakes, axolotls, rodents, and more at our exotic pet store. As a trusted source for hand-raised companion, our professional service starts with family values, ensuring that every animal in our care receive individualized attention and specialized nutrition required to thrive.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            By focusing on health, temperament, and lifetime breeder support, E.A Ranch has become a nationwide leader for keepers seeking healthy, vibrant, and well-socialized animals with premium lineage. If you are considering buying an exotic pet, <a href="/contact.html">contact us to discover</a> why families and exotic enthusiasts have trusted us since 2018 to bridge the gap between nature and the modern home.
+            By focusing on health, temperament, and lifetime breeder support, E.A Ranch has become a nationwide leader for keepers seeking healthy, vibrant, and well-socialized animals with premium lineage. If you are considering buying an exotic pet, <Link href="/contact">contact us to discover</Link> why families and exotic enthusiasts have trusted us since 2018 to bridge the gap between nature and the modern home.
           </p>
         </div>
 
@@ -64,7 +64,7 @@ const FeaturedSection = () => {
   );
 };
 
-export default FeaturedSection;
+export default WelcomeSection;
 
 /* ---------- Overlay Component ---------- */
 
