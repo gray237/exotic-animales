@@ -1,0 +1,201 @@
+import { Metadata } from "next";
+import Script from "next/script";
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import { vetData } from "../vetData";
+import { eaBackground } from "@/images";
+
+export const generateMetadata = async ({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> => {
+  const { slug } = await params;
+  const clinic = vetData.find((v) => v.slug === slug);
+  if (!clinic) return { title: "Clinic Not Found" };
+
+  return {
+    title: `Expert Exotic Vet: ${clinic.name} | ${clinic.city}, ${clinic.state}`,
+    description: `Need an exotic vet in ${clinic.city}? ${clinic.name} specializes in ${clinic.specialties.join(", ")}. Trusted exotic animal care and emergency services.`,
+    keywords: [`${clinic.name}`, "exotic vet", `${clinic.state} reptile vet`, "avian specialist", "Exotic Animales approved"],
+  };
+};
+
+export const dynamicParams = false;
+
+const VetProfilePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  const { slug } = await params;
+  const clinic = vetData.find((v) => v.slug === slug);
+  if (!clinic) notFound();
+
+  return (
+    <div className="bg-white dark:bg-gray-950 min-h-screen">
+      {/* HERO SECTION */}
+      <section className="relative w-full h-[450px] flex items-center justify-center text-center">
+        <Image src={eaBackground} alt="Clinic Background" fill priority className="object-cover opacity-40" />
+        <div className="absolute inset-0 bg-linear-to-b from-transparent to-white dark:to-gray-950" />
+        
+        <div className="relative z-10 max-w-4xl mx-auto px-6">
+          <div className="mb-4 flex items-center justify-center gap-2 px-4 py-2 bg-green-500/10 text-green-600 dark:text-green-400 rounded-full text-xs font-bold uppercase tracking-widest w-fit mx-auto">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
+            Verified Specialist
+          </div>
+          
+          <h1 className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white mb-4 leading-tight">
+            {clinic.name}
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-400">
+            Dedicated Exotic Medical Care in <span className="text-gray-900 dark:text-white font-bold">{clinic.city}, {clinic.state}</span>
+          </p>
+        </div>
+      </section>
+
+      {/* CONTENT GRID */}
+      <section className="py-12 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16">
+        
+        {/* LEFT: RICH DATA */}
+        <div className="lg:col-span-8">
+          {/* BACK BUTTON - Moved here, above the title */}
+          <Link 
+            href="/vet-guide" 
+            className="inline-flex items-center text-green-600 dark:text-green-400 font-bold text-sm mb-4 hover:-translate-x-1 transition-transform duration-200"
+          >
+            ← Back to Directory
+          </Link>
+
+          <div className="prose prose-lg dark:prose-invert max-w-none">
+            <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Clinic Overview & Expertise</h2>
+            <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
+              {clinic.description}
+            </p>
+
+            {/* Core Specializations Card */}
+            <div className="bg-gray-50 dark:bg-gray-900 p-8 rounded-4xl border border-gray-100 dark:border-white/5 mb-12">
+              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Core Specializations</h3>
+              <div className="flex flex-wrap gap-2">
+                {clinic.specialties.map(s => (
+                  <span key={s} className="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-sm font-medium">
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Analyst Section */}
+            <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Why Exotic Animales Trusts This Clinic</h2>
+            <p className="mb-6 text-gray-600 dark:text-gray-300">
+              Not all veterinarians are created equal when it comes to "non-traditional" pets. Our analysts look for clinics that invest in specialized diagnostic equipment—like micro-sized surgical tools and high-resolution imaging—necessary for animals weighing only a few grams.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-12">
+              <div className="space-y-4">
+                <h4 className="font-bold text-green-600 flex items-center gap-2 text-lg">
+                  ✅ Pro-Active Diagnostics
+                </h4>
+                <p className="text-sm text-gray-500">This facility is known for not just "treating symptoms," but using bloodwork and imaging to find the root cause in exotic species.</p>
+              </div>
+              <div className="space-y-4">
+                <h4 className="font-bold text-green-600 flex items-center gap-2 text-lg">
+                  ✅ Exotic-Only Recovery
+                </h4>
+                <p className="text-sm text-gray-500">Reduced stress environments where sensitive animals like rabbits or birds aren't housed next to barking dogs.</p>
+              </div>
+            </div>
+
+            {/* Checklist Section */}
+            <div className="border-2 border-dashed border-gray-200 dark:border-gray-800 p-8 rounded-4xl bg-white dark:bg-gray-950">
+              <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Exotic Vet Screening Checklist</h3>
+              <p className="text-sm mb-6 text-gray-500 italic">When calling {clinic.name}, we recommend asking these specific questions to ensure the best fit for your pet:</p>
+              <ul className="space-y-4 list-none pl-0 text-gray-700 dark:text-gray-300">
+                <li className="flex gap-3"><strong>1.</strong> "How many [Your Species] do you typically see in a month?"</li>
+                <li className="flex gap-3"><strong>2.</strong> "What is your protocol for anesthesia in small exotic mammals?"</li>
+                <li className="flex gap-3"><strong>3.</strong> "Do you have a specialized incubator for recovery?"</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT: CONTACT & ACTIONS */}
+        <div className="lg:col-span-4">
+          <div className="sticky top-24 space-y-6">
+            <div className="p-8 bg-gray-900 text-white rounded-4xl shadow-2xl shadow-green-500/10">
+              <h3 className="text-xl font-bold mb-6">Contact Information</h3>
+              
+              <div className="space-y-6">
+                <div>
+                  <p className="text-[10px] font-bold uppercase text-gray-400 mb-1 tracking-tighter">Location</p>
+                  <p className="text-lg leading-snug">{clinic.address}</p>
+                </div>
+
+                <div>
+                  <p className="text-[10px] font-bold uppercase text-gray-400 mb-1 tracking-tighter">Direct Line</p>
+                  <a href={`tel:${clinic.phone}`} className="text-3xl font-black text-green-400 hover:text-green-300 transition-colors">
+                    {clinic.phone}
+                  </a>
+                </div>
+
+                <div className="pt-4 space-y-3">
+                  <a href={clinic.website} target="_blank" rel="noopener noreferrer" className="block w-full text-center py-4 bg-white text-black rounded-2xl font-bold hover:bg-green-400 transition-all">
+                    Official Website
+                  </a>
+                  <Link href="/contact" className="block w-full text-center py-4 bg-gray-800 text-gray-400 rounded-2xl font-bold text-sm hover:text-white transition-all">
+                    Report Outdated Info
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Emergency Info Card */}
+            {clinic.emergency && (
+              <div className="p-6 bg-red-50 dark:bg-red-950/30 border border-red-100 dark:border-red-900 rounded-3xl">
+                <h4 className="text-red-600 dark:text-red-400 font-bold mb-2 flex items-center gap-2">
+                  🚨 24/7 Emergency Facility
+                </h4>
+                <p className="text-xs text-red-800 dark:text-red-300/70 leading-relaxed">
+                  This clinic is equipped for after-hours emergencies. We recommend calling ahead while in transit so their team can prepare the triage station.
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER BREADCRUMBS */}
+      <footer className="py-12 border-t border-gray-100 dark:border-white/5 text-center text-sm text-gray-400">
+        <p>
+          <Link href="/" className="hover:text-green-500 transition-colors">Home</Link> / 
+          <Link href="/vet-guide" className="hover:text-green-500 ml-1 transition-colors">Vet Guide</Link> / 
+          <span className="ml-1 text-gray-900 dark:text-white font-bold">{clinic.name}</span>
+        </p>
+      </footer>
+
+      {/* JSON-LD FOR GOOGLE SEARCH */}
+      <Script type="application/ld+json" id={`vet-schema-${clinic.slug}`}>
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "VeterinaryCare",
+          "name": clinic.name,
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": clinic.address,
+            "addressLocality": clinic.city,
+            "addressRegion": clinic.state,
+          },
+          "telephone": clinic.phone,
+          "url": clinic.website,
+          "description": clinic.description,
+          "memberOf": {
+            "@type": "Organization",
+            "name": "Exotic Animales Certified Network"
+          }
+        })}
+      </Script>
+    </div>
+  );
+};
+
+export default VetProfilePage;
+
+export const generateStaticParams = async () => {
+  return vetData.map((clinic) => ({ slug: clinic.slug }));
+};

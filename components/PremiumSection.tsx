@@ -163,7 +163,7 @@ const ExclusiveAxolotlCard = () => {
   );
 };
 
-/* ================= PREMIUM GUINEA PIG CARD (UNCHANGED) ================= */
+/* ================= PREMIUM GUINEA PIG CARD ================= */
 
 const PremiumCard = () => {
   return (

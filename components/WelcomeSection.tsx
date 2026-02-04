@@ -16,7 +16,7 @@ const WelcomeSection = () => {
         <div className="space-y-6 max-w-xl">
           <h1 className="text-2xl font-semibold">Exotic Animales Ranch: Hand-Raised & Rare Exotic Pets for Sale</h1>
           <p className="text-gray-700 leading-relaxed">
-            E.A Ranch is a premier USDA-Licensed exotic pet breeder and conserver for rare animal species. We offer the <Link href="/shop">best selection of exotic pets</Link>; baby hedgehogs, sugar gliders, fennec foxes, lemurs, snakes, axolotls, rodents, and more at our exotic pet store. As a trusted source for hand-raised companion, our professional service starts with family values, ensuring that every animal in our care receive individualized attention and specialized nutrition required to thrive.
+            E.A Ranch is a premier USDA-Licensed exotic pet breeder and conserver for rare animal species. We offer the <Link href="/shop">best selection of exotic pets</Link>; <Link href="/adopt/hedgehogs-hamsters">baby hedgehogs</Link>, <Link href="/adopt/skunks-ferrets">ferrets</Link>, <Link href="/adopt/sugar-gliders">sugar gliders</Link>, <Link href="/adopt/fennec-foxes">fennec foxes</Link>, <Link href="/adopt/hybrid-savannah-cats">hybrid cats</Link>, <Link href="/adopt/finger-monkeys">finger monkeys</Link>, <Link href="/adopt/snakes-pythons">snakes, pythons</Link>, <Link href="/adopt/axolotl-morphs">axolotls</Link>, <Link href="/adopt/exotic-hoofstock">highpark hoofstock</Link>, and more at our exotic pet ranch. Our professional service starts with family values, ensuring that every animal in our care is mum-raised or hand-raised, receive individualized attention specialized terrarium habitats and nutrition required to thrive.
           </p>
           <p className="text-gray-700 leading-relaxed">
             By focusing on health, temperament, and lifetime breeder support, E.A Ranch has become a nationwide leader for keepers seeking healthy, vibrant, and well-socialized animals with premium lineage. If you are considering buying an exotic pet, <Link href="/contact">contact us to discover</Link> why families and exotic enthusiasts have trusted us since 2018 to bridge the gap between nature and the modern home.
@@ -27,34 +27,40 @@ const WelcomeSection = () => {
         <div className="grid grid-cols-2 gap-4 h-[420px]">
           {/* LEFT STACK (2 SHORT IMAGES) */}
           <div className="grid grid-rows-2 gap-4">
-            <div className="relative rounded-2xl overflow-hidden shadow-lg">
+            <div className="relative rounded-2xl overflow-hidden shadow-lg group">
               <Image
                 src={exoticAnimalsRanch}
                 alt="Exotic Animals Ranch"
                 fill
-                className="object-cover"
+                className="object-cover
+                transition-transform duration-700 ease-out
+                group-hover:scale-105"
               />
               <Overlay title="Exotic Animals Ranch" />
             </div>
 
-            <div className="relative rounded-2xl overflow-hidden shadow-lg">
+            <div className="relative rounded-2xl overflow-hidden shadow-lg group">
               <Image
                 src={exoticAnimalsTexas}
                 alt="Exotic Animals Texas"
                 fill
-                className="object-cover hover:scale-110 hoverEffect"
+                className="object-cover
+                transition-transform duration-700 ease-out
+                group-hover:scale-105"
               />
               <Overlay title="Exotic Pets For Sale" />
             </div>
           </div>
 
           {/* RIGHT TALL IMAGE */}
-          <div className="relative rounded-2xl overflow-hidden shadow-lg">
+          <div className="relative rounded-2xl overflow-hidden shadow-lg group">
             <Image
               src={exoticPetBreeder}
               alt="Exotic Pet Breeder"
               fill
-              className="object-cover"
+              className="object-cover
+                transition-transform duration-700 ease-out
+                group-hover:scale-105"
             />
             <Overlay title="Trusted Exotic Pet Breeder" />
           </div>

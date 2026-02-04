@@ -14,7 +14,7 @@ const Footer = () => {
     <footer className="bg-white border-t">
       <Container>
         <FooterTop />
-        <div className="py-12 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+        <div className="py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10">
           <div className="space-y-4">
             <Logo />
             <SubText>
@@ -30,10 +30,10 @@ const Footer = () => {
             <SubTitle>Quick Links</SubTitle>
             <ul className="space-y-3 mt-4">
               {quickLinksData?.map((item) => (
-                <li key={item?.title}>
+                <li key={item?.title} className="transform transition-transform hover:translate-x-1">
                   <Link
                     href={item?.href}
-                    className="hover:text-shop_light_green hoverEffect font-medium"
+                    className="font-medium transition-colors duration-200 hover:text-shop_light_green"
                   >
                     {item?.title}
                   </Link>
@@ -45,10 +45,10 @@ const Footer = () => {
             <SubTitle>Top Categories</SubTitle>
             <ul className="space-y-3 mt-4">
               {categoriesData?.map((item) => (
-                <li key={item?.title}>
+                <li key={item?.title} className="transform transition-transform hover:translate-x-1">
                   <Link
                     href={`/category/${item?.href}`}
-                    className="hover:text-shop_light_green hoverEffect font-medium"
+                    className="font-medium transition-colors duration-200 hover:text-shop_light_green"
                   >
                     {item?.title}
                   </Link>
@@ -60,10 +60,10 @@ const Footer = () => {
             <SubTitle>Buyer Info</SubTitle>
             <ul className="space-y-3 mt-4">
               {informationData?.map((item) => (
-                <li key={item?.title}>
+                <li key={item?.title} className="transform transition-transform hover:translate-x-1">
                   <Link
-                    href={`/category/${item?.href}`}
-                    className="hover:text-shop_light_green hoverEffect font-medium"
+                    href={`${item?.href}`}
+                    className="font-medium transition-colors duration-200 hover:text-shop_light_green"
                   >
                     {item?.title}
                   </Link>

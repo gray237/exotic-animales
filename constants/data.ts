@@ -167,8 +167,8 @@ export const categoriesData = [
   { title: "Exotic Pet Foods", href: "exotic-pet-foods" },
 ];
 export const informationData = [
-  { title: "Rescue & Rehoming", href: "rescue-rehoming" },
-  { title: "Exotic Vet Guide", href: "exotic-vet-guide" },
+  { title: "Rescue & Rehoming", href: "/rescue-rehoming" },
+  { title: "Exotic Vet Guide", href: "/vet-guide" },
   { title: "Hatchery & Nursery", href: "/our-process" },
   { title: "State Legality Map", href: "/legality-map" },
   { title: "Live-Animal Shipping", href: "/shipping-process" },
