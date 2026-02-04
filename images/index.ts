@@ -5,6 +5,7 @@ import zelleIcon from "./icons/zelle-icon.png";
 import cashappIcon from "./icons/cashapp-icon.png";
 import bitcoinIcon from "./icons/bitcoin-icon.png";
 import banner_1 from "./banner/banner_1.png";
+import chameleonBanner from "./banner/chameleon-banner.png";
 import exoticBanner1 from "./banner/exotic-pet-store-banner-1.jpg";
 import exoticBanner2 from "./banner/exotic-pet-store-banner-2.jpg";
 import exoticBanner3 from "./banner/exotic-pet-store-banner-3.jpg";
@@ -69,7 +70,7 @@ import adoptSugarGliders from "./categories/adopt-sugar-gliders.jpg";
 import adoptTurtles from "./categories/adopt-turtles.jpg";
 
 
-export { paypalLogo, paypalIcon, zelleIcon, cashappIcon, bitcoinIcon,  bankTransfer, cashApp, sendPaypal, zellePay, emptyCart, banner_1, exoticBanner1, exoticBanner2, exoticBanner3, axolotlCare, ballPythonCare, beardedDragonCare, bloodPythonCare, crestedGeckoCare, deguCare, forestScorpionCare, greenSnakeCare, hamsterCare, jacksonChameleonCare, prairieDogsCare, skunksCare, sugarGliderCare, tarantulaSpiderCare, waterMonitorCare, woodTurtleCare, smallExoticPetsSale, exoticPetsLogo, eaBackground, exoticAnimalsRanch, exoticAnimalsTexas, exoticPetBreeder, guineaPigPremium, axolotlExclusive, bestExoticPets, exoticPetCare, exoticPetFeeders, exoticPetStore, exoticPetAdoption, exoticPetsRanch, drRachel1, drRachel2, leopardGeckoLitter, axolotlLitter, hedgehogLitter, prarieDogLitter, savannahCatLitter, fennecFoxLitter, ballPythonLitter, adoptAxolotls, adoptCoatimundis, adoptHoofstock, adoptFennecFoxes, adoptGeckos, adoptHedgehogs, adoptWallabies, adoptLemurs, adoptMarmoset, adoptPrarieDogs, adoptPorcupines, adoptSavannahCat, adoptSkunks, adoptSnakes, adoptSugarGliders, adoptTurtles };
+export { paypalLogo, banner_1, chameleonBanner, paypalIcon, zelleIcon, cashappIcon, bitcoinIcon,  bankTransfer, cashApp, sendPaypal, zellePay, emptyCart, exoticBanner1, exoticBanner2, exoticBanner3, axolotlCare, ballPythonCare, beardedDragonCare, bloodPythonCare, crestedGeckoCare, deguCare, forestScorpionCare, greenSnakeCare, hamsterCare, jacksonChameleonCare, prairieDogsCare, skunksCare, sugarGliderCare, tarantulaSpiderCare, waterMonitorCare, woodTurtleCare, smallExoticPetsSale, exoticPetsLogo, eaBackground, exoticAnimalsRanch, exoticAnimalsTexas, exoticPetBreeder, guineaPigPremium, axolotlExclusive, bestExoticPets, exoticPetCare, exoticPetFeeders, exoticPetStore, exoticPetAdoption, exoticPetsRanch, drRachel1, drRachel2, leopardGeckoLitter, axolotlLitter, hedgehogLitter, prarieDogLitter, savannahCatLitter, fennecFoxLitter, ballPythonLitter, adoptAxolotls, adoptCoatimundis, adoptHoofstock, adoptFennecFoxes, adoptGeckos, adoptHedgehogs, adoptWallabies, adoptLemurs, adoptMarmoset, adoptPrarieDogs, adoptPorcupines, adoptSavannahCat, adoptSkunks, adoptSnakes, adoptSugarGliders, adoptTurtles };
 
 
 // ================== Adoption Data ==================
