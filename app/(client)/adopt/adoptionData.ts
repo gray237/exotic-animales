@@ -527,7 +527,7 @@ export const adoptionData: AdoptionCategory[] = [
 
   /* ========= SAVANNAH CAT ========= */
   {
-    slug: "savannah-cats",
+    slug: "hybrid-savannah-cats",
     title: "Savannah Cat Kittens",
     description:
       "Exclusive F1 to F6 Savannah kittens for sale from a premier USDA-licensed breeder. Own a piece of the wild with these highly intelligent, serval-hybrid felines. Our kittens are home-raised, socialized with dogs, and delivered nationwide with full health certifications.",
@@ -1101,7 +1101,7 @@ export const adoptionData: AdoptionCategory[] = [
 
 /* ========= EXOTIC HOOFSTOCK ========= */
 {
-  slug: "hoofstock",
+  slug: "exotic-hoofstock",
   title: "Exotic Hoofstock",
   description: "Boutique Exotic Hoofstock for sale including Highpark Miniature Cattle, Alpacas, and Miniature Goats. Perfect for hobby farms and estate grazing. Our livestock is halter-trained, healthy, and delivered via professional transport to your pasture nationwide.",
   heroImage: HighparkHoofstock,
