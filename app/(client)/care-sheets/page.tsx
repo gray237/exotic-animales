@@ -7,7 +7,7 @@ import { drRachel1 } from "@/images";
 export const metadata = {
   title: "Pet Care Sheets",
   description:
-    "Access detailed pet care sheets for exotic pets including axolotls, sugar gliders, fennec foxes, lemurs, and more. Expert tips for feeding, habitat, and health.",
+    "Access detailed pet care sheets from trusted vets for exotic pets including axolotls, sugar gliders, fennec foxes, lemurs, and more. Expert tips for feeding, habitat, and health.",
   keywords:
     "pet care sheets, exotic pets care, axolotls, sugar gliders, fennec foxes, lemurs, exotic pet guide",
   openGraph: {
