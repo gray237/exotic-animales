@@ -5,7 +5,7 @@ import { sendPaypal } from "@/images";
 
 // ------------------- STATIC METADATA -------------------
 export const metadata = {
-  title: "Payment & Checkout | Exotic Animales",
+  title: "Order Payment & Checkout",
   description:
     "Learn about the payment methods and checkout process at Exotic Animales. Secure and easy payments for your exotic pets including axolotls, sugar gliders, and more.",
   keywords:

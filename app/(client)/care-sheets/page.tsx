@@ -5,7 +5,7 @@ import { drRachel1 } from "@/images";
 
 // ------------------- STATIC METADATA -------------------
 export const metadata = {
-  title: "Pet Care Sheets | Exotic Animales",
+  title: "Pet Care Sheets",
   description:
     "Access detailed pet care sheets for exotic pets including axolotls, sugar gliders, fennec foxes, lemurs, and more. Expert tips for feeding, habitat, and health.",
   keywords:

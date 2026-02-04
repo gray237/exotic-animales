@@ -87,7 +87,7 @@ const HeaderMenu = () => {
                     group-hover:pointer-events-auto
                   "
                 >
-                  <div className="rounded-2xl border border-black/10 bg-white shadow-[0_20px_40px_rgba(0,0,0,0.12)] p-2">
+                  <div className="rounded-2xl border border-black/10 bg-white shadow-[0_20px_40px_rgba(0,0,0,0.12)] p-3">
                     {children.links.map((link) => (
                       <Link
                         key={link.title}
@@ -111,9 +111,12 @@ const HeaderMenu = () => {
               {children?.type === "mega" && children.sections && (
                 <div
                   className="
-                    absolute left-1/2 top-full z-50
-                    w-[900px] pt-3
+                    absolute top-full left-1/2 z-50
+                    w-[min(90vw,900px)]
+                    max-w-[calc(100vw-2rem)]
                     -translate-x-1/2
+                    pt-2
+                    px-4
                     opacity-0 translate-y-2
                     pointer-events-none
                     transition-all duration-200
@@ -126,17 +129,17 @@ const HeaderMenu = () => {
                     <div className="grid grid-cols-3 gap-8">
                       {children.sections.map((section) => (
                         <div key={section.title}>
-                          <h4 className="mb-4 text-sm font-bold text-gray-900">
+                          <h4 className="px-3 mb-4 text-sm font-bold text-gray-900">
                             {section.title}
                           </h4>
-                          <ul className="space-y-3">
+                          <ul className="space-y-2">
                             {section.links.map((link) => (
                               <li key={link.title}>
                                 <Link
                                   href={link.href}
                                   className="
                                     block rounded-lg px-3 py-2
-                                    text-sm text-gray-700
+                                    text-sm font-medium text-gray-700
                                     hover:text-gray-900
                                     hover:bg-purple-500/10
                                     transition

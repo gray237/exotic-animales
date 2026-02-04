@@ -5,13 +5,13 @@ import { drRachel1 } from "@/images";
 
 // ------------------- STATIC METADATA -------------------
 export const metadata = {
-  title: "FAQ | Exotic Animales",
+  title: "Frequently Asked Questions",
   description:
     "Find answers to frequently asked questions about Exotic Animales, exotic pets, pet care, orders, delivery, and more. Get all the info you need for your exotic pet journey.",
   keywords:
     "exotic pets FAQ, axolotls questions, sugar gliders FAQ, fennec fox info, Exotic Animales help, exotic pet care questions",
   openGraph: {
-    title: "FAQ | Exotic Animales",
+    title: "Frequently Asked Questions | Exotic Animales",
     description:
       "Find answers to frequently asked questions about Exotic Animales, exotic pets, pet care, orders, delivery, and more. Get all the info you need for your exotic pet journey.",
     url: "https://www.exoticanimales.com/faq",

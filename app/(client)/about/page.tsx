@@ -13,7 +13,7 @@ export const metadata = {
   keywords:
     "about Exotic Animales, exotic pets, axolotls, sugar gliders, fennec foxes, exotic pet store",
   openGraph: {
-    title: "About Us | Exotic Animales",
+    title: "About Us",
     description:
       "Learn more about Exotic Animales, your trusted source for exotic pets including axolotls, sugar gliders, fennec foxes, and more.",
     url: "https://www.exoticanimales.com/about",

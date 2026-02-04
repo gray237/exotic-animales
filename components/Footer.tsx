@@ -4,7 +4,7 @@ import FooterTop from "./FooterTop";
 import Logo from "./Logo";
 import SocialMedia from "./SocialMedia";
 import { SubText, SubTitle } from "./ui/text";
-import { categoriesData, quickLinksData } from "@/constants/data";
+import { categoriesData, quickLinksData, informationData } from "@/constants/data";
 import Link from "next/link";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
@@ -14,7 +14,7 @@ const Footer = () => {
     <footer className="bg-white border-t">
       <Container>
         <FooterTop />
-        <div className="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="py-12 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
           <div className="space-y-4">
             <Logo />
             <SubText>
@@ -42,9 +42,24 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <SubTitle>Categories</SubTitle>
+            <SubTitle>Top Categories</SubTitle>
             <ul className="space-y-3 mt-4">
               {categoriesData?.map((item) => (
+                <li key={item?.title}>
+                  <Link
+                    href={`/category/${item?.href}`}
+                    className="hover:text-shop_light_green hoverEffect font-medium"
+                  >
+                    {item?.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <SubTitle>Buyer Info</SubTitle>
+            <ul className="space-y-3 mt-4">
+              {informationData?.map((item) => (
                 <li key={item?.title}>
                   <Link
                     href={`/category/${item?.href}`}
@@ -59,8 +74,8 @@ const Footer = () => {
           <div className="space-y-4">
             <SubTitle>Newsletter</SubTitle>
             <SubText>
-              Subscribe to our newsletter to receive updates and exclusive
-              offers
+              Subscribe to our newsletter to receive announcements on new litters (babies pups kits) and exclusive
+              offers!
             </SubText>
             <form className="space-y-3">
               <Input placeholder="Enter your email" type="email" required />

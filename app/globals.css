@@ -163,12 +163,50 @@
 
 
 body {
-  font-family: var(--font-poppins);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-head);
 }
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+.brand-bold {
+  font-weight: 950; /* heavier than Tailwind’s max */
+}
+
+/* ================================
+ Global Paragraph Links 
+================================ */
+
+p a {
+  color: #063c28; /* dark green */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+p a:hover,
+p a:focus {
+  color: #3b9c3c; /* lighter green on hover */
+  text-decoration: none;
+}
+
+p a {
+  color: var(--color-shop_dark_green);
+}
+
+.dark p a {
+  color: var(--color-shop_light_green);
+}
+
+p a:hover,
+p a:focus {
+  color: var(--color-shop_light_green);
+}
+
 
 /* ================================
    Category Description

@@ -17,27 +17,27 @@ const socialLink = [
   {
     title: "Youtube",
     href: "https://www.youtube.com/@reactjsBD",
-    icon: <Youtube className="w-5 h-5" />,
+    icon: <Youtube className="w-4 h-4" />,
   },
   {
     title: "Github",
     href: "https://www.youtube.com/@reactjsBD",
-    icon: <Github className="w-5 h-5" />,
+    icon: <Github className="w-4 h-4" />,
   },
   {
     title: "Linkedin",
     href: "https://www.youtube.com/@reactjsBD",
-    icon: <Linkedin className="w-5 h-5" />,
+    icon: <Linkedin className="w-4 h-4" />,
   },
   {
     title: "Facebook",
     href: "https://www.youtube.com/@reactjsBD",
-    icon: <Facebook className="w-5 h-5" />,
+    icon: <Facebook className="w-4 h-4" />,
   },
   {
     title: "Slack",
     href: "https://www.youtube.com/@reactjsBD",
-    icon: <Slack className="w-5 h-5" />,
+    icon: <Slack className="w-4 h-4" />,
   },
 ];
 
@@ -54,7 +54,7 @@ const SocialMedia = ({ className, iconClassName, tooltipClassName }: Props) => {
                 rel="noopener noreferrer"
                 href={item?.href}
                 className={cn(
-                  "p-2 border rounded-full hover:text-white hover:border-shop_light_green hoverEffect",
+                  "p-1.5 border rounded-full hover:text-white hover:border-shop_light_green hoverEffect",
                   iconClassName
                 )}
               >

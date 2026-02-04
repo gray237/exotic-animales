@@ -1,3 +1,5 @@
+export const revalidate = 3600; // 1 hour ISR
+
 import Container from "@/components/Container";
 import HomeBanner from "@/components/HomeBanner";
 import HomeCategories from "@/components/HomeCategories";

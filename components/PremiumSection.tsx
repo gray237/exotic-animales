@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Container from "./Container";
 import Title from "./Title";
 import { ShoppingBag, Sparkles, Gem } from "lucide-react";
@@ -149,10 +150,13 @@ const ExclusiveAxolotlCard = () => {
             $149.99
           </span>
 
-          <button className="group flex items-center gap-2 bg-linear-to-br from-amber-600 to-orange-500 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-md transition-all hover:-translate-y-1 hover:shadow-lg">
+          <Link
+            href="/contact"
+            className="group flex items-center gap-2 bg-linear-to-br from-amber-600 to-orange-500 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-md transition-all hover:-translate-y-1 hover:shadow-lg"
+          >
             Reserve
             <ShoppingBag className="w-4 h-4 transition-transform group-hover:rotate-[-10deg] group-hover:scale-110" />
-          </button>
+          </Link>
         </div>
       </div>
     </div>
@@ -208,10 +212,13 @@ const PremiumCard = () => {
             $199.99
           </span>
 
-          <button className="group flex items-center gap-2 bg-linear-to-br from-zinc-900 to-zinc-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold shadow-md transition-all hover:-translate-y-1 hover:shadow-lg">
+          <Link
+            href="/contact"
+            className="group flex items-center gap-2 bg-linear-to-br from-zinc-900 to-zinc-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold shadow-md transition-all hover:-translate-y-1 hover:shadow-lg"
+          >
             Shop Sale
             <ShoppingBag className="w-4 h-4 transition-transform group-hover:rotate-[-10deg] group-hover:scale-110" />
-          </button>
+          </Link>
         </div>
       </div>
     </div>

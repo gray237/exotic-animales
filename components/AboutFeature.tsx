@@ -119,8 +119,8 @@ const AboutFeature = () => {
               ].map((feat, idx) => {
                 const Icon = feat.icon;
                 return (
-                  <div key={idx} className="flex gap-3 p-4 rounded-xl border border-gray-300 bg-gray-50 dark:bg-gray-800 shadow hover:-translate-y-1 transition">
-                    <div className="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-300 bg-purple-100 dark:bg-purple-900/20 text-purple-500">
+                  <div key={idx} className="flex items-center gap-3 p-4 rounded-xl border border-gray-300 bg-gray-50 dark:bg-gray-800 shadow hover:-translate-y-1 transition">
+                    <div className="shrink-0 w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-lg border bg-purple-100 dark:bg-purple-900/20 text-purple-500">
                       <Icon className="text-xl" />
                     </div>
                     <div>

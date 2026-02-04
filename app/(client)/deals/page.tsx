@@ -8,7 +8,7 @@ import { smallExoticPetsSale } from "@/images";
 
 // ------------------- STATIC METADATA -------------------
 export const metadata = {
-  title: "Hot Deals on Exotic Pets | Exotic Animales",
+  title: "Hot Deals on Exotic Pets",
   description:
     "Check out the latest hot deals on exotic pets, accessories, and supplies at Exotic Animales. Get axolotls, sugar gliders, fennec foxes, lemurs, and more at amazing prices!",
   keywords:

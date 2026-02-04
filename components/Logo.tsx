@@ -41,7 +41,7 @@ const Logo = ({
       {/* Brand text */}
       <span className="hidden sm:block leading-tight">
         <span
-          className="block font-extrabold tracking-tight text-lg text-gray-700 leading-snug">
+          className="block brand-bold tracking-tight text-lg text-gray-700 leading-snug">
           E.A Ranch
         </span>
         <span

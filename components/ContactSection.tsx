@@ -172,7 +172,7 @@ import { Mail, Phone, MapPin, Shield, RefreshCw, CheckSquare, User, AtSign, Buil
 
             {/* FORM */}
             <section className="p-5 rounded-2xl border bg-white/70 backdrop-blur shadow-lg">
-              <h3 className="text-xl font-semibold mb-1">Request form</h3>
+              <h3 className="text-xl font-semibold mb-1">Reservation Request</h3>
               <p className="text-gray-600 mb-4">
                 Fields marked <span className="text-red-500">*</span> are required.
               </p>

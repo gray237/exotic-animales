@@ -22,16 +22,24 @@ export const headerData = [
               href: "/category/placental-mammals",
             },
             {
+              title: "Axolotls (Amphibians)",
+              href: "/category/axolotls",
+            },
+            {
               title: "Marsupials",
               href: "/category/marsupials",
             },
             {
-              title: "Rodents",
+              title: "Rodents & Capybaras",
               href: "/category/rodents",
             },
             {
-              title: "Axolotls",
-              href: "/category/axolotls",
+              title: "Lizards & Geckos",
+              href: "/category/geckos",
+            },
+            {
+              title: "Snakes & Pythons",
+              href: "/category/snakes-pythons",
             },
           ],
         },
@@ -68,14 +76,18 @@ export const headerData = [
         items: [
           {
             title: "Hand-Raised",
-            href: "/hand-raised",
+            href: "/adopt",
           },
           {
             title: "Mum-Raised",
-            href: "/mum-raised",
+            href: "/adopt",
           },
           {
-            title: "Learn More",
+            title: "Wholesale/Breeder",
+            href: "/about-us",
+          },
+          {
+            title: "Rescue & Rehoming",
             href: "/about-us",
           },
         ],
@@ -108,16 +120,20 @@ export const headerData = [
           href: "/about",
         },
         {
+          title: "State Legality Map",
+          href: "/legality-map",
+        },
+        {
+          title: "Hatchery & Nursery",
+          href: "/our-process",
+        },
+        {
           title: "Payment Options",
           href: "/payment",
         },
         {
-          title: "Terms & Conditions",
-          href: "/terms",
-        },
-        {
-          title: "Pet Delivery & Pickup",
-          href: "/delivery",
+          title: "Live-Animal Shipping",
+          href: "/shipping-process",
         },
       ],
     },
@@ -149,6 +165,14 @@ export const categoriesData = [
   { title: "Placental Mammals", href: "placental-mammals" },
   { title: "Pet Care Kits ", href: "pet-care-kits" },
   { title: "Exotic Pet Foods", href: "exotic-pet-foods" },
+];
+export const informationData = [
+  { title: "Rescue & Rehoming", href: "rescue-rehoming" },
+  { title: "Exotic Vet Guide", href: "exotic-vet-guide" },
+  { title: "Hatchery & Nursery", href: "/our-process" },
+  { title: "State Legality Map", href: "/legality-map" },
+  { title: "Live-Animal Shipping", href: "/shipping-process" },
+  { title: "Bioactive Setup Guides", href: "/bioactive-living" },
 ];
 export const productType = [
   { title: "Mammals", value: "mammals" },

@@ -1,3 +1,9 @@
+
+export const dynamic = "force-dynamic";
+export const revalidate = 60;
+
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import CategoryProducts from "@/components/CategoryProducts";
 import NewLitters from "@/components/NewLitters";
 import { getCategories, getCategoryBySlug } from "@/sanity/queries";
@@ -7,8 +13,11 @@ import React from "react";
 
 
 // ------------------- DYNAMIC METADATA -------------------
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export async function generateMetadata(
+  props: { params: Promise<{ slug: string }> }
+): Promise<Metadata> {
+  const { slug } = await props.params;
+
   const category = await getCategoryBySlug(slug);
 
   if (!category) {
@@ -18,16 +27,23 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     };
   }
 
-  const imageUrl = category.bannerImage ? urlFor(category.bannerImage).width(1200).url() : undefined;
+  const imageUrl = category.bannerImage
+    ? urlFor(category.bannerImage).width(1200).url()
+    : undefined;
 
-  const description = category.description
-    ? category.description.substring(0, 160)
-    : `Explore the ${category.title} category at Exotic Animales and find exotic pets, accessories, and guides.`;
+  const description =
+    category.description?.substring(0, 160) ??
+    `Explore the ${category.title} category at Exotic Animales and find exotic pets, accessories, and guides.`;
 
   return {
     title: `${category.title} | Exotic Animales`,
     description,
-    keywords: `${category.title}, Exotic Animales, exotic pets, pet products`,
+    keywords: [
+      category.title,
+      "exotic pets",
+      "exotic animals for sale",
+      "Exotic Animales",
+    ].join(", "),
     openGraph: {
       title: `${category.title} | Exotic Animales`,
       description,
@@ -55,14 +71,17 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 // ------------------- PAGE COMPONENT -------------------
-const CategoryPage = async ({
-  params,
-}: {
-  params: { slug: string };
-}) => {
+const CategoryPage = async (
+  props: { params: Promise<{ slug: string }> }
+) => {
+  const { slug } = await props.params;
+
   const categories = await getCategories();
-  const { slug } = params;
   const category = await getCategoryBySlug(slug);
+
+  if (!category) {
+    notFound();
+  }
 
   return (
     <div className="w-full">

@@ -6,13 +6,13 @@ import { axolotlExclusive } from "@/images";
 
 // ------------------- STATIC METADATA -------------------
 export const metadata = {
-  title: "New Litters | Exotic Animales",
+  title: "Baby Exotic Pet Litters",
   description:
     "Discover the latest litters of exotic pets at Exotic Animales. Find baby axolotls, sugar gliders, fennec foxes, lemurs, and more ready for new homes today!",
   keywords:
     "new exotic pet litters, baby axolotls for sale, sugar gliders babies, fennec fox kits, lemur babies, Exotic Animales new litters",
   openGraph: {
-    title: "New Litters | Exotic Animales",
+    title: "Baby Exotic Pet Litters | Exotic Animales",
     description:
       "Discover the latest litters of exotic pets at Exotic Animales. Find baby axolotls, sugar gliders, fennec foxes, lemurs, and more ready for new homes today!",
     url: "https://www.exoticanimales.com/new-litters",

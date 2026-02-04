@@ -6,7 +6,38 @@ import dayjs from "dayjs";
 import { Calendar } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Exotic Pet Care & Adoption Blog | Guides, Tips & Breeder Insights",
+  description:
+    "Expert guides, care tips, and real-world insights on exotic pets. Learn about reptiles, primates, small mammals, and rare species from experienced USDA-licensed breeders.",
+  keywords: [
+    "exotic pet blog",
+    "exotic animal care",
+    "exotic pet adoption tips",
+    "reptile care guides",
+    "exotic mammals pets",
+    "USDA licensed breeder blog",
+    "how to care for exotic pets",
+    "rare pets guides",
+  ],
+  openGraph: {
+    title: "Exotic Pet Care & Adoption Blog",
+    description:
+      "Trusted advice on exotic pet care, adoption, nutrition, and housing—written by experienced breeders and animal specialists.",
+    url: "https://exoticanimales.com/blog",
+    siteName: "Exotic Animales",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Exotic Pet Care & Adoption Blog",
+    description:
+      "Guides, care tips, and breeder insights for reptiles, mammals, and rare exotic pets.",
+  },
+};
 
 const BlogPage = async () => {
   const blogs = await getAllBlogs(6);

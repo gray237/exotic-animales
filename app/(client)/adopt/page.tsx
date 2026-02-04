@@ -3,14 +3,15 @@ import { Metadata } from "next";
 import AdoptPets from "@/components/AdoptPets";
 import { exoticPetsRanch } from "@/images";
 
+// ------------------- STATIC METADATA -------------------
 export const metadata: Metadata = {
-  title: "Adopt Exotic Pets | Exotic Animales",
+  title: "Adopt Exotic Pets",
   description:
-    "Browse and adopt rare exotic pets from trusted breeders. Ethically raised mammals, reptiles, and more.",
+    "Browse and adopt rare exotic pets from trusted breeders. Ethically raised mammals, reptiles, rodents and more from Exotic Animales Ranch.",
   openGraph: {
-    title: "Adopt Exotic Pets | Exotic Animales",
+    title: "Adopt Exotic Pets",
     description:
-      "Discover ethically raised exotic pets including axolotls, foxes, lemurs, reptiles, and more.",
+      "Discover ethically raised exotic pets including axolotls, sugar gliders, fennec foxes, lemurs, savannah cats, hedgehogs, and more from Exotic Animales Ranch.",
     images: [
       {
         url: exoticPetsRanch.src,

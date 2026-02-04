@@ -1,10 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import { exoticPetsRanch } from "@/images";
-import { FaCheckCircle, FaPaperPlane } from "react-icons/fa";
-import { FiClock, FiStar, FiShield } from "react-icons/fi";
+import { FaCheckCircle, FaPaperPlane, FaPaw, FaClock, FaStar, FaLeaf } from "react-icons/fa";
+import { FiClock, FiShield } from "react-icons/fi";
 import { RiTimeFill, RiTruckFill } from "react-icons/ri";
-import { TbCompass } from "react-icons/tb";
 import Link from "next/link";
 
 const ContactHero = () => {
@@ -36,7 +35,7 @@ const ContactHero = () => {
           {/* Title + Paragraph */}
           <div className="space-y-4">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white leading-tight">
-              Connect With Our Exotic Pet Experts
+              Connect With Our Exotic Pet Breeders
             </h1>
             <p className="text-lg text-gray-700 dark:text-white/90 leading-relaxed">
               Curious about bringing a one-of-a-kind companion into your home? At E.A Ranch, we make connecting with your next exotic pet easy, safe, and fun. Our knowledgeable team is ready to answer your questions, offer expert guidance, and help you choose the perfect addition to your family. Whether you want to know about feeding tips, enclosures, health care, or adoption requirements, we’re here to provide personalized support every step of the way. Contact us and experience ethical sourcing of pet companion and a love for all things exotic.
@@ -48,7 +47,8 @@ const ContactHero = () => {
             {/* Primary Button */}
             <Link
               href="#contact"
-              className="relative inline-flex items-center gap-2 px-6 py-3 rounded-[14px] border border-purple-400/36 bg-linear-to-br from-purple-500/22 to-teal-400/14 text-gray-800 font-semibold shadow-lg overflow-hidden transition-transform duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0 active:scale-[0.99]">
+              className="relative inline-flex items-center gap-2 px-6 py-3 rounded-[14px] border border-purple-400/36 bg-linear-to-br from-purple-500/22 to-teal-400/14 
+              text-gray-800 font-semibold shadow-lg overflow-hidden transition-transform duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0 active:scale-[0.99]">
               <FaPaperPlane className="text-purple-700 text-[14px]" />
               <span>Start a Request</span>
               {/* Shine effect */}
@@ -56,28 +56,42 @@ const ContactHero = () => {
             </Link>
 
             {/* Ghost Button */}
-            <button className="relative inline-flex items-center gap-2 px-6 py-3 rounded-[14px] border border-gray-300 dark:border-gray-600 bg-transparent text-gray-800 dark:text-white font-semibold shadow-lg overflow-hidden transition-transform duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl active:translate-y-0 active:scale-[0.99]">
-              <TbCompass />
+            <Link
+              href="/about"
+               className="relative inline-flex items-center gap-2 px-6 py-3 rounded-[14px] border border-gray-300 dark:border-gray-600 bg-transparent text-gray-800 
+               dark:text-white font-semibold shadow-lg overflow-hidden transition-transform duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl active:translate-y-0 active:scale-[0.99]">
+              <FaLeaf className="text-purple-700" />
               <span>Explore Services</span>
-            </button>
+            </Link>
           </div>
 
-          {/* Three feature blurbs */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-6">
+          {/* FEATURE BLURBS — COMPACT & ALIGNED */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
             {[
-              { icon: FiClock, title: "Avg. response", value: "3 hrs" },
-              { icon: FiStar, title: "Client rating", value: "4.9 / 5" },
-              { icon: FiShield, title: "Privacy-first", value: "No spam" },
+              { icon: FaClock, title: "Avg. response", value: "30 Mins" },
+              { icon: FaStar, title: "Client rating", value: "4.6 / 5" },
+              { icon: FaPaw, title: "20+ Species", value: "Adopted" },
             ].map((item, idx) => {
               const Icon = item.icon;
               return (
-                <div key={idx} className="flex items-start gap-3 p-3 border rounded-xl bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 shadow-md transition-transform duration-200 ease-in-out hover:-translate-y-1 hover:bg-gray-50 dark:hover:bg-gray-700">
-                  <div className="w-[34px] h-[34px] flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 bg-pink-100 dark:bg-pink-900/20 text-pink-500">
-                    <Icon className="text-xl" />
+                <div 
+                  key={idx} 
+                  className="flex items-center justify-center md:justify-start gap-2.5 p-2.5 border rounded-xl bg-white dark:bg-gray-800 
+                  border-gray-100 dark:border-gray-700 shadow-sm transition-all hover:shadow-md"
+                >
+                  {/* Icon Container - Scaled down to 30px for better fit */}
+                  <div className="shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-pink-50 dark:bg-pink-900/20 text-pink-500">
+                    <Icon className="text-base" />
                   </div>
-                  <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">{item.title}</p>
-                    <p className="text-lg font-bold tracking-tight text-gray-900 dark:text-white">{item.value}</p>
+                  
+                  {/* Text Container - Tighter spacing */}
+                  <div className="flex flex-col">
+                    <p className="text-[11px] uppercase tracking-wider font-medium text-gray-400 dark:text-gray-500 leading-none mb-1">
+                      {item.title}
+                    </p>
+                    <p className="text-sm font-bold text-gray-900 dark:text-white leading-none">
+                      {item.value}
+                    </p>
                   </div>
                 </div>
               );
@@ -109,23 +123,23 @@ const ContactHero = () => {
             {/* Stats Content */}
             <div className="p-4 grid gap-3">
               {/* Media Stats */}
-              <div className="flex items-center gap-3 p-3 border border-gray-200 dark:border-gray-700 rounded-xl bg-gray-50 dark:bg-gray-700/20 transform transition-transform hover:-translate-y-1">
+              <div className="flex items-center gap-3 py-2 px-3 border border-gray-200 dark:border-gray-700 rounded-xl bg-gray-50 dark:bg-gray-700/20 transform transition-transform hover:-translate-y-1">
                 <div className="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 bg-purple-100 dark:bg-purple-900/20 text-purple-500">
                   <RiTruckFill className="text-xl" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-500 dark:text-gray-400">Overnight pet shipping across the contiguous U.S.</p>
-                  <p className="text-lg font-bold tracking-tight text-gray-900 dark:text-white">On All Orders</p>
+                  <p className="text-md font-bold tracking-tight text-gray-900 dark:text-white">On All Orders</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 p-3 border border-gray-200 dark:border-gray-700 rounded-xl bg-gray-50 dark:bg-gray-700/20 transform transition-transform hover:-translate-y-1">
+              <div className="flex items-center gap-3 py-2 px-3 border border-gray-200 dark:border-gray-700 rounded-xl bg-gray-50 dark:bg-gray-700/20 transform transition-transform hover:-translate-y-1">
                 <div className="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 bg-purple-100 dark:bg-purple-900/20 text-purple-500">
                   <RiTimeFill className="text-xl" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-500 dark:text-gray-400">live arrival guarantee To your door/facility</p>
-                  <p className="text-lg font-bold tracking-tight text-gray-900 dark:text-white">9:30AM - 6PM</p>
+                  <p className="text-md font-bold tracking-tight text-gray-900 dark:text-white">9:30AM - 6PM</p>
                 </div>
               </div>
 

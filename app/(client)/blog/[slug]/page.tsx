@@ -30,7 +30,7 @@ export const generateMetadata = async ({
 
   if (!blog) {
     return {
-      title: "Blog Not Found | Exotic Animales",
+      title: "Blog Article Not Found",
       description: "The requested blog does not exist.",
     };
   }
@@ -44,7 +44,7 @@ export const generateMetadata = async ({
     : "Read this blog on Exotic Animales, your trusted source for exotic pets.";
 
   return {
-    title: `${blog.title} | Exotic Animales`,
+    title: `${blog.title}`,
     description,
     keywords: `${blog.title}, Exotic Animales, exotic pets, blog`,
     openGraph: {

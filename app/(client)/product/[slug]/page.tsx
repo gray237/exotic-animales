@@ -43,7 +43,7 @@ export async function generateMetadata({
   ];
 
   return {
-    title: `${product.name} | Exotic Animales`,
+    title: `${product.name}`,
     description:
       product.description ||
       "Find exotic pets for sale, axolotls, underground reptiles, sugar gliders, hedgehogs, finger monkeys and more at our reserve - E.A Ranch!",

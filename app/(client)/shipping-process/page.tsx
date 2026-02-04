@@ -5,7 +5,7 @@ import { drRachel1 } from "@/images";
 
 // ------------------- STATIC METADATA -------------------
 export const metadata = {
-  title: "Delivery & Returns | Exotic Animales",
+  title: "Delivery & Returns",
   description:
     "Learn about Exotic Animales’ delivery options, shipping policies, and return process for exotic pets and products. Get your axolotls, sugar gliders, fennec foxes, and more delivered safely.",
   keywords:
@@ -36,7 +36,7 @@ export const metadata = {
 };
 
 // ------------------- PAGE COMPONENT -------------------
-const ContactPage = () => {
+const ShippingPage = () => {
   return (
     <div className="flex flex-col">
       <DeliveryOptions />
@@ -45,4 +45,4 @@ const ContactPage = () => {
   );
 };
 
-export default ContactPage;
+export default ShippingPage;

@@ -7,7 +7,7 @@ import { exoticAnimalsRanch } from "@/images";
 
 // ------------------- STATIC METADATA -------------------
 export const metadata = {
-  title: "Contact Us | Exotic Animales",
+  title: "Contact Us",
   description:
     "Get in touch with Exotic Animales for inquiries about exotic pets, orders, pet care, or support. Our team is here to help you with your exotic pet journey.",
   keywords:

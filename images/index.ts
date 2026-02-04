@@ -70,3 +70,54 @@ import adoptTurtles from "./categories/adopt-turtles.jpg";
 
 
 export { paypalLogo, paypalIcon, zelleIcon, cashappIcon, bitcoinIcon,  bankTransfer, cashApp, sendPaypal, zellePay, emptyCart, banner_1, exoticBanner1, exoticBanner2, exoticBanner3, axolotlCare, ballPythonCare, beardedDragonCare, bloodPythonCare, crestedGeckoCare, deguCare, forestScorpionCare, greenSnakeCare, hamsterCare, jacksonChameleonCare, prairieDogsCare, skunksCare, sugarGliderCare, tarantulaSpiderCare, waterMonitorCare, woodTurtleCare, smallExoticPetsSale, exoticPetsLogo, eaBackground, exoticAnimalsRanch, exoticAnimalsTexas, exoticPetBreeder, guineaPigPremium, axolotlExclusive, bestExoticPets, exoticPetCare, exoticPetFeeders, exoticPetStore, exoticPetAdoption, exoticPetsRanch, drRachel1, drRachel2, leopardGeckoLitter, axolotlLitter, hedgehogLitter, prarieDogLitter, savannahCatLitter, fennecFoxLitter, ballPythonLitter, adoptAxolotls, adoptCoatimundis, adoptHoofstock, adoptFennecFoxes, adoptGeckos, adoptHedgehogs, adoptWallabies, adoptLemurs, adoptMarmoset, adoptPrarieDogs, adoptPorcupines, adoptSavannahCat, adoptSkunks, adoptSnakes, adoptSugarGliders, adoptTurtles };
+
+
+// ================== Adoption Data ==================
+
+import boxRedEaredTurtles from "./categories/box-albino-red-eared-turtles-for-sale.jpg";
+import capybarasPrairieDogs from "./categories/capybaras-prairie-dogs-for-sale.jpg";
+import cornSnakesBallPythons from "./categories/corn-snakes-ball-pythons-for-sale.jpg";
+import fennecBatEaredFoxPups from "./categories/fennec-fox-pups-for-sale.jpg";
+import HighparkHoofstock from "./categories/highpark-calves-baby-goats-hoofstock-for-sale.jpg";
+import crestedLeopardGeckos from "./categories/leopard-crested-geckos-for-sale.jpg";
+import platinumSugarGliders from "./categories/platinum-sugar-gliders-for-sale.jpg";
+import pygmyMarmosetMonkey from "./categories/pygmy-marmoset-finger-monkeys-for-sale.jpg";
+import prehensileTailedPorcupine from "./categories/quilliam-prehensile-tailed-porcupine-baby.jpg";
+import ringTailedCoati from "./categories/ring-tailed-coati-cub-for-sale.jpg";
+import hamstersHedgehogs from "./categories/rodents-hedgehogs-for-sale.jpg";
+import hybridSavannahKittens from "./categories/serval-hybrid-f4-savannah-kittens.jpg";
+import skunksFerretsWeasels from "./categories/skunks-and-ferrets-for-sale.jpg";
+import triColorLemurs from "./categories/tri-color-ring-tailed-lemurs-for-sale.jpg";
+import bennetsWallaby from "./categories/yellow-footed-rock-wallaby-for-sale.jpg";
+
+export { boxRedEaredTurtles, capybarasPrairieDogs, cornSnakesBallPythons, fennecBatEaredFoxPups, HighparkHoofstock, crestedLeopardGeckos, platinumSugarGliders, pygmyMarmosetMonkey, prehensileTailedPorcupine, ringTailedCoati, hamstersHedgehogs, hybridSavannahKittens, skunksFerretsWeasels, triColorLemurs, bennetsWallaby };
+
+import adoptLeucisticAxolotl from "./products/axolotls/gfp-leucistic-axolotl.webp";
+import adoptCopperAxolotl from "./products/axolotls/copper-axolotl-for-sale.webp";
+import adoptSugarGlider from "./products/mammals/female-sugar-glider-for-sale.jpg";
+import adoptSugarGlider2 from "./products/mammals/adult-male-sugar-glider.jpg";
+import adoptFennecFox from "./products/mammals/baby-fennec-fox-registered.jpg";
+import adoptRingTaillemur from "./products/mammals/baby-ring-tailed-lemur.jpg";
+import adoptF5SavannahCat from "./products/mammals/f5-savannah-kittens-for-sale.jpg";
+import adoptFemaleSavannahCat from "./products/mammals/female-savannah-kitten-for-sale.jpg";
+import adoptPygmyMarmoset from "./products/mammals/pygmy-marmoset-monkey-for-sale.jpg";
+import adoptBabyCoati from "./products/mammals/baby-coati-for-sale.jpg";
+import adoptPrehensilePorcupine from "./products/mammals/prehensile-tailed-porcupine-baby.jpg";
+import adoptStripedWeasel from "./products/mammals/libyan-striped-weasel-for-sale.jpg";
+import adoptHighparkBull from "./products/hoofstock/micro-highpark-bull-for-sale.jpg";
+import adoptBabyCapybaras from "./products/mammals/baby-capybaras-for-sale.jpg";
+import adoptBabyPrairieDog from "./products/mammals/prairie-dog-baby.jpg";
+import adoptBoxTurtle from "./products/turtles/baby-box-turtle-for-sale.jpg";
+import adoptSliderTurtle from "./products/turtles/red-eared-slider-turtle-for-sale.jpg";
+import adoptBabyleopardGecko from "./products/geckos/baby-crested-gecko-for-sale.jpg";
+import adoptBabyCrestedGecko from "./products/geckos/baby-leopard-gecko-for-sale.jpg";
+import adoptBabyPygmyHedgehog from "./products/mammals/buy-pygmy-hedgehogs.jpg";
+import adoptBabyDwarfHamster from "./products/mammals/baby-dwarf-hamster-for-sale.jpg";
+import adoptBabyWallaby from "./products/mammals/baby-wallaby-for-sale.jpg";
+import adoptRedNeckWallaby from "./products/mammals/red-necked-wallaby-baby-for-sale.jpg";
+import adoptAlbinoCornSnake from "./products/snakes/albino-striped-corn-snake-baby.jpg";
+import adoptPastelBallPython from "./products/snakes/pastel-ball-python-for-sale.jpg";
+
+
+
+export { adoptLeucisticAxolotl, adoptCopperAxolotl, adoptSugarGlider, adoptSugarGlider2, adoptFennecFox, adoptRingTaillemur, adoptF5SavannahCat, adoptFemaleSavannahCat, adoptPygmyMarmoset, adoptBabyCoati, adoptPrehensilePorcupine, adoptStripedWeasel, adoptHighparkBull, adoptBabyCapybaras, adoptBabyPrairieDog, adoptBoxTurtle, adoptSliderTurtle, adoptBabyleopardGecko, adoptBabyCrestedGecko, adoptBabyPygmyHedgehog, adoptBabyDwarfHamster, adoptBabyWallaby, adoptRedNeckWallaby, adoptAlbinoCornSnake, adoptPastelBallPython,  };
