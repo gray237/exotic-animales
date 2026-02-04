@@ -179,7 +179,7 @@ const CategoryPage = async ({
                 {/* Linked Text + Arrow Under Content */}
                 <div className="mt-8">
                   <a 
-                    href="/delivery" 
+                    href="/shipping-process" 
                     className="inline-flex items-center gap-2 text-purple-600 dark:text-purple-400 font-bold hover:text-green-500 dark:hover:text-green-400 transition-colors duration-200 group"
                   >
                     <span>Review our full Shipping & Live Arrival Policy</span>

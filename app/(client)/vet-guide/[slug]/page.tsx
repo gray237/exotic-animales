@@ -4,17 +4,43 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { vetData } from "../vetData";
-import { eaBackground } from "@/images";
+import { eaBackground, exoticBanner1 } from "@/images";
 
+
+// ------------------- DYNAMIC METADATA -------------------
 export const generateMetadata = async ({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> => {
   const { slug } = await params;
   const clinic = vetData.find((v) => v.slug === slug);
-  if (!clinic) return { title: "Clinic Not Found" };
+  
+  if (!clinic) return { title: "Clinic Not Found | Exotic Animales" };
+
+  const title = `Expert Exotic Vet: ${clinic.name} | ${clinic.city}, ${clinic.state}`;
+  const description = `Looking for specialized care in ${clinic.city}? ${clinic.name} is a verified exotic vet specializing in ${clinic.specialties.slice(0, 3).join(", ")}. View contact info and clinic hours.`;
 
   return {
-    title: `Expert Exotic Vet: ${clinic.name} | ${clinic.city}, ${clinic.state}`,
-    description: `Need an exotic vet in ${clinic.city}? ${clinic.name} specializes in ${clinic.specialties.join(", ")}. Trusted exotic animal care and emergency services.`,
-    keywords: [`${clinic.name}`, "exotic vet", `${clinic.state} reptile vet`, "avian specialist", "Exotic Animales approved"],
+    title,
+    description,
+    keywords: [`${clinic.name}`, "exotic vet", `${clinic.city} reptile vet`, `${clinic.state} avian specialist`, "verified exotic vet"],
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url: `https://www.exoticanimales.com/vet-guide/${clinic.slug}`,
+      images: [
+        {
+          url: exoticBanner1.src, // Using your brand hero image for consistency
+          width: 1200,
+          height: 630,
+          alt: `${clinic.name} - Exotic Vet Guide`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [exoticBanner1.src],
+    },
   };
 };
 
