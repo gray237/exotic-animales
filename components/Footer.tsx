@@ -21,8 +21,8 @@ const Footer = () => {
               Discover E.A Ranch, your trusted online exotic pet store for a curated selection of pure bred high-quality mammals, rare amphibians and colorful reptiles for sale. We're not just passionate about exotic animals; we're dedicated to sharing our knowledge and ensuring your satisfaction.
             </SubText>
             <SocialMedia
-              className="text-darkColor/60"
-              iconClassName="border-darkColor/60 hover:border-shop_light_green hover:text-shop_light_green"
+              className="pt-2" 
+              iconClassName="bg-gray-100 dark:bg-zinc-800"
               tooltipClassName="bg-darkColor text-white"
             />
           </div>
@@ -74,7 +74,7 @@ const Footer = () => {
           <div className="space-y-4">
             <SubTitle>Newsletter</SubTitle>
             <SubText>
-              Subscribe to our newsletter to receive announcements on new litters (babies pups kits) and exclusive
+              Subscribe to our newsletter to receive announcements on new exotic pet litters (babies, pups and kits) plus exclusive
               offers!
             </SubText>
             <form className="space-y-3">

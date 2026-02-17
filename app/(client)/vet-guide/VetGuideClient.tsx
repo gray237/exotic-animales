@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { vetData } from "./vetData";
@@ -216,7 +215,7 @@ const VetGuidePage = () => {
       <section className="relative w-full bg-[#bddef9] dark:bg-gray-950 pt-2.5 pb-24 overflow-visible">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center pt-15 md:pt-28 mb-16">
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white tracking-tighter mb-8">
+            <h2 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white tracking-tighter mb-8">
               Before You Choose an <span className="text-blue-700 dark:text-blue-400">Exotic Vet</span>
             </h2>
             

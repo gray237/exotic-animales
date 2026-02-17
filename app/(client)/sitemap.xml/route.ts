@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { backendClient } from "@/sanity/lib/backendClient";
 import { adoptionData } from "@/app/(client)/adopt/adoptionData";
 import { vetData } from "@/app/(client)/vet-guide/vetData";
+import { bioactiveData, BioactiveGuide } from "@/app/(client)/bioactive-guides/bioactiveData";
 
 // --- XML Escaping Helper ---
 // This prevents the 'xmlParseEntityRef' error by converting & to &amp;
@@ -110,7 +111,6 @@ export async function GET() {
 
     // --- Build Adopt URLs ---
     const adoptUrls = (adoptionData as unknown as AdoptionItem[]).map((a) => {
-      // Logic to handle images only if they are string URLs (not StaticImageData objects)
       const hasValidImage = a.categoryImage && typeof a.categoryImage === 'string';
       const imageTag = hasValidImage ? `
         <image:image>
@@ -137,6 +137,25 @@ export async function GET() {
         <priority>0.85</priority>
       </url>`).join("");
 
+    // --- Build Bioactive Guide URLs ---
+    const bioactiveUrls = (bioactiveData as BioactiveGuide[]).map((g) => {
+      const hasValidImage = g.heroImage && typeof g.heroImage === 'string';
+      const imageTag = hasValidImage ? `
+        <image:image>
+          <image:loc>${escapeXml(g.heroImage)}</image:loc>
+          <image:title>${escapeXml(g.title)}</image:title>
+        </image:image>` : "";
+
+      return `
+      <url>
+        <loc>${baseUrl}/bioactive-guides/${escapeXml(g.slug)}</loc>
+        <lastmod>${lastBulkUpdate}</lastmod> 
+        <changefreq>monthly</changefreq>
+        <priority>0.85</priority>
+        ${imageTag}
+      </url>`;
+    }).join("");
+
     // --- Static Pages ---
     const staticPages = [
       { path: "/", priority: "1.0" },
@@ -145,9 +164,12 @@ export async function GET() {
       { path: "/faq", priority: "0.7" },
       { path: "/about", priority: "0.7" },
       { path: "/vet-guide", priority: "0.9" },
+      { path: "/pet-boarding", priority: "0.9" },
+      { path: "/bioactive-guides", priority: "0.9" },
       { path: "/care-sheets", priority: "0.8" },
       { path: "/new-litters", priority: "0.8" },
       { path: "/payment", priority: "0.7" },
+      { path: "/reservation", priority: "0.7" },
       { path: "/shipping-process", priority: "0.7" },
       { path: "/contact", priority: "0.6" },
     ];
@@ -171,6 +193,7 @@ export async function GET() {
     ${blogUrls}
     ${adoptUrls}
     ${vetUrls}
+    ${bioactiveUrls}
     ${staticUrls}
     </urlset>`.trim();
 

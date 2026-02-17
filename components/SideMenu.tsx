@@ -40,7 +40,7 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
       >
         {/* Header */}
         <div className="flex items-center justify-between">
-          <Logo />
+          <Logo showMobileText={true} /> 
           <button
             onClick={onClose}
             className="text-black hover:opacity-70 transition"
@@ -116,7 +116,7 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
                       ))}
 
                     {item.children.type === "dropdown" &&
-                      item.children.links.map((link) => (
+                      (item.children as any).links.map((link: any) => ( 
                         <Link
                           key={link.title}
                           href={link.href}

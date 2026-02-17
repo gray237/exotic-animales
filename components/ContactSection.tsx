@@ -255,7 +255,7 @@ import { Mail, Phone, MapPin, Shield, RefreshCw, CheckSquare, User, AtSign, Buil
 
 
                 <div className="mt-4">
-                  <Field
+                  <MessageField
                     icon={Mail}
                     label="Message *"
                     name="message"
@@ -270,14 +270,15 @@ import { Mail, Phone, MapPin, Shield, RefreshCw, CheckSquare, User, AtSign, Buil
                   </div>
                 </div>
 
-                <label className="flex items-start gap-2 mt-2 text-gray-700">
+                <label className="flex items-start gap-3 mt-2 text-gray-700">
                   <input
                     type="checkbox"
                     name="consent"
                     checked={formData.consent}
                     onChange={handleChange}
+                    className="w-5 h-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                   />
-                  <span>I consent to be contacted regarding this inquiry *</span>
+                  <span className="text-sm text-gray-600 dark:text-zinc-400 group-hover:text-gray-900 transition-colors">I consent to be contacted regarding this inquiry *</span>
                 </label>
 
                 <div className="flex items-center gap-3 mt-6">
@@ -336,7 +337,7 @@ export default ContactSection;
 /* ---------- helpers ---------- */
 
 const IconWrap = ({ children }: { children: React.ReactNode }) => (
-  <div className="w-11 h-11 rounded-xl border bg-purple-100/70 text-purple-600 grid place-items-center shrink-0">
+  <div className="w-8 h-8 rounded-lg border border-purple-100 bg-purple-50 text-purple-600 grid place-items-center shrink-0 dark:bg-purple-900/20 dark:border-purple-800">
     {children}
   </div>
 );
@@ -345,7 +346,7 @@ const Field = ({ icon: Icon, label, textarea, error, ...props }: any) => (
   <div className="flex flex-col gap-1">
     <label className="text-sm font-medium text-gray-700">{label}</label>
     <div
-      className={`flex gap-3 px-4 py-3 rounded-xl border bg-white/80 backdrop-blur
+      className={`flex items-center gap-3 px-4 py-1 rounded-xl border bg-white/80 backdrop-blur
       transition hover:-translate-y-px
       ${error ? "border-red-400" : "border-gray-200"}`}
     >
@@ -355,7 +356,7 @@ const Field = ({ icon: Icon, label, textarea, error, ...props }: any) => (
       {textarea ? (
         <textarea {...props} rows={5} className="flex-1 bg-transparent outline-none resize-none" />
       ) : (
-        <input {...props} className="flex-1 bg-transparent outline-none h-11" />
+        <input {...props} className="flex-1 min-w-0 placeholder:truncate bg-transparent outline-none h-11" />
       )}
     </div>
     {error && <small className="text-red-500 text-sm">{error}</small>}
@@ -363,10 +364,10 @@ const Field = ({ icon: Icon, label, textarea, error, ...props }: any) => (
 );
 
 const SelectField = ({ icon: Icon, options, error, ...props }: any) => (
-  <div className="flex flex-col gap-1">
+  <div className="flex flex-col gap-1 mt-3">
     <label className="text-sm font-medium text-gray-700">{props.label}</label>
     <div
-      className={`flex gap-3 px-4 py-3 rounded-xl border bg-white/80 backdrop-blur
+      className={`flex items-center gap-3 px-4 py-1 rounded-xl border bg-white/80 backdrop-blur
       transition hover:-translate-y-px
       ${error ? "border-red-400" : "border-gray-200"}`}
     >
@@ -379,6 +380,27 @@ const SelectField = ({ icon: Icon, options, error, ...props }: any) => (
           <option key={o}>{o}</option>
         ))}
       </select>
+    </div>
+    {error && <small className="text-red-500 text-sm">{error}</small>}
+  </div>
+);
+
+const MessageField = ({ icon: Icon, label, textarea, error, ...props }: any) => (
+  <div className="flex flex-col gap-1">
+    <label className="text-sm font-medium text-gray-700">{label}</label>
+    <div
+      className={`flex gap-3 px-4 py-4 rounded-xl border bg-white/80 backdrop-blur
+      transition hover:-translate-y-px
+      ${error ? "border-red-400" : "border-gray-200"}`}
+    >
+      <IconWrap>
+        <Icon size={18} />
+      </IconWrap>
+      {textarea ? (
+        <textarea {...props} rows={5} className=" flex-1 bg-transparent outline-none resize-none" />
+      ) : (
+        <input {...props} className="flex-1 bg-transparent outline-none h-11" />
+      )}
     </div>
     {error && <small className="text-red-500 text-sm">{error}</small>}
   </div>

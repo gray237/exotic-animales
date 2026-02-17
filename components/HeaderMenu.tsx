@@ -13,30 +13,27 @@ const HeaderMenu = () => {
 
   return (
     <nav
-      aria-label="Primary"
-      className="
-        hidden md:flex items-center gap-0.5
-        px-2 py-1.5
-        rounded-2xl
-        border border-black/10
-        bg-white/60 backdrop-blur-md
-        shadow-[0_8px_24px_rgba(0,0,0,0.06)]
-      "
-    >
+  aria-label="Primary"
+  className="
+    hidden lg:flex items-center gap-0.5
+    px-2 py-1.5 rounded-2xl border border-black/8
+    bg-white/60 dark:bg-zinc-900/40 backdrop-blur-md shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
+      
       {headerData.map((item) => {
         const isActive = pathname === item.href;
         const children = item.children;
+        // Determine if this is the large "Shop" style menu
+        const isLargeMega = children?.type === "mega" && children.featured;
 
         return (
           <div key={item.title} className="relative isolate">
-            {/* Hover group ONLY around trigger + menu */}
             <div className="relative group">
               {/* TOP LEVEL LINK */}
               <Link
                 href={item.href}
                 className={cn(
                   `
-                  flex items-center gap-1
+                  flex items-center
                   px-3 lg:px-4 py-2
                   rounded-xl
                   text-sm font-semibold
@@ -64,7 +61,7 @@ const HeaderMenu = () => {
                   <ChevronDown
                     size={14}
                     className="
-                      mt-px
+                      
                       opacity-60
                       transition-transform duration-200
                       group-hover:rotate-180
@@ -73,62 +70,25 @@ const HeaderMenu = () => {
                 )}
               </Link>
 
-              {/* ================= INFO DROPDOWN ================= */}
-              {children?.type === "dropdown" && children.links && (
-                <div
-                  className="
-                    absolute left-0 top-full z-50
-                    w-64 pt-2
-                    opacity-0 translate-y-1
-                    pointer-events-none
-                    transition-all duration-200
-                    group-hover:opacity-100
-                    group-hover:translate-y-0
-                    group-hover:pointer-events-auto
-                  "
-                >
-                  <div className="rounded-2xl border border-black/10 bg-white shadow-[0_20px_40px_rgba(0,0,0,0.12)] p-3">
-                    {children.links.map((link) => (
-                      <Link
-                        key={link.title}
-                        href={link.href}
-                        className="
-                          block rounded-lg px-4 py-2
-                          text-sm font-medium text-gray-700
-                          hover:text-gray-900
-                          hover:bg-purple-500/10
-                          transition
-                        "
-                      >
-                        {link.title}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* ================= PET STORE MEGA MENU ================= */}
+              {/* ================= MEGA MENU ================= */}
               {children?.type === "mega" && children.sections && (
                 <div
-                  className="
-                    absolute top-full left-1/2 z-50
-                    w-[min(90vw,900px)]
-                    max-w-[calc(100vw-2rem)]
-                    -translate-x-1/2
-                    pt-2
-                    px-4
-                    opacity-0 translate-y-2
-                    pointer-events-none
-                    transition-all duration-200
-                    group-hover:opacity-100
-                    group-hover:translate-y-0
-                    group-hover:pointer-events-auto
-                  "
+                  className={cn(
+                    "absolute top-full left-1/2 z-50 pt-2 opacity-0 translate-y-2 pointer-events-none transition-all duration-200 -translate-x-1/2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto",
+                    // If it has featured content (Shop), make it wide. Otherwise (Info), let it fit content.
+                    isLargeMega ? "w-[min(90vw,900px)]" : "w-max min-w-[400px]"
+                  )}
                 >
                   <div className="rounded-3xl border border-black/10 bg-white shadow-[0_30px_70px_rgba(0,0,0,0.15)] p-8">
-                    <div className="grid grid-cols-3 gap-8">
+                    <div 
+                      className={cn(
+                        "grid gap-8",
+                        // Logic: 3 columns if featured exists, otherwise 2 columns (for Info)
+                        isLargeMega ? "grid-cols-3" : "grid-cols-2"
+                      )}
+                    >
                       {children.sections.map((section) => (
-                        <div key={section.title}>
+                        <div key={section.title} className="min-w-[180px]">
                           <h4 className="px-3 mb-4 text-sm font-bold text-gray-900">
                             {section.title}
                           </h4>

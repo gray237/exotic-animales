@@ -9,7 +9,7 @@ import { adoptionData, AdoptionCategory } from "@/app/(client)/adopt/adoptionDat
 import { HiShieldCheck, HiHeart,HiAcademicCap, } from "react-icons/hi2";
 import { useEffect, useState } from "react";
 import {
-  exoticPetsRanch,
+  exoticPetsOwners,
   adoptAxolotls,
   adoptCoatimundis,
   adoptHoofstock,
@@ -109,9 +109,9 @@ const AdoptPets = () => {
       {/* ================= HERO ================= */}
       <GlassHero
         badgeText="Healthy pets • Ethical breeding • Nationwide delivery"
-        title="Adopt Exotic Pet Companions"
+        title="Rescue & Adopt Exotic Pet Companions"
         description="Discover extraordinary exotic animal companions from around the world. Buy exotic pets including axolotl morphs, sugar gliders, fennec foxes, ring-tailed lemurs, savannah cats, and hedgehogs. Each exotic animal is ethically sourced, USDA certified, health-guaranteed, and ready to become part of your family."
-        image={exoticPetsRanch}
+        image={exoticPetsOwners}
         primaryCta={{
           label: "Start Adoption",
           href: "/contact",
@@ -135,7 +135,7 @@ const AdoptPets = () => {
       >
         <div className="max-w-[1400px] mx-auto px-6 lg:px-16">
           <h2 className="text-3xl font-bold mb-5 text-gray-900 dark:text-white">
-            Featured Adoption Categories
+            Exotic Animal Species
           </h2>
 
           <p className="mb-8 text-gray-600 dark:text-gray-300 max-w-4xl">

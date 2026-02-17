@@ -3,6 +3,7 @@ import { BRANDS_QUERYResult, Category, Product } from "@/sanity.types";
 import React, { useEffect, useState } from "react";
 import Container from "./Container";
 import Title from "./Title";
+import ShopBanner from "./ShopBanner";
 import CategoryList from "./shop/CategoryList";
 import { useSearchParams } from "next/navigation";
 import BrandList from "./shop/BrandList";
@@ -68,11 +69,23 @@ const Shop = ({ categories, brands }: Props) => {
   return (
     <div className="border-t">
       <Container className="mt-5">
-        <div className="sticky top-0 z-10 mb-5">
-          <div className="flex items-center justify-between">
-            <Title className="text-lg uppercase tracking-wide">
-              Get the products as your needs
-            </Title>
+        <div className="mb-8">
+          <ShopBanner />
+        </div>
+        <div className="sticky top-0 z-10 mb-2 bg-white py-2"> 
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            
+            {/* TITLE & SUBTITLE GROUP */}
+            <div className="flex flex-col gap-1">
+              <Title className="text-lg uppercase tracking-wide">
+                Exotic Animals & Pet Supplies Shop
+              </Title>
+              <p className="text-xs lg:text-sm font-normal opacity-70 max-w-[580px]">
+                Browse Exotic Animales’ shop for exotic pets, accessories, feeders and supplies
+              </p>
+            </div>
+
+            {/* RESET FILTERS BUTTON */}
             {(selectedCategory !== null ||
               selectedBrand !== null ||
               selectedPrice !== null) && (
@@ -82,7 +95,7 @@ const Shop = ({ categories, brands }: Props) => {
                   setSelectedBrand(null);
                   setSelectedPrice(null);
                 }}
-                className="text-shop_dark_green underline text-sm mt-2 font-medium hover:text-darkRed hoverEffect"
+                className="text-shop_dark_green underline text-sm font-medium hover:text-darkRed hoverEffect shrink-0"
               >
                 Reset Filters
               </button>

@@ -24,13 +24,13 @@ const items = [
     title: "Pet Supplies",
     image: exoticPetStore,
     icon: ShoppingBag,
-    href: "#",
+    href: "/shop",
   },
   {
     title: "Pet Feeders",
     image: exoticPetFeeders,
     icon: Utensils,
-    href: "#",
+    href: "/shop",
   },
   {
     title: "Pet Care Sheets",

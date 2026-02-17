@@ -36,6 +36,7 @@ import exoticAnimalsRanch from "./sections/exotic-animals-ranch.jpg";
 import exoticAnimalsTexas from "./sections/exotic-animals-texas.jpg";
 import exoticPetBreeder from "./sections/exotic-pet-breeder.jpg";
 import guineaPigPremium from "./sections/guinea-pig-premium.jpg";
+import exoticPetBoarding from "./sections/exotic-pet-boarding.jpg"
 import axolotlExclusive from "./sections/baby-axolotl-for-sale.jpg";
 import bestExoticPets from "./sections/best-exotic-pets.jpg";
 import exoticPetAdoption from "./sections/exotic-pet-adoption.jpg";
@@ -43,9 +44,11 @@ import exoticPetStore from "./sections/exotic-pet-store.jpg";
 import exoticPetFeeders from "./sections/exotic-pet-feeders.jpg";
 import exoticPetCare from "./sections/exotic-pet-care.jpg";
 import exoticPetsRanch from "./sections/exotic-pets-ranch.jpg";
+import exoticPetsOwners from "./sections/exotic-pet-owners.jpg";
 import drRachel1 from "./sections/dr-rachel-exotic-pet-vets.jpg";
 import drRachel2 from "./sections/dr-rachel-exotic-pet-vet.jpg";
 import axolotlLitter from "./sections/baby-axolotl-litter.png";
+import buyFerretOnline from "./sections/buy-baby-ferret-online.jpg";
 import leopardGeckoLitter from "./sections/baby-leopard-gecko-litter.png";
 import hedgehogLitter from "./sections/baby-hedgehog-litter.png";
 import prarieDogLitter from "./sections/baby-prairie-dog-litter.png";
@@ -68,9 +71,38 @@ import adoptSkunks from "./categories/adopt-skunks-weasels.jpg";
 import adoptSnakes from "./categories/adopt-snakes-pythons.jpg";
 import adoptSugarGliders from "./categories/adopt-sugar-gliders.jpg";
 import adoptTurtles from "./categories/adopt-turtles.jpg";
+import bioactiveSetupGuides from "./guides/bioactive-terrarium-setup-guides.jpg"
+import bioactiveTerrariumGuide from "./guides/bioactive-terrarium-fish-tank.jpg";
+import bioactivePlantsLighting from "./guides/bioactive-enclosure-plants-lighting.jpg"
+import bioactiveEnclosureLighting from "./guides/bioactive-enclosure-lighting-system.jpg";
+import bioactiveEnclosureIsopods from "./guides/isopods-for-bioactive-enclosure.jpg";
+import chooseIsopodSpecies from "./guides/how-to-choose-isopod-species.jpg";
+import bioactiveCleanupCrew from "./guides/bioactive-terrarium-cleanup-crew-insects.jpg";
+import microfaunaSurvival from "./guides/moisture-for-microfauna-survival.jpg";
+import newbieBioactiveSetup from "./guides/newbie-bioactive-enclosure-setup-guide.jpg";
+import bioactiveEnclosureElements from "./guides/bioactive-enclosure-core-elements.jpg";
+import cleanupCrewIsopods from "./guides/clean-up crew-orange-isopods.jpg";
+import tropicalVsAridEnclosures from "./guides/arid-vs-tropical-bioactive-enclosures.jpg";
+import aridBioactiveBuild from "./guides/arid-species-bioactive-build.jpg";
+import dartFrogEcosystem from "./guides/dart-frog-bioactive-ecosystem.jpg";
+import dartFrogTerrarium from "./guides/dart-frog-terrarium-ecosystem.jpg";
+import arborealGeckoEnclosure from "./guides/arboreal-crested-gecko-enclosure.jpg";
+import crestedGeckoEnclosure from "./guides/crested-gecko-bioactive-enclosure.jpg";
+import ballPythonEnclosure from "./guides/ball-python-bioactive-enclosure.jpg";
+import ballPythonTerrarium from "./guides/bioactive-terrarium-for-ball-python.jpg";
+import shopBennetWallaby from "./shop/baby-bennett-wallaby-litter.jpg";
+import shopCrestedGecko from "./shop/baby-crested-gecko-litter.jpg";
+import shopWeaselFerret from "./shop/baby-ferret-litter.jpg";
+import shopBallPythonSnake from "./shop/ball-python-snake-morphs.jpg";
+import shopFennecFox from "./shop/fennec-fox-kits-litter.jpg";
+import shopAxolotlMorphs from "./shop/gold-melanoid-axolotl-morphs.jpg";
+import shopSugarGliders from "./shop/grey-sugar-glider-babies.jpg";
+import shopSavannahCat from "./shop/savannah-cat-serval-kittens.jpg";
+import shopSmallMammals from "./shop/small-mammals-rodents-for-sale.jpg";
+import shopLeopardGecko from "./shop/baby-leopard-gecko-litter.jpg";
 
 
-export { paypalLogo, banner_1, chameleonBanner, paypalIcon, zelleIcon, cashappIcon, bitcoinIcon,  bankTransfer, cashApp, sendPaypal, zellePay, emptyCart, exoticBanner1, exoticBanner2, exoticBanner3, axolotlCare, ballPythonCare, beardedDragonCare, bloodPythonCare, crestedGeckoCare, deguCare, forestScorpionCare, greenSnakeCare, hamsterCare, jacksonChameleonCare, prairieDogsCare, skunksCare, sugarGliderCare, tarantulaSpiderCare, waterMonitorCare, woodTurtleCare, smallExoticPetsSale, exoticPetsLogo, eaBackground, exoticAnimalsRanch, exoticAnimalsTexas, exoticPetBreeder, guineaPigPremium, axolotlExclusive, bestExoticPets, exoticPetCare, exoticPetFeeders, exoticPetStore, exoticPetAdoption, exoticPetsRanch, drRachel1, drRachel2, leopardGeckoLitter, axolotlLitter, hedgehogLitter, prarieDogLitter, savannahCatLitter, fennecFoxLitter, ballPythonLitter, adoptAxolotls, adoptCoatimundis, adoptHoofstock, adoptFennecFoxes, adoptGeckos, adoptHedgehogs, adoptWallabies, adoptLemurs, adoptMarmoset, adoptPrarieDogs, adoptPorcupines, adoptSavannahCat, adoptSkunks, adoptSnakes, adoptSugarGliders, adoptTurtles };
+export { paypalLogo, banner_1, chameleonBanner, paypalIcon, zelleIcon, cashappIcon, bitcoinIcon,  bankTransfer, cashApp, sendPaypal, zellePay, emptyCart, exoticBanner1, exoticBanner2, exoticBanner3, axolotlCare, ballPythonCare, beardedDragonCare, bloodPythonCare, crestedGeckoCare, deguCare, forestScorpionCare, greenSnakeCare, hamsterCare, jacksonChameleonCare, prairieDogsCare, skunksCare, sugarGliderCare, tarantulaSpiderCare, waterMonitorCare, woodTurtleCare, smallExoticPetsSale, exoticPetsLogo, eaBackground, exoticAnimalsRanch, exoticAnimalsTexas, exoticPetBreeder, guineaPigPremium, axolotlExclusive, bestExoticPets, exoticPetCare, exoticPetFeeders, exoticPetStore, exoticPetAdoption, exoticPetsRanch, exoticPetsOwners, exoticPetBoarding, drRachel1, drRachel2, leopardGeckoLitter, buyFerretOnline, axolotlLitter, hedgehogLitter, prarieDogLitter, savannahCatLitter, fennecFoxLitter, ballPythonLitter, adoptAxolotls, adoptCoatimundis, adoptHoofstock, adoptFennecFoxes, adoptGeckos, adoptHedgehogs, adoptWallabies, adoptLemurs, adoptMarmoset, adoptPrarieDogs, adoptPorcupines, adoptSavannahCat, adoptSkunks, adoptSnakes, adoptSugarGliders, adoptTurtles, bioactiveSetupGuides, bioactiveTerrariumGuide, bioactiveEnclosureIsopods, bioactivePlantsLighting, bioactiveEnclosureLighting, chooseIsopodSpecies, bioactiveCleanupCrew, microfaunaSurvival, newbieBioactiveSetup, bioactiveEnclosureElements, cleanupCrewIsopods, tropicalVsAridEnclosures, aridBioactiveBuild, dartFrogEcosystem, dartFrogTerrarium, crestedGeckoEnclosure, arborealGeckoEnclosure, ballPythonTerrarium , ballPythonEnclosure, shopBennetWallaby, shopCrestedGecko, shopWeaselFerret, shopBallPythonSnake, shopFennecFox, shopAxolotlMorphs, shopSugarGliders, shopSavannahCat, shopSmallMammals, shopLeopardGecko };
 
 
 // ================== Adoption Data ==================

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { ShoppingBag, Ban, Gem } from "lucide-react";
 import { Pet } from "@/app/(client)/adopt/adoptionData";
 
@@ -64,10 +65,12 @@ export default function AdoptionCard({ pet }: AdoptionCardProps) {
             ${pet.price}
           </span>
 
-          <button className="group flex items-center gap-2 bg-linear-to-br from-amber-600 to-orange-500 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-md transition-all hover:-translate-y-1 hover:shadow-lg">
+          <Link href={`/reservation?type=adoption&petId=${pet.name}`} 
+          className="group flex items-center gap-2 bg-linear-to-br from-amber-600 to-orange-500 text-white px-4 py-2 
+          rounded-xl text-sm font-semibold shadow-md transition-all hover:-translate-y-1 hover:shadow-lg">
             Reserve
             <ShoppingBag className="w-4 h-4 transition-transform group-hover:rotate-[-10deg] group-hover:scale-110" />
-          </button>
+          </Link>
         </div>
       </div>
     </motion.div>

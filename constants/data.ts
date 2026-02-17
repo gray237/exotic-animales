@@ -84,11 +84,11 @@ export const headerData = [
           },
           {
             title: "Wholesale/Breeder",
-            href: "/about-us",
+            href: "/about",
           },
           {
             title: "Rescue & Rehoming",
-            href: "/about-us",
+            href: "/adopt",
           },
         ],
         image: smallExoticPetsSale,
@@ -105,35 +105,61 @@ export const headerData = [
     title: "Info",
     href: "#",
     children: {
-      type: "dropdown",
-      links: [
+      type: "mega",
+      align: "center",
+
+      sections: [
         {
-          title: "FAQ",
-          href: "/faq",
+          title: "Pet Care Guides",
+          links: [
+            {
+              title: "Pet Care Sheets",
+              href: "/care-sheets",
+            },
+            {
+              title: "Exotic Vet Guide",
+              href: "/vet-guide",
+            },
+            {
+              title: "State Legality Map",
+              href: "/legality-map",
+            },
+            {
+              title: "Live-Animal Shipping",
+              href: "/shipping-process",
+            },
+            {
+              title: "Bioactive Setup Guides",
+              href: "/bioactive-guides",
+            },
+          ],
         },
+
         {
-          title: "Pet Care Sheets",
-          href: "/care-sheets",
-        },
-        {
-          title: "About E.A Ranch",
-          href: "/about",
-        },
-        {
-          title: "State Legality Map",
-          href: "/legality-map",
-        },
-        {
-          title: "Hatchery & Nursery",
-          href: "/our-process",
-        },
-        {
-          title: "Payment Options",
-          href: "/payment",
-        },
-        {
-          title: "Live-Animal Shipping",
-          href: "/shipping-process",
+          title: "E.A Ranch",
+          links: [
+          {
+            title: "FAQ",
+            href: "/faq",
+          },
+
+          {
+            title: "Payment Options",
+            href: "/payment",
+          },
+          {
+            title: "About E.A Ranch",
+            href: "/about",
+          },
+          {
+            title: "Rescue & Rehoming",
+            href: "/adopt",
+          },
+          {
+            title: "Exotic Pet Boarding",
+            href: "/pet-boarding",
+          },
+        ],
         },
       ],
     },
@@ -167,12 +193,12 @@ export const categoriesData = [
   { title: "Exotic Pet Foods", href: "exotic-pet-foods" },
 ];
 export const informationData = [
-  { title: "Rescue & Rehoming", href: "/rescue-rehoming" },
   { title: "Exotic Vet Guide", href: "/vet-guide" },
-  { title: "Hatchery & Nursery", href: "/our-process" },
+  { title: "Rescue & Rehoming", href: "/rescue-rehoming" },
   { title: "State Legality Map", href: "/legality-map" },
+  { title: "Exotic Pet Boarding", href: "/pet-boarding" },
   { title: "Live-Animal Shipping", href: "/shipping-process" },
-  { title: "Bioactive Setup Guides", href: "/bioactive-living" },
+  { title: "Bioactive Setup Guides", href: "/bioactive-guides" },
 ];
 export const productType = [
   { title: "Mammals", value: "mammals" },

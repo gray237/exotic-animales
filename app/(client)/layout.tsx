@@ -10,6 +10,10 @@ export const metadata: Metadata = {
     template: "%s | Exotic Animales Ranch",
   },
   description: "Exotic Animales Ranch is a USDA-licensed exotic pet breeder based in Texas. We offer axolotls, baby hedgehogs, sugar gliders, fennec foxes, lemurs, reptiles, and small mammals for sale, with expert guidance from inquiry to delivery.",
+  robots: {
+    index: true,
+    follow: true,
+  },
 
   alternates: {
     canonical: "https://www.exoticanimales.com/",

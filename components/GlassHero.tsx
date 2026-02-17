@@ -111,7 +111,7 @@ const GlassHero = ({
                   className="flex items-center justify-center md:justify-start gap-2.5 p-2.5 border rounded-xl bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-700 shadow-sm transition-all hover:shadow-md"
                 >
                   {/* Icon Container - Scaled down to 30px for better fit */}
-                  <div className="shrink-0 w-[32px] h-[32px] flex items-center justify-center rounded-lg bg-pink-50 dark:bg-pink-900/20 text-pink-500">
+                  <div className="shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-pink-50 dark:bg-pink-900/20 text-pink-500">
                     <Icon className="text-base" />
                   </div>
                   
