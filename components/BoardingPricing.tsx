@@ -47,7 +47,7 @@ const BoardingPricing = () => {
 
   return (
     <section id="rates" className="py-20 bg-gray-50 dark:bg-gray-900/50">
-      <div className="max-w-[1600px] mx-auto px-6">
+      <div className="max-w-400 mx-auto px-6">
         
         {/* Header */}
         <div className="mb-10">
@@ -99,7 +99,7 @@ const BoardingPricing = () => {
                   >
                     <HiCursorArrowRays className="text-purple-700" />
                     <span>Book Now</span>
-                    <span className="absolute -top-10 -left-10 w-[140px] h-[140px] bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.45),transparent_60%)] opacity-55 pointer-events-none transition-all" />
+                    <span className="absolute -top-10 -left-10 w-35 h-35 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.45),transparent_60%)] opacity-55 pointer-events-none transition-all" />
                   </Link>
                 </div>
               </div>

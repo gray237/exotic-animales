@@ -1,15 +1,15 @@
 import React from "react";
-import { Metadata } from "next";
+import { Metadata } from "next"; 
 import AboutHero from "@/components/AboutHero";
 import AboutUs from "@/components/AboutUs";
 import AboutFeature from "@/components/AboutFeature";
 import { exoticPetsRanch } from "@/images";
 
 // ------------------- DYNAMIC METADATA -------------------
-export const metadata = {
+export const metadata: Metadata = {
   title: "About Us | Exotic Animales",
   description:
-    "Learn more about Exotic Animales, your trusted source for exotic pets including axolotls, sugar gliders, fennec foxes, and more.",
+    "Learn more about Exotic Animales, your trusted source for exotic pets including axolotls, sugar gliders, fennec foxes, hybrid cats, small mammals and more.",
   keywords:
     "about Exotic Animales, exotic pets, axolotls, sugar gliders, fennec foxes, exotic pet store",
   openGraph: {

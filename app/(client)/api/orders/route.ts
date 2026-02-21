@@ -5,6 +5,15 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// 1. Define the Interface to replace 'any'
+interface OrderItem {
+  product: {
+    _id: string;
+    name: string;
+  };
+  quantity: number;
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -53,7 +62,8 @@ export async function POST(req: NextRequest) {
     }
 
     // ---------------- PRODUCTS ----------------
-    const sanityProducts = items.map((item: any) => ({
+    // Fix for Line 56: Replace 'any' with 'OrderItem'
+    const sanityProducts = items.map((item: OrderItem) => ({
       _key: uuidv4(),
       product: {
         _type: "reference",
@@ -67,22 +77,17 @@ export async function POST(req: NextRequest) {
     // ---------------- CREATE ORDER ----------------
     const order = await backendClient.create({
       _type: "order",
-
       orderNumber,
       status: "processing",
-
       products: sanityProducts,
       totalPrice: total,
       currency: "USD",
       amountDiscount: 0,
-
       customerName: address.name,
       email: user.primaryEmailAddress.emailAddress,
       clerkUserId: user.id,
-
       orderDate: new Date().toISOString(),
 
-      // ---------------- ADDRESS ----------------
       address: {
         name: address.name,
         street: address.street,
@@ -93,7 +98,6 @@ export async function POST(req: NextRequest) {
         country: address.country,
       },
 
-      // ---------------- OTHER OPTIONS ----------------
       paymentMethod,
       deliveryOption,
       transportDeposit: !!transportDeposit,
@@ -102,9 +106,10 @@ export async function POST(req: NextRequest) {
 
     // ---------------- SEND EMAIL NOTIFICATIONS ----------------
 
+    // Fix for Line 107 (or nearby): Replace 'any' with 'OrderItem'
     const orderItemsHtml = items
       .map(
-        (i: any) =>
+        (i: OrderItem) =>
           `<li>${i.quantity} x ${i.product.name} (${i.product._id})</li>`
       )
       .join("");
@@ -112,7 +117,7 @@ export async function POST(req: NextRequest) {
     // --- Admin notification ---
     await resend.emails.send({
       from: "Exotic Animals <onboarding@resend.dev>",
-      to: ["exoticanimales8@gmail.com"], // Your email
+      to: ["exoticanimales8@gmail.com"],
       subject: `📦 New Order: ${orderNumber}`,
       html: `
         <h2>New Order Received</h2>
@@ -150,8 +155,9 @@ export async function POST(req: NextRequest) {
       orderNumber,
       orderId: order._id,
     });
-  } catch (error) {
-    console.error("ORDER ERROR:", error);
+  } catch (error: unknown) {
+    // 2. Added 'unknown' and a safe logger for professional error handling
+    console.error("ORDER ERROR:", error instanceof Error ? error.message : error);
     return NextResponse.json(
       { error: "Failed to create order" },
       { status: 500 }

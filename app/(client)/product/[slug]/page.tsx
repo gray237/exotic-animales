@@ -91,7 +91,7 @@ const SingleProductPage = async ({
   return (
     <div className="flex flex-col">
       {/* Main Product Section */}
-      <div className="w-full max-w-[1400px] mx-auto">
+      <div className="w-full max-w-350 mx-auto">
         <Container className="flex flex-col md:flex-row gap-10 py-10">
           {product?.images && (
             <ImageView images={product?.images} isStock={product?.stock} />
@@ -201,7 +201,7 @@ const SingleProductPage = async ({
       </div>
 
       {/* Product Tabs Section - full width */}
-      <div className="w-full max-w-[1400px] mx-auto">
+      <div className="w-full max-w-350 mx-auto">
         <Container className="py-10 border-t border-gray-100">
           <ProductTabs product={product} />
         </Container>

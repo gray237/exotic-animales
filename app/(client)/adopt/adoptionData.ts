@@ -1,7 +1,6 @@
 import { adoptAxolotls, adoptCoatimundis, adoptHoofstock, adoptFennecFoxes, adoptGeckos, adoptHedgehogs, adoptWallabies, adoptLemurs, adoptMarmoset, adoptPrarieDogs, adoptPorcupines, adoptSavannahCat, adoptSkunks, adoptSnakes, adoptSugarGliders, adoptTurtles, } from "@/images";
 import { axolotlExclusive } from "@/images";
 import type { StaticImageData } from "next/image";
-import Link from "next/link";
 import { boxRedEaredTurtles, capybarasPrairieDogs, cornSnakesBallPythons, fennecBatEaredFoxPups, HighparkHoofstock, crestedLeopardGeckos, platinumSugarGliders, pygmyMarmosetMonkey, prehensileTailedPorcupine, ringTailedCoati, hamstersHedgehogs, hybridSavannahKittens, skunksFerretsWeasels, triColorLemurs, bennetsWallaby,  } from "@/images";
 
 import { adoptLeucisticAxolotl, adoptCopperAxolotl, adoptSugarGlider, adoptSugarGlider2, adoptFennecFox, adoptRingTaillemur, adoptF5SavannahCat, adoptFemaleSavannahCat, adoptPygmyMarmoset, adoptBabyCoati, adoptPrehensilePorcupine, adoptStripedWeasel, adoptHighparkBull, adoptBabyCapybaras, adoptBabyPrairieDog, adoptBoxTurtle, adoptSliderTurtle, adoptBabyleopardGecko, adoptBabyCrestedGecko, adoptBabyPygmyHedgehog, adoptBabyDwarfHamster, adoptBabyWallaby, adoptRedNeckWallaby, adoptAlbinoCornSnake, adoptPastelBallPython,  } from "@/images";

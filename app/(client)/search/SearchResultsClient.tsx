@@ -89,13 +89,20 @@ const SearchResultsClient = () => {
             <ResultSection title="Shop Products" icon={<ShoppingBag className="text-indigo-600" />}>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {products.map((item) => (
-                  <Link key={item._id} href={`/product/${item.slug}`} className="group bg-white rounded-2xl border p-3 hover:shadow-xl transition-all">
+                  <Link 
+                    key={item._id} 
+                    href={`/product/${item.slug?.current || item.slug}`} 
+                    className="group bg-white rounded-2xl border p-3 hover:shadow-xl transition-all"
+                  >
                     <div className="aspect-square relative rounded-xl overflow-hidden bg-gray-100 mb-3">
                       {item.image && (
                         <Image 
-                          src={urlFor(item.image).url()} 
-                          alt={item.title} 
+                          // 1. Force Sanity to send a 500px version (Stops the 7-second download)
+                          src={urlFor(item.image).width(500).url()} 
+                          alt={item.title || "Product"} 
                           fill 
+                          // 2. Tell Next.js not to request a 1920px wide image (Stops the 500 error)
+                          sizes="500px"
                           className="object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                       )}

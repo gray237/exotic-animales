@@ -76,7 +76,7 @@ const HeaderMenu = () => {
                   className={cn(
                     "absolute top-full left-1/2 z-50 pt-2 opacity-0 translate-y-2 pointer-events-none transition-all duration-200 -translate-x-1/2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto",
                     // If it has featured content (Shop), make it wide. Otherwise (Info), let it fit content.
-                    isLargeMega ? "w-[min(90vw,900px)]" : "w-max min-w-[400px]"
+                    isLargeMega ? "w-[min(90vw,900px)]" : "w-max min-w-100"
                   )}
                 >
                   <div className="rounded-3xl border border-black/10 bg-white shadow-[0_30px_70px_rgba(0,0,0,0.15)] p-8">
@@ -88,7 +88,7 @@ const HeaderMenu = () => {
                       )}
                     >
                       {children.sections.map((section) => (
-                        <div key={section.title} className="min-w-[180px]">
+                        <div key={section.title} className="min-w-45">
                           <h4 className="px-3 mb-4 text-sm font-bold text-gray-900">
                             {section.title}
                           </h4>

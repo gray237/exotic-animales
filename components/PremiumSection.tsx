@@ -103,7 +103,7 @@ export default PremiumSection;
 
 const ExclusiveAxolotlCard = () => {
   return (
-    <div className="premium-tilt relative w-[380px] bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.6)] overflow-hidden transition-all duration-500 hover:-translate-y-2">
+    <div className="premium-tilt relative w-95 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.6)] overflow-hidden transition-all duration-500 hover:-translate-y-2">
 
       <span className="absolute top-4 right-4 z-10 bg-linear-to-br from-amber-600 to-orange-500 text-white text-xs font-semibold px-3 py-1 rounded-xl uppercase tracking-wide shadow-md flex items-center gap-1">
         <Sparkles className="w-3 h-3" />
@@ -167,7 +167,7 @@ const ExclusiveAxolotlCard = () => {
 
 const PremiumCard = () => {
   return (
-    <div className="premium-tilt relative w-[380px] bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.6)] overflow-hidden transition-all duration-500 hover:-translate-y-2">
+    <div className="premium-tilt relative w-95 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.6)] overflow-hidden transition-all duration-500 hover:-translate-y-2">
 
       <span className="absolute top-4 right-4 z-10 flex items-center gap-1.5 bg-linear-to-br from-zinc-900 to-zinc-700 text-white text-xs font-semibold px-3 py-1 rounded-xl uppercase tracking-wide shadow-md">
         <Gem className="w-3.5 h-3.5 text-amber-400" />

@@ -127,7 +127,7 @@ const ShopBanner = () => {
     <div 
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      className="relative overflow-hidden w-full h-[550px] md:h-[600px] lg:h-[clamp(500px,35vw,650px)] xl:h-[clamp(500px,30vw,650px)] rounded-2xl shadow-xl flex flex-col lg:flex-row bg-white"
+      className="relative overflow-hidden w-full h-137.5 md:h-150 lg:h-[clamp(500px,35vw,650px)] xl:h-[clamp(500px,30vw,650px)] rounded-2xl shadow-xl flex flex-col lg:flex-row bg-white"
     >
       {/* TEXT SECTION (REVERSED STACK) */}
       <div className="relative h-[45%] lg:h-full lg:w-[35%] overflow-hidden z-20">
@@ -148,7 +148,7 @@ const ShopBanner = () => {
               <h2 className="text-2xl lg:text-3xl font-bold mb-2 lg:mb-4 tracking-tight leading-tight">
                 {slide.title}
               </h2>
-              <p className="text-sm lg:text-base font-normal opacity-90 max-w-[280px] leading-relaxed mb-6">
+              <p className="text-sm lg:text-base font-normal opacity-90 max-w-70 leading-relaxed mb-6">
                 {slide.description}
               </p>
               <Link 

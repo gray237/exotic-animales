@@ -4,9 +4,13 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import Accordion from "@/components/ui/accordion";
-import { ArrowLeft, ChevronDown, ShieldAlert, Scale } from "lucide-react";
+import { ArrowLeft, ShieldAlert, Scale } from "lucide-react";
 import { legalData } from "../legalData";
 import { eaBackground, exoticBanner1 } from "@/images";
+
+// ------------------- HELPERS -------------------
+// Helper to generate the slug consistently
+const getSlug = (stateName: string) => stateName.toLowerCase().replace(/\s+/g, "-");
 
 // ------------------- DYNAMIC METADATA -------------------
 export const generateMetadata = async ({
@@ -15,9 +19,7 @@ export const generateMetadata = async ({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> => {
   const { slug } = await params;
-  const stateData = legalData.find(
-    (s) => s.state.toLowerCase().replace(/\s+/g, "-") === slug
-  );
+  const stateData = legalData.find((s) => getSlug(s.state) === slug);
 
   if (!stateData) return { title: "State Not Found | Exotic Animales" };
 
@@ -34,28 +36,44 @@ export const generateMetadata = async ({
 
 export const dynamicParams = false;
 
+// ------------------- PAGE COMPONENT -------------------
 const LawSlugPage = async ({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) => {
   const { slug } = await params;
+  const stateData = legalData.find((s) => getSlug(s.state) === slug);
 
-  const stateData = legalData.find(
-  (s) => s.state.toLowerCase().replace(/\s+/g, "-") === slug
-);
+  if (!stateData) {
+    notFound();
+  }
 
-if (!stateData) {
-  notFound();
-  return null; 
-}
-
-const data = stateData;
+  // Pre-stringifying the JSON-LD to prevent Webpack serialization warnings
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: stateData.faqs?.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: f.answer,
+      },
+    })),
+  });
 
   return (
     <div className="bg-white dark:bg-gray-950 min-h-screen">
+      {/* JSON-LD - Moved to top for cleaner SEO injection */}
+      <Script
+        id="state-law-faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd }}
+      />
+
       {/* HERO */}
-      <section className="relative w-full h-[280px] md:h-80 flex items-center justify-center text-center overflow-hidden">
+      <section className="relative w-full h-70 md:h-80 flex items-center justify-center text-center overflow-hidden">
         <Image
           src={eaBackground}
           alt="Exotic Laws Background"
@@ -79,12 +97,9 @@ const data = stateData;
 
       {/* MAIN CONTENT */}
       <section className="py-16 max-w-5xl mx-auto px-6 space-y-16">
-
         {/* SUMMARY */}
         <div className="prose prose-lg dark:prose-invert max-w-none">
-          <h2 className="text-3xl font-bold mb-6">
-            What You Need to Know
-          </h2>
+          <h2 className="text-3xl font-bold mb-6">What You Need to Know</h2>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
             {stateData.summary}
           </p>
@@ -92,11 +107,8 @@ const data = stateData;
 
         {/* LEGAL / RESTRICTED / PROHIBITED */}
         <section className="grid md:grid-cols-3 gap-8">
-          {/* LEGAL */}
           <div className="bg-gray-50 dark:bg-zinc-900 p-8 rounded-3xl border border-gray-100 dark:border-zinc-800">
-            <h3 className="text-xl font-bold mb-6 text-green-600">
-              Legal Species
-            </h3>
+            <h3 className="text-xl font-bold mb-6 text-green-600">Legal Species</h3>
             <ul className="space-y-3 text-gray-600 dark:text-gray-400">
               {stateData.legal.map((item, i) => (
                 <li key={i} className="flex gap-3">
@@ -107,11 +119,8 @@ const data = stateData;
             </ul>
           </div>
 
-          {/* RESTRICTED */}
           <div className="bg-gray-50 dark:bg-zinc-900 p-8 rounded-3xl border border-gray-100 dark:border-zinc-800">
-            <h3 className="text-xl font-bold mb-6 text-yellow-500">
-              Restricted Species
-            </h3>
+            <h3 className="text-xl font-bold mb-6 text-yellow-500">Restricted Species</h3>
             <ul className="space-y-3 text-gray-600 dark:text-gray-400">
               {stateData.restricted.map((item, i) => (
                 <li key={i} className="flex gap-3">
@@ -122,11 +131,8 @@ const data = stateData;
             </ul>
           </div>
 
-          {/* PROHIBITED */}
           <div className="bg-gray-50 dark:bg-zinc-900 p-8 rounded-3xl border border-gray-100 dark:border-zinc-800">
-            <h3 className="text-xl font-bold mb-6 text-red-600">
-              Prohibited Species
-            </h3>
+            <h3 className="text-xl font-bold mb-6 text-red-600">Prohibited Species</h3>
             <ul className="space-y-3 text-gray-600 dark:text-gray-400">
               {stateData.prohibited.map((item, i) => (
                 <li key={i} className="flex gap-3">
@@ -144,27 +150,22 @@ const data = stateData;
             <ShieldAlert className="text-purple-600" size={20} />
             Permit & Compliance Requirements
           </h3>
-
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
             {stateData.permitRequired
               ? `Certain species in ${stateData.state} require permits, registration, or enclosure inspections. Always check both state and local laws before acquiring an exotic animal.`
               : `Most legal species in ${stateData.state} do not require special permits, but municipal laws may still apply.`}
           </p>
-
           <p className="text-sm mt-4 text-gray-500 dark:text-gray-400 italic">
             {stateData.notes}
           </p>
         </section>
 
         {/* FAQ SECTION */}
-        {data.faqs && data.faqs.length > 0 && (
+        {stateData.faqs && stateData.faqs.length > 0 && (
           <section className="pt-12 border-t border-gray-100 dark:border-zinc-800">
-            <h2 className="text-3xl font-bold mb-8">
-              Frequently Asked Questions
-            </h2>
-
+            <h2 className="text-3xl font-bold mb-8">Frequently Asked Questions</h2>
             <Accordion
-              items={data.faqs.map((faq, i) => ({
+              items={stateData.faqs.map((faq, i) => ({
                 id: `faq-${i}`,
                 title: faq.question,
                 content: faq.answer,
@@ -176,16 +177,12 @@ const data = stateData;
         )}
 
         {/* COMPARISON SECTION */}
-        {data.comparisons && data.comparisons.length > 0 && (
+        {stateData.comparisons && stateData.comparisons.length > 0 && (
           <section className="bg-gray-50 dark:bg-zinc-900 p-10 rounded-4xl border border-gray-100 dark:border-zinc-800">
-            <h3 className="text-2xl font-bold mb-6">
-              How {stateData.state} Compares
-            </h3>
-            {data.comparisons.map((comp, i) => (
+            <h3 className="text-2xl font-bold mb-6">How {stateData.state} Compares</h3>
+            {stateData.comparisons.map((comp, i) => (
               <div key={i} className="mb-4">
-                <h4 className="font-bold text-indigo-600 mb-2">
-                  {comp.title}
-                </h4>
+                <h4 className="font-bold text-indigo-600 mb-2">{comp.title}</h4>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                   {comp.content}
                 </p>
@@ -197,41 +194,12 @@ const data = stateData;
         {/* BACK BUTTON */}
         <Link
           href="/exotic-pet-laws"
-          className="
-            inline-flex items-center gap-3 -ml-4 px-4 py-2
-            rounded-full transition-all duration-300
-            text-gray-600 dark:text-gray-400 font-bold
-            hover:bg-purple-50 dark:hover:bg-purple-900/20 
-            hover:text-indigo-600 dark:hover:text-indigo-400
-            active:scale-95
-            group
-          "
+          className="inline-flex items-center gap-3 -ml-4 px-4 py-2 rounded-full transition-all duration-300 text-gray-600 dark:text-gray-400 font-bold hover:bg-purple-50 dark:hover:bg-purple-900/20 hover:text-indigo-600 dark:hover:text-indigo-400 active:scale-95 group"
         >
-          <ArrowLeft
-            size={20}
-            className="transition-transform duration-300 group-hover:-translate-x-1.5"
-          />
-          <span className="text-xs uppercase tracking-[0.15em]">
-            Back to All States
-          </span>
+          <ArrowLeft size={20} className="transition-transform duration-300 group-hover:-translate-x-1.5" />
+          <span className="text-xs uppercase tracking-[0.15em]">Back to All States</span>
         </Link>
       </section>
-
-      {/* JSON-LD */}
-      <Script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: stateData.faqs?.map((f) => ({
-            "@type": "Question",
-            name: f.question,
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: f.answer,
-            },
-          })),
-        })}
-      </Script>
     </div>
   );
 };
@@ -240,6 +208,6 @@ export default LawSlugPage;
 
 export const generateStaticParams = async () => {
   return legalData.map((s) => ({
-    slug: s.state.toLowerCase().replace(/\s+/g, "-"),
+    slug: getSlug(s.state),
   }));
 };

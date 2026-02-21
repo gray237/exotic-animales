@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Hospital, ArrowRight } from "lucide-react";
 import { vetData } from "./vetData";
 import { eaBackground, chameleonBanner } from "@/images";
-import Accordion from "@/components/ui/accordions";
+import Accordion from "@/components/ui/accordion";
 import USMap from "@/components/USMap"; 
 
 const VetGuidePage = () => {
@@ -26,7 +26,7 @@ const VetGuidePage = () => {
   return (
     <div className="flex flex-col min-h-screen">
       {/* HERO SECTION - Keeping your original style */}
-      <section className="relative w-full h-[450px] overflow-hidden">
+      <section className="relative w-full h-112.5 overflow-hidden">
         <Image
           src={eaBackground}
           alt="Exotic Vet Guide Background"
@@ -74,7 +74,7 @@ const VetGuidePage = () => {
 
           {/* THE INTERACTIVE MAP - PROFESSIONALLY SCALED */}
           <div className="w-full flex flex-col items-center justify-center overflow-visible px-0 md:px-24 lg:px-40 xl:px-60 transition-all duration-500">
-            <div className="w-full flex-1 flex items-center justify-center min-h-[300px] md:min-h-[450px]">
+            <div className="w-full flex-1 flex items-center justify-center min-h-75 md:min-h-112.5">
               <USMap activeState={selectedState} onSelect={setSelectedState} />
             </div>
             <p className="mt-8 text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em] animate-pulse">
@@ -369,7 +369,7 @@ const FAQItem = ({ question, answer }: { question: string; answer: string }) => 
         </span>
       </button>
       
-      <div className={`transition-all duration-300 ease-in-out ${isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
+      <div className={`transition-all duration-300 ease-in-out ${isOpen ? 'max-h-125 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
         <div className="px-6 pb-6 text-gray-600 dark:text-gray-400 text-sm md:text-base leading-relaxed border-t border-gray-50 dark:border-white/5 pt-4">
           {answer}
         </div>

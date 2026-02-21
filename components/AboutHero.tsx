@@ -20,7 +20,7 @@ const AboutHero = () => {
         <span className="text-sm text-gray-700">Clean data</span>
       </div>
 
-      <div className="relative z-10 flex flex-col lg:flex-row items-start justify-between px-6 lg:px-16 py-16 gap-10 max-w-[1400px] mx-auto">
+      <div className="relative z-10 flex flex-col lg:flex-row items-start justify-between px-6 lg:px-16 py-16 gap-10 max-w-350 mx-auto">
 
         {/* Left Column: Text + Buttons + Blurbs */}
         <div className="w-full lg:w-1/2 flex flex-col gap-6">
@@ -51,7 +51,7 @@ const AboutHero = () => {
               <FaPaperPlane className="text-purple-700 text-[14px]" />
               <span>Start a Request</span>
               {/* Shine effect */}
-              <span className="absolute -top-10 -left-10 w-[140px] h-[140px] bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.45),transparent_60%)] opacity-55 pointer-events-none transition-all duration-350 ease-in-out hover:opacity-75 hover:translate-x-5 hover:-translate-y-5"></span>
+              <span className="absolute -top-10 -left-10 w-35 h-35 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.45),transparent_60%)] opacity-55 pointer-events-none transition-all duration-350 ease-in-out hover:opacity-75 hover:translate-x-5 hover:-translate-y-5"></span>
             </Link>
 
             {/* Ghost Button */}

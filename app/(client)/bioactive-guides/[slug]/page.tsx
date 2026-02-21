@@ -26,7 +26,7 @@ const GuideSlugPage = async ({ params }: { params: Promise<{ slug: string }> }) 
   return (
     <div className="bg-white dark:bg-gray-950 min-h-screen">
       {/* HERO SECTION */}
-      <section className="relative w-full h-[300px] overflow-hidden">
+      <section className="relative w-full h-75 overflow-hidden">
         <Image src={eaBackground} alt="Background" fill className="object-cover" priority />
         <div className="absolute inset-0 bg-linear-to-b from-gray-900/40 via-gray-900/80 to-gray-950" />
         
@@ -65,7 +65,7 @@ const GuideSlugPage = async ({ params }: { params: Promise<{ slug: string }> }) 
 
             {/* DYNAMIC FULL-WIDTH FEATURE IMAGE */}
             {guide.heroImage && (
-              <div className="relative w-full h-[280px] md:h-[420px] my-12 group">
+              <div className="relative w-full h-70 md:h-105 my-12 group">
                 <div className="absolute inset-0 rounded-4xl overflow-hidden shadow-2xl border border-gray-100 dark:border-zinc-800">
                   <Image 
                     src={guide.heroImage} 
@@ -129,7 +129,7 @@ const GuideSlugPage = async ({ params }: { params: Promise<{ slug: string }> }) 
 
                 {/* Dynamic Height Image Container */}
                 {block.image && (
-                  <div className="flex-1 w-full min-h-[400px] md:min-h-[300px] relative rounded-3xl overflow-hidden shadow-2xl border border-gray-100 dark:border-zinc-800">
+                  <div className="flex-1 w-full min-h-100 md:min-h-75 relative rounded-3xl overflow-hidden shadow-2xl border border-gray-100 dark:border-zinc-800">
                     <Image 
                       src={block.image} 
                       alt={block.title || "Step visual"} 
@@ -143,7 +143,7 @@ const GuideSlugPage = async ({ params }: { params: Promise<{ slug: string }> }) 
 
             {/* FULL WIDTH MID-PAGE BANNER */}
             {guide.bannerImage && (
-              <section className="relative w-full h-[250px] md:h-[350px] my-16 overflow-hidden rounded-[2.5rem] shadow-2xl border border-gray-100 dark:border-zinc-800">
+              <section className="relative w-full h-62.5 md:h-87.5 my-16 overflow-hidden rounded-[2.5rem] shadow-2xl border border-gray-100 dark:border-zinc-800">
                 <Image 
                   src={guide.bannerImage} 
                   alt="Ecosystem Detail Banner" 

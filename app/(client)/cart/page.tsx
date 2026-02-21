@@ -32,7 +32,7 @@ const CartPage = () => {
   const groupedItems = useStore((state) => state.getGroupedItems());
   const { isSignedIn } = useAuth();
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false); <--- REMOVED
 
   const handleResetCart = () => {
     if (window.confirm("Are you sure you want to reset your cart?")) {
@@ -207,7 +207,7 @@ const CartPage = () => {
                     <Button
                       className="w-full rounded-full font-semibold tracking-wide hoverEffect"
                       size="lg"
-                      disabled={loading}
+                      // disabled={loading} <--- REMOVED or set to false
                       onClick={handleCheckout}
                     >
                       Proceed to Checkout

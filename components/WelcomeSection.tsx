@@ -24,7 +24,7 @@ const WelcomeSection = () => {
         </div>
 
         {/* RIGHT COLUMN – IMAGE GRID */}
-        <div className="grid grid-cols-2 gap-4 h-[420px]">
+        <div className="grid grid-cols-2 gap-4 h-105">
           {/* LEFT STACK (2 SHORT IMAGES) */}
           <div className="grid grid-rows-2 gap-4">
             <div className="relative rounded-2xl overflow-hidden shadow-lg group">

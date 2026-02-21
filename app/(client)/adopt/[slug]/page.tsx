@@ -57,7 +57,7 @@ const CategoryPage = async ({
   return (
     <>
       {/* HERO */}
-      <section className="relative w-full h-[400px] overflow-hidden">
+      <section className="relative w-full h-100 overflow-hidden">
         {/* Background */}
         <Image
           src={ eaBackground }
@@ -100,7 +100,7 @@ const CategoryPage = async ({
 
           {/* Image (1/3) */}
           {category.heroImage && (
-            <div className="hidden md:block relative w-full max-w-[400px] aspect-5/4 rounded-2xl overflow-hidden shadow-xl">
+            <div className="hidden md:block relative w-full max-w-100 aspect-5/4 rounded-2xl overflow-hidden shadow-xl">
               <Image
                 src={category.heroImage}
                 alt={category.title}
@@ -118,7 +118,7 @@ const CategoryPage = async ({
 
       {/* AVAILABLE PETS */}
       <section id="pets" className="py-16 bg-gray-50 dark:bg-gray-900">
-        <div className="max-w-[1400px] mx-auto px-6">
+        <div className="max-w-350 mx-auto px-6">
           <h2 className="text-2xl sm:text-3xl lg:text-3xl font-bold mb-10 text-center text-gray-900 dark:text-white">
             {category.title} Available For Adoption
           </h2>
@@ -194,7 +194,7 @@ const CategoryPage = async ({
                   {/* Gradient Glow Effect */}
                   <div className="absolute -inset-1.5 bg-linear-to-tr from-purple-600 to-green-500 rounded-4xl blur-xl opacity-20 group-hover:opacity-30 transition duration-700"></div>
                   
-                  <div className="relative h-[350px] md:h-[420px] w-full rounded-4xl overflow-hidden shadow-2xl border border-gray-100 dark:border-white/10">
+                  <div className="relative h-87.5 md:h-105 w-full rounded-4xl overflow-hidden shadow-2xl border border-gray-100 dark:border-white/10">
                     <Image
                       src={category.categoryImage}
                       alt={category.title}

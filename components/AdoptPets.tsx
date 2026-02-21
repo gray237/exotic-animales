@@ -133,7 +133,7 @@ const AdoptPets = () => {
         id="categories"
         className="py-16 bg-linear-to-r from-purple-50 to-teal-50 dark:from-gray-900 dark:to-gray-900"
       >
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-16">
+        <div className="max-w-350 mx-auto px-6 lg:px-16">
           <h2 className="text-3xl font-bold mb-5 text-gray-900 dark:text-white">
             Exotic Animal Species
           </h2>
@@ -235,7 +235,7 @@ const AdoptPets = () => {
           <div className="absolute inset-0 bg-black/45" />
         </div>
 
-        <div className="max-w-[1200px] mx-auto px-6 text-center space-y-2 text-white">
+        <div className="max-w-300 mx-auto px-6 text-center space-y-2 text-white">
 
           <h2 className="text-3xl md:text-4xl font-bold">
             Responsible Exotic Pet Ownership
@@ -305,7 +305,7 @@ const AdoptPets = () => {
 
       {/* ================= SPECIAL OFFERS ================= */}
       <section className="py-10 bg-linear-to-r from-purple-50 to-teal-50 dark:from-gray-900 dark:to-gray-900">
-        <div className="max-w-[1200px] mx-auto px-6">
+        <div className="max-w-300 mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center justify-between bg-white dark:bg-gray-800 rounded-3xl shadow-xl overflow-hidden">
 
             {/* LEFT CONTENT */}
@@ -338,7 +338,7 @@ const AdoptPets = () => {
             </div>
 
             {/* RIGHT IMAGE */}
-            <div className="md:w-1/2 relative min-h-80 md:min-h-[460px]">
+            <div className="md:w-1/2 relative min-h-80 md:min-h-115">
               <Image
                 src={drRachel1}
                 alt="Special adoption sale"
@@ -354,7 +354,7 @@ const AdoptPets = () => {
 
       {/* ================= WHY CHOOSE US ================= */}
       <section className="py-10 bg-white dark:bg-gray-900">
-        <div className="max-w-[1300px] mx-auto px-6">
+        <div className="max-w-325 mx-auto px-6">
 
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-5">

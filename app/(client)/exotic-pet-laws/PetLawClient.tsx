@@ -26,7 +26,7 @@ const PetLawPage = () => {
     <div className="flex flex-col min-h-screen">
 
       {/* HERO */}
-      <section className="relative w-full h-[450px] overflow-hidden">
+      <section className="relative w-full h-112.5 overflow-hidden">
         <Image
           src={eaBackground}
           alt="Exotic Pet Laws Background"
@@ -64,11 +64,20 @@ const PetLawPage = () => {
           </p>
         </div>
 
-        <div className="w-full flex flex-col items-center px-0 md:px-24 lg:px-40 xl:px-60">
-          <div className="w-full flex-1 flex items-center justify-center min-h-[350px]">
+        {/* MATCHED MAP WRAPPER */}
+        <div className="w-full flex flex-col items-center justify-center">
+          <div className="w-full max-w-4xl mx-auto flex items-center justify-center">
             <USMap
-              onSelect={(state) => router.push(`/exotic-pet-laws/${slugify(state)}`)} activeState={""}/>
+              onSelect={(state) =>
+                router.push(`/exotic-pet-laws/${slugify(state)}`)
+              }
+              activeState=""
+            />
           </div>
+
+          <p className="mt-8 text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em] animate-pulse">
+            Select a state to filter
+          </p>
         </div>
       </section>
 

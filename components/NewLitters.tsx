@@ -166,7 +166,7 @@ const NewLitters: React.FC<Props> = ({ forceStackMobile = false }) => {
               1024: { slidesPerView: 3, spaceBetween: 80 },
             }}
             onSlideChange={(s) => setActiveIndex(s.realIndex)}
-            className="h-[400px] sm:h-[480px] lg:h-[560px] flex items-center"
+            className="h-100 sm:h-120 lg:h-140 flex items-center"
           >
             {LITTERS.map((item, i) => (
               <SwiperSlide
@@ -175,7 +175,7 @@ const NewLitters: React.FC<Props> = ({ forceStackMobile = false }) => {
                   i
                 )}`}
               >
-                <div className="relative w-full max-w-[300px] h-[440px] lg:h-[480px] shrink-0 mx-auto">
+                <div className="relative w-full max-w-75 h-110 lg:h-120 shrink-0 mx-auto">
                   <Image
                     src={item.image}
                     alt={item.name}
@@ -218,7 +218,7 @@ const NewLitters: React.FC<Props> = ({ forceStackMobile = false }) => {
             >
               <FaPaperPlane className="text-purple-700 text-[14px]" />
               <span>Start a Request</span>
-              <span className="absolute -top-10 -left-10 w-[140px] h-[140px] bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.45),transparent_60%)] opacity-55 pointer-events-none transition-all duration-350 ease-in-out hover:opacity-75 hover:translate-x-5 hover:-translate-y-5" />
+              <span className="absolute -top-10 -left-10 w-35 h-35 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.45),transparent_60%)] opacity-55 pointer-events-none transition-all duration-350 ease-in-out hover:opacity-75 hover:translate-x-5 hover:-translate-y-5" />
             </Link>
           </div>
         </aside>

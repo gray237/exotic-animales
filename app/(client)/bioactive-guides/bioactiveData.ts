@@ -1,4 +1,4 @@
-import { eaBackground, guineaPigPremium, bioactiveEnclosureIsopods, bioactivePlantsLighting, bioactiveEnclosureLighting, chooseIsopodSpecies, 
+import { bioactiveEnclosureIsopods, bioactivePlantsLighting, bioactiveEnclosureLighting, chooseIsopodSpecies, 
   microfaunaSurvival, bioactiveCleanupCrew, newbieBioactiveSetup, bioactiveEnclosureElements, cleanupCrewIsopods, tropicalVsAridEnclosures, 
   aridBioactiveBuild, dartFrogEcosystem, dartFrogTerrarium, crestedGeckoEnclosure, arborealGeckoEnclosure, ballPythonTerrarium , ballPythonEnclosure
 } from "@/images"; 

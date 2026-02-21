@@ -131,7 +131,7 @@ const CategoryLitters = () => {
       <div className="flex flex-col">
         {/* SLIDER */}
         <div
-          className="relative w-full h-[350px]"
+          className="relative w-full h-87.5"
           style={{
             backgroundImage: `url(${eaBackground.src})`,
             backgroundSize: "cover",
@@ -163,7 +163,7 @@ const CategoryLitters = () => {
                 key={i}
                 className={`flex justify-center items-center transition-transform duration-300 ${getScale(i)}`}
               >
-                <div className="relative w-[280px] h-[350px]">
+                <div className="relative w-70 h-87.5">
                   <Image
                     src={item.image}
                     alt={item.name}

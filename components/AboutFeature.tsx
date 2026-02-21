@@ -10,7 +10,7 @@ import { exoticPetsRanch } from "@/images";
 const AboutFeature = () => {
   return (
     <section className="w-full py-16 bg-white dark:bg-gray-900">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-16 flex flex-col gap-8">
+      <div className="max-w-350 mx-auto px-6 lg:px-16 flex flex-col gap-8">
 
         {/* Section Head */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
@@ -91,7 +91,7 @@ const AboutFeature = () => {
         {/* Split Section */}
         <div className="grid lg:grid-cols-2 gap-6 items-center mt-5">
           {/* Image */}
-          <div className="relative w-full h-80 lg:h-[400px] rounded-2xl overflow-hidden border border-gray-300 shadow-lg">
+          <div className="relative w-full h-80 lg:h-100 rounded-2xl overflow-hidden border border-gray-300 shadow-lg">
             <Image
               src={ exoticPetsRanch }
               alt="Team working"
@@ -140,7 +140,7 @@ const AboutFeature = () => {
               >
                 <FaEnvelopeOpenText className="text-purple-500" />
                 <span>Open the Form</span>
-                <span className="absolute -top-10 -left-10 w-[140px] h-[140px] bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.45),transparent_60%)] opacity-55 pointer-events-none transition-all duration-350 ease-in-out hover:opacity-75 hover:translate-x-5 hover:-translate-y-5"></span>
+                <span className="absolute -top-10 -left-10 w-35 h-35 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.45),transparent_60%)] opacity-55 pointer-events-none transition-all duration-350 ease-in-out hover:opacity-75 hover:translate-x-5 hover:-translate-y-5"></span>
               </a>
               <div className="flex items-center gap-2 text-gray-500 text-sm">
                 <FaShieldAlt />

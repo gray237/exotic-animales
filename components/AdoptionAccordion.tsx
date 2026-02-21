@@ -50,7 +50,7 @@ const AdoptionAccordion = ({ category }: Props) => {
             </span>
           </button>
 
-          <div className={`overflow-hidden px-6 transition-all duration-300 ease-in-out ${isOpen ? "max-h-[1000px] pb-6 opacity-100" : "max-h-0 pb-0 opacity-0"}`}>
+          <div className={`overflow-hidden px-6 transition-all duration-300 ease-in-out ${isOpen ? "max-h-250 pb-6 opacity-100" : "max-h-0 pb-0 opacity-0"}`}>
             {/* UPDATED DIV BELOW */}
             <div 
               className="text-sm leading-relaxed text-gray-600 
@@ -64,7 +64,7 @@ const AdoptionAccordion = ({ category }: Props) => {
 
   return (
     <section className="relative mt-20 pb-20">
-      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
+      <div className="mx-auto max-w-350 px-4 sm:px-6 lg:px-10">
         {/* SECTION TITLE */}
         <div className="mb-14 text-center max-w-4xl mx-auto">
           <h2 className="text-2xl sm:text-3xl lg:text-3xl font-bold tracking-tight text-gray-900">

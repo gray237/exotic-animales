@@ -98,7 +98,7 @@ const blog: SINGLE_BLOG_QUERYResult | null = blogArray[0] || null;
 if (!blog) return notFound();
 
   return (
-    <div className="py-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="py-10 max-w-350 mx-auto px-4 sm:px-6 lg:px-8">
       <Container className="grid grid-cols-1 lg:grid-cols-4 gap-5">
         <div className="md:col-span-3">
           {blog?.mainImage && (
@@ -107,7 +107,7 @@ if (!blog) return notFound();
               alt={blog.title || "Blog Image"}
               width={800}
               height={800}
-              className="w-full max-h-[500px] object-cover rounded-lg"
+              className="w-full max-h-125 object-cover rounded-lg"
             />
           )}
           <div>

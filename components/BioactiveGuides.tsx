@@ -12,7 +12,7 @@ const BioactiveGuides = () => {
   return (
     <>
 {/* {/* HERO */}
-      <section className="relative w-full h-[400px] overflow-hidden">
+      <section className="relative w-full h-100 overflow-hidden">
         {/* Background */}
         <Image
           src={eaBackground}
@@ -54,7 +54,7 @@ const BioactiveGuides = () => {
           </div>
 
           {/* Image (1/3) */}
-          <div className="hidden md:block relative w-full max-w-[400px] aspect-5/4 rounded-2xl overflow-hidden shadow-xl">
+          <div className="hidden md:block relative w-full max-w-100 aspect-5/4 rounded-2xl overflow-hidden shadow-xl">
             <Image
               src={bioactiveSetupGuides}
               alt="Boarding Facility"
@@ -68,7 +68,7 @@ const BioactiveGuides = () => {
 
       {/* INTRO SECTION */}
       <section className="py-15 bg-white dark:bg-gray-950">
-        <div className="max-w-[1400px] mx-auto px-6 text-center">
+        <div className="max-w-350 mx-auto px-6 text-center">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -92,7 +92,7 @@ const BioactiveGuides = () => {
 
       {/* DYNAMIC GRID SECTION */}
       <section id="browse" className="py-16 bg-gray-50 dark:bg-gray-900/50">
-        <div className="max-w-[1400px] mx-auto px-6">
+        <div className="max-w-350 mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {bioactiveData.map((guide, idx) => (
               <motion.div

@@ -65,7 +65,7 @@ const BoardingServices = () => {
   return (
     <div className="flex flex-col">
       {/* HERO */}
-      <section className="relative w-full h-[400px] overflow-hidden">
+      <section className="relative w-full h-100 overflow-hidden">
         {/* Background */}
         <Image
           src={eaBackground}
@@ -107,7 +107,7 @@ const BoardingServices = () => {
           </div>
 
           {/* Image (1/3) */}
-          <div className="hidden md:block relative w-full max-w-[400px] aspect-5/4 rounded-2xl overflow-hidden shadow-xl">
+          <div className="hidden md:block relative w-full max-w-100 aspect-5/4 rounded-2xl overflow-hidden shadow-xl">
             <Image
               src={exoticPetBoarding}
               alt="Boarding Facility"
@@ -121,7 +121,7 @@ const BoardingServices = () => {
 
       {/* ================= FACILITY OVERVIEW ================= */}
       <section className="py-20 bg-white dark:bg-gray-950">
-        <div className="max-w-[1400px] mx-auto px-6">
+        <div className="max-w-350 mx-auto px-6">
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-10">
             <h2 className="text-2xl sm:text-3xl lg:text-3xl font-bold text-center text-gray-900 dark:text-white">

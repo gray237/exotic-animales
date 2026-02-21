@@ -17,7 +17,7 @@ export default function AdoptionCard({ pet }: AdoptionCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.35 }}
-      className="premium-tilt relative w-[300px] sm:w-[340px] md:w-[380px] bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.6)] overflow-hidden transition-all duration-500 hover:-translate-y-2"
+      className="premium-tilt relative w-75 sm:w-85 md:w-95 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.6)] overflow-hidden transition-all duration-500 hover:-translate-y-2"
     >
       {/* STATUS BADGE */}
       {pet.sold ? (
