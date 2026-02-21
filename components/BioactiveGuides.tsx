@@ -74,7 +74,7 @@ const BioactiveGuides = () => {
             whileInView={{ opacity: 1, y: 0 }}
             className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6"
           >
-            How to Setup Bioactive Enclosures for Exotic Pets
+            How to Setup <span className="text-indigo-500">Bioactive Enclosures</span> for Exotic Pets
           </motion.h2>
           <motion.p 
              initial={{ opacity: 0, y: 20 }}
@@ -110,7 +110,7 @@ const BioactiveGuides = () => {
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute top-4 left-4 bg-purple-600 text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">
+                  <div className="absolute top-4 left-4 bg-indigo-600 text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">
                     {guide.category}
                   </div>
                 </div>
@@ -118,12 +118,12 @@ const BioactiveGuides = () => {
                 {/* Content */}
                 <div className="p-8">
                   <div className="flex items-center gap-4 mb-4 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                    <span className="flex items-center gap-1.5"><Clock size={14} className="text-purple-500" /> {guide.readTime}</span>
+                    <span className="flex items-center gap-1.5"><Clock size={14} className="text-indigo-500" /> {guide.readTime}</span>
                     <span className="flex items-center gap-1.5"><Gauge size={14} className="text-green-500" /> {guide.difficulty}</span>
                   </div>
                   
                   <Link href={`/bioactive-guides/${guide.slug}`}>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-purple-600 transition-colors">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-indigo-700 transition-colors">
                     {guide.title}
                   </h3>
                   </Link>
@@ -134,7 +134,7 @@ const BioactiveGuides = () => {
 
                   <Link 
                     href={`/bioactive-guides/${guide.slug}`}
-                    className="w-full flex items-center justify-center gap-3 py-4 rounded-2xl font-bold shadow-lg -translate-y-1 transition-all disabled:opacity-50 disabled:translate-y-0 bg-gray-100 dark:bg-white/5 text-gray-900 dark:text-gray-100 hover:text-white hover:shadow-purple-500/30 hover:bg-linear-to-r from-purple-600 to-indigo-600">
+                    className="w-full shadow:md flex items-center justify-center gap-3 py-4 rounded-2xl font-bold shadow-lg -translate-y-1 transition-all disabled:opacity-50 disabled:translate-y-0 bg-gray-100 dark:bg-white/5 text-gray-900 dark:text-gray-100 hover:text-white hover:shadow-purple-500/30 hover:bg-linear-to-r from-purple-600 to-indigo-700">
                       
                     <span className="font-bold flex items-center gap-2">
                       <BookOpen size={18} /> Read Full Guide
@@ -169,9 +169,9 @@ const BioactiveGuides = () => {
               These environments are particularly ideal for <strong>small to medium-sized reptiles and amphibians</strong> that thrive in stable humidity and temperature conditions. Species housed in enclosures ranging from approximately 20” x 10” x 12” up to 4’ x 2’ x 1’ often benefit significantly from this ecosystem approach. Because reptiles and amphibians have slower metabolisms compared to similarly sized mammals, their waste output is manageable for a properly established clean-up crew.
             </p>
 
-            <h2 className="text-3xl md:text-4xl font-bold mt-16 mb-6">
+            <h3 className="text-2xl md:text-3xl font-bold mt-16 mb-6">
               Why Choose a Bioactive Setup?
-            </h2>
+            </h3>
 
             <p>
               At first glance, creating a bioactive enclosure may seem complex and expensive. It requires planning, research, and an upfront investment in materials. However, the long-term benefits far outweigh the initial effort.
@@ -196,9 +196,9 @@ const BioactiveGuides = () => {
               In the wild, no one replaces substrate. Nature recycles everything — and a bioactive enclosure brings that ecological balance into your home.
             </p>
 
-            <h2 className="text-3xl md:text-4xl font-bold mt-16 mb-6">
+            <h3 className="text-2xl md:text-3xl font-bold mt-16 mb-6">
               The Four Core Components of a Bioactive System
-            </h2>
+            </h3>
 
             <p>
               Every successful bioactive setup contains four primary elements:
@@ -223,9 +223,9 @@ const BioactiveGuides = () => {
               These components will vary depending on your animal’s natural habitat — tropical rainforest species require vastly different conditions than desert dwellers. Customization is essential.
             </p>
 
-            <h2 className="text-3xl md:text-4xl font-bold mt-16 mb-6">
+            <h3 className="text-2xl md:text-3xl font-bold mt-16 mb-6">
               What Animals Are Suitable for Bioactive Enclosures?
-            </h2>
+            </h3>
 
             <p>
               Bioactive habitats are ideal for many <strong>small to medium reptiles and amphibians</strong>. Geckos, frogs, toads, newts, small lizards, and many snake species can thrive in properly designed ecosystems.
@@ -239,9 +239,9 @@ const BioactiveGuides = () => {
               As always, detailed research into your species’ natural biome is critical before committing to a design.
             </p>
 
-            <h2 className="text-3xl md:text-4xl font-bold mt-16 mb-6">
+            <h3 className="text-2xl md:text-3xl font-bold mt-16 mb-6">
               What Does a Bioactive Setup Cost?
-            </h2>
+            </h3>
 
             <p>
               Costs vary depending on quality, plant selection, and scale. On the lower end, a functional bioactive setup (excluding the enclosure itself) may cost approximately <strong>$215</strong>. On the higher end, if premium plants, lighting, and specialty materials are used, costs can reach <strong>$875 or more</strong>.
@@ -308,19 +308,19 @@ const BioactiveGuides = () => {
 
             <ul className="space-y-4 mb-6">
               <li className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
-                <span className="mt-2 w-2 h-2 rounded-full bg-purple-500 shrink-0" />
+                <span className="mt-2 w-2 h-2 rounded-full bg-indigo-700 shrink-0" />
                 Whether the species may prey on the clean-up crew
               </li>
               <li className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
-                <span className="mt-2 w-2 h-2 rounded-full bg-purple-500 shrink-0" />
+                <span className="mt-2 w-2 h-2 rounded-full bg-indigo-700 shrink-0" />
                 Which plants are non-toxic and biome-appropriate
               </li>
               <li className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
-                <span className="mt-2 w-2 h-2 rounded-full bg-purple-500 shrink-0" />
+                <span className="mt-2 w-2 h-2 rounded-full bg-indigo-700 shrink-0" />
                 What substrate mixture best mimics natural soil conditions
               </li>
               <li className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
-                <span className="mt-2 w-2 h-2 rounded-full bg-purple-500 shrink-0" />
+                <span className="mt-2 w-2 h-2 rounded-full bg-indigo-700 shrink-0" />
                 How to maintain long-term ecosystem balance
               </li>
             </ul>

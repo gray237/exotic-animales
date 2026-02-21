@@ -113,16 +113,16 @@ export const headerData = [
           title: "Pet Care Guides",
           links: [
             {
+              title: "Exotic Pet Laws",
+              href: "/exotic-pet-laws",
+            },
+            {
               title: "Pet Care Sheets",
               href: "/care-sheets",
             },
             {
               title: "Exotic Vet Guide",
               href: "/vet-guide",
-            },
-            {
-              title: "State Legality Map",
-              href: "/legality-map",
             },
             {
               title: "Live-Animal Shipping",
@@ -193,9 +193,10 @@ export const categoriesData = [
   { title: "Exotic Pet Foods", href: "exotic-pet-foods" },
 ];
 export const informationData = [
+  
+  { title: "Exotic Pet Laws", href: "/exotic-pet-laws" },
   { title: "Exotic Vet Guide", href: "/vet-guide" },
   { title: "Rescue & Rehoming", href: "/rescue-rehoming" },
-  { title: "State Legality Map", href: "/legality-map" },
   { title: "Exotic Pet Boarding", href: "/pet-boarding" },
   { title: "Live-Animal Shipping", href: "/shipping-process" },
   { title: "Bioactive Setup Guides", href: "/bioactive-guides" },

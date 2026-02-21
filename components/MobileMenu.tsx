@@ -8,7 +8,7 @@ const MobileMenu = () => {
 
   return (
     <>
-      <div className="flex items-center mr-[5px]"> 
+      <div className="flex items-center mr-1"> 
         <button 
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           className="group flex flex-col items-center justify-center h-12 w-auto outline-hidden"

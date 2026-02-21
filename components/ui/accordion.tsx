@@ -2,14 +2,19 @@
 
 import * as React from "react"
 import * as AccordionPrimitive from "@radix-ui/react-accordion"
-import { ChevronDownIcon } from "lucide-react"
-
+import { ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 function Accordion({
+  className,
   ...props
 }: React.ComponentProps<typeof AccordionPrimitive.Root>) {
-  return <AccordionPrimitive.Root data-slot="accordion" {...props} />
+  return (
+    <AccordionPrimitive.Root 
+      className={cn("flex flex-col gap-6", className)} 
+      {...props} 
+    />
+  )
 }
 
 function AccordionItem({
@@ -18,8 +23,14 @@ function AccordionItem({
 }: React.ComponentProps<typeof AccordionPrimitive.Item>) {
   return (
     <AccordionPrimitive.Item
-      data-slot="accordion-item"
-      className={cn("border-b last:border-b-0", className)}
+      className={cn(
+        "group rounded-2xl border transition-all duration-300",
+        // Closed State
+        "border-gray-200 bg-gray-50 hover:bg-white hover:shadow-md hover:border-shop_dark_green/30",
+        // Open State
+        "data-[state=open]:border-shop_dark_green/30 data-[state=open]:bg-white data-[state=open]:shadow-lg",
+        className
+      )}
       {...props}
     />
   )
@@ -33,15 +44,31 @@ function AccordionTrigger({
   return (
     <AccordionPrimitive.Header className="flex">
       <AccordionPrimitive.Trigger
-        data-slot="accordion-trigger"
         className={cn(
-          "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180",
+          "flex w-full items-center justify-between gap-6 px-4 py-2 text-left outline-none",
           className
         )}
         {...props}
       >
-        {children}
-        <ChevronDownIcon className="text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200" />
+        {/* Title Styling */}
+        <h3 className="text-sm sm:text-base font-semibold tracking-wide text-gray-900 group-hover:text-shop_dark_green transition-colors">
+          {children}
+        </h3>
+
+        {/* The Golden Circle Icon */}
+        <span
+          className={cn(
+            "flex h-7 w-7 items-center justify-center rounded-full border transition-all duration-300",
+            // Icon Closed
+            "border-gray-300 text-gray-600 group-hover:bg-gray-100 group-hover:border-shop_dark_green/30",
+            // Icon Open (The Green Gradient)
+            "group-data-[state=open]:border-shop_dark_green/50 group-data-[state=open]:bg-linear-to-br group-data-[state=open]:from-shop_dark_green group-data-[state=open]:to-green-600 group-data-[state=open]:text-white"
+          )}
+        >
+          <ChevronDown
+            className="h-5 w-5 transition-transform duration-300 group-data-[state=open]:rotate-180"
+          />
+        </span>
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   )
@@ -54,11 +81,17 @@ function AccordionContent({
 }: React.ComponentProps<typeof AccordionPrimitive.Content>) {
   return (
     <AccordionPrimitive.Content
-      data-slot="accordion-content"
-      className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm"
+      className={cn(
+        "overflow-hidden px-6 transition-all duration-300 ease-in-out data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
+        className
+      )}
       {...props}
     >
-      <div className={cn("pt-0 pb-4", className)}>{children}</div>
+      <div className="pb-6 text-sm leading-relaxed text-gray-600 
+        [&_ul]:list-disc [&_ul]:ml-5 [&_ul]:mt-2 
+        [&_li]:mb-1 [&_strong]:text-gray-900 font-medium">
+        {children}
+      </div>
     </AccordionPrimitive.Content>
   )
 }

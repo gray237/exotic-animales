@@ -1,5 +1,6 @@
+"use client";
 import { BRANDS_QUERYResult } from "@/sanity.types";
-import React from "react";
+import React, { useState } from "react";
 import Title from "../Title";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Label } from "../ui/label";
@@ -11,11 +12,16 @@ interface Props {
 }
 
 const BrandList = ({ brands, selectedBrand, setSelectedBrand }: Props) => {
+  const [showAll, setShowAll] = useState(false);
+  const brandItems = brands || [];
+  const displayedBrands = showAll ? brandItems : brandItems.slice(0, 10);
+
   return (
-    <div className="w-full bg-white p-5">
-      <Title className="text-base font-black">Breed</Title>
-      <RadioGroup value={selectedBrand || ""} className="mt-2 space-y-1">
-        {brands?.map((brand) => (
+    <div className="w-full bg-white p-5 lg:p-0 lg:pb-2">
+      <Title className="hidden lg:block text-base font-black">Breed</Title>
+      
+      <RadioGroup value={selectedBrand || ""} className="mt-2">
+        {displayedBrands?.map((brand) => (
           <div
             key={brand?._id}
             onClick={() => setSelectedBrand(brand?.slug?.current as string)}
@@ -28,21 +34,33 @@ const BrandList = ({ brands, selectedBrand, setSelectedBrand }: Props) => {
             />
             <Label
               htmlFor={brand?.slug?.current}
-              className={`${selectedBrand === brand?.slug?.current ? "font-semibold text-shop_dark_green" : "font-normal"}`}
+              className={`text-sm cursor-pointer ${selectedBrand === brand?.slug?.current ? "font-semibold text-shop_dark_green" : "font-normal"}`}
             >
               {brand?.title}
             </Label>
           </div>
         ))}
+      </RadioGroup>
+
+      <div className="flex flex-col gap-2 mt-2">
+        {brandItems.length > 10 && (
+          <button
+            onClick={(e) => { e.preventDefault(); setShowAll(!showAll); }}
+            className="text-xs font-medium underline underline-offset-2 decoration-1 hover:text-shop_dark_green text-left"
+          >
+            {showAll ? "Show less" : `Show all (${brandItems.length})`}
+          </button>
+        )}
+        
         {selectedBrand && (
           <button
             onClick={() => setSelectedBrand(null)}
-            className="text-sm font-medium mt-2 underline underline-offset-2 decoration-1 hover:text-shop_dark_green hoverEffect text-left"
+            className="text-[10px] font-bold uppercase tracking-tighter text-red-500 hover:text-red-700 text-left"
           >
-            Reset selection
+            Reset Breed
           </button>
         )}
-      </RadioGroup>
+      </div>
     </div>
   );
 };

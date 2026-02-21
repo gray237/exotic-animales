@@ -23,7 +23,7 @@ const Logo = ({
       <span
         aria-hidden="true"
         className="
-          w-17 h-11 md:w-18 md:h-12 rounded-xl md:rounded-2xl
+          w-17 h-11 lg:w-18 lg:h-12 rounded-xl lg:rounded-2xl
           grid place-items-center
           bg-linear-to-br from-purple-500/25 to-emerald-400/25
           border border-black/10
@@ -32,11 +32,12 @@ const Logo = ({
       >
         <Image
           src={exoticPetsLogo}
-          alt=""
+          alt="Exotic Animales"
           width={48}
           height={48}
           priority
           className="object-contain"
+          unoptimized
         />
       </span>
 
@@ -46,11 +47,11 @@ const Logo = ({
         showMobileText ? "block" : "hidden sm:block"
       )}>
         <span
-          className="block brand-bold tracking-tight text-[17px] md:text-lg text-gray-700 leading-snug">
+          className="block brand-bold tracking-tight text-[16px] lg:text-[17px] text-gray-700 leading-snug">
           Exotic Animales
         </span>
         <span
-          className="block text-[13px] md:text-sm mt-0.3 text-shop_dark_green/80 leading-snug">
+          className="block text-[12px] lg:text-[13px] text-shop_dark_green/80 leading-snug">
           Exotic Pets For Sale
         </span>
       </span>

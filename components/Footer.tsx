@@ -14,9 +14,11 @@ const Footer = () => {
     <footer className="bg-white border-t">
       <Container>
         <FooterTop />
-        <div className="py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10">
+        <div className="py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
           <div className="space-y-4">
-            <Logo />
+            <div className="lg:scale-90 xl:scale-100 origin-left">
+            <Logo showMobileText={true} />
+            </div>
             <SubText>
               Discover E.A Ranch, your trusted online exotic pet store for a curated selection of pure bred high-quality mammals, rare amphibians and colorful reptiles for sale. We're not just passionate about exotic animals; we're dedicated to sharing our knowledge and ensuring your satisfaction.
             </SubText>

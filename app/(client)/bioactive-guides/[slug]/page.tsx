@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { bioactiveData } from "../bioactiveData";
 import { eaBackground } from "@/images";
-import { Clock, Gauge, ChevronRight, BookOpen, ArrowLeft, Sprout } from "lucide-react";
+import { Clock, Gauge, ChevronRight, Navigation, ArrowLeft, Sprout } from "lucide-react";
 
 export const generateMetadata = async ({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> => {
   const { slug } = await params;
@@ -32,13 +32,13 @@ const GuideSlugPage = async ({ params }: { params: Promise<{ slug: string }> }) 
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
           <div className="flex items-center gap-3 mb-6">
-            <span className="bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
+            <span className="bg-indigo-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
               {guide.category}
             </span>
             <div className="flex items-center gap-2 text-gray-300 text-sm font-medium">
-              <Clock size={16} className="text-purple-400" /> {guide.readTime}
+              <Clock size={16} className="text-indigo-500" /> {guide.readTime}
               <span className="mx-2 opacity-30">|</span>
-              <Gauge size={16} className="text-green-400" /> {guide.difficulty}
+              <Gauge size={16} className="text-green-500" /> {guide.difficulty}
             </div>
           </div>
           <h1 className="text-3xl md:text-4xl font-extrabold text-white max-w-4xl leading-tight">
@@ -77,9 +77,9 @@ const GuideSlugPage = async ({ params }: { params: Promise<{ slug: string }> }) 
                   <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-60" />
                   
                   {/* Decorative Badge */}
-                  <div className="absolute bottom-6 left-6 flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
+                  <div className="absolute bottom-6 left-6 flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
                     <Sprout size={16} className="text-green-400" />
-                    <span className="text-white text-xs font-bold uppercase tracking-widest">Live Ecosystem Preview</span>
+                    <span className="text-white text-[8px] md:text-[10px] font-bold uppercase tracking-widest">Live Ecosystem Preview</span>
                   </div>
                 </div>
               </div>
@@ -101,7 +101,7 @@ const GuideSlugPage = async ({ params }: { params: Promise<{ slug: string }> }) 
             {guide.twoColumnSections?.map((section, i) => (
               <section key={i} className="grid md:grid-cols-2 gap-8 pt-8 border-t border-gray-100 dark:border-zinc-800">
                 <div>
-                  <h3 className="text-xl font-bold mb-4 text-purple-600">{section.leftTitle}</h3>
+                  <h3 className="text-xl font-bold mb-4 text-indigo-700">{section.leftTitle}</h3>
                   <div dangerouslySetInnerHTML={{ __html: section.leftContent }} className="text-gray-600 dark:text-gray-400 leading-relaxed" />
                 </div>
                 <div>
@@ -170,9 +170,9 @@ const GuideSlugPage = async ({ params }: { params: Promise<{ slug: string }> }) 
                 <ul className="grid md:grid-cols-2 gap-4">
                   {list.items.map((item, idx) => (
                     <li  key={idx} 
-                      className="flex items-start gap-3 text-gray-600 dark:text-gray-400
+                      className="flex items-baseline gap-3 text-gray-600 dark:text-gray-400
                       prose prose-strong:font-bold prose-strong:text-gray-900 dark:prose-strong:text-white" >
-                      <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-purple-500 shrink-0" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-700 shrink-0" />
                       <span dangerouslySetInnerHTML={{ __html: item }} />
                     </li>
                   ))}
@@ -239,7 +239,7 @@ const GuideSlugPage = async ({ params }: { params: Promise<{ slug: string }> }) 
               <div className="p-1 rounded-3xl bg-linear-to-br from-purple-500/20 to-green-500/20">
                 <div className="bg-white dark:bg-zinc-900 p-6 rounded-[22px] shadow-sm">
                   <h3 className="text-xl font-bold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
-                    <BookOpen fill="currentColor" className="text-purple-600 dark:text-purple-400" size={18} />
+                    <Navigation fill="currentColor" className="text-indigo-500 dark:text-purple-400" size={18} />
                     Explore More Guides
                   </h3>
                   
@@ -267,7 +267,7 @@ const GuideSlugPage = async ({ params }: { params: Promise<{ slug: string }> }) 
                             />
                           </div>
                           <div className="flex flex-col justify-center">
-                            <h4 className="text-sm font-bold leading-tight line-clamp-2 text-gray-800 dark:text-zinc-200 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                            <h4 className="text-sm font-bold leading-tight line-clamp-2 text-gray-800 dark:text-zinc-200 group-hover:text-indigo-600 dark:group-hover:text-purple-400 transition-colors">
                               {item.title}
                             </h4>
                             <span className="text-[10px] uppercase tracking-widest text-gray-500 dark:text-zinc-500 mt-1 flex items-center gap-1">

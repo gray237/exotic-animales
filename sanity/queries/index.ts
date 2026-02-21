@@ -1,3 +1,5 @@
+"use server";
+
 import { sanityFetch } from "../lib/live";
 import {
   BLOG_CATEGORIES,
@@ -10,7 +12,8 @@ import {
   OTHERS_BLOG_QUERY,
   PRODUCT_BY_SLUG_QUERY,
   SINGLE_BLOG_QUERY,
-  RELATED_PRODUCTS_BY_VARIANT_QUERY,
+  RELATED_PRODUCTS_BY_VARIANT_QUERY, 
+  GLOBAL_SANITY_SEARCH_QUERY
 } from "./query";
 
 const getCategories = async (quantity?: number) => {
@@ -188,6 +191,20 @@ const getOthersBlog = async (slug: string, quantity: number) => {
     return [];
   }
 };
+
+export const searchSanity = async (searchTerm: string) => {
+  try {
+    const { data } = await sanityFetch({
+      query: GLOBAL_SANITY_SEARCH_QUERY,
+      params: { searchTerm: `${searchTerm}*` }, // Adding wildcard for better matching
+    });
+    return data ?? [];
+  } catch (error) {
+    console.error("Sanity search error:", error);
+    return [];
+  }
+};
+
 export {
   getCategories,
   getCategoryBySlug,

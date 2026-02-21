@@ -42,10 +42,10 @@ const AdoptionAccordion = ({ category }: Props) => {
       const isOpen = openItems[item.id];
 
       return (
-        <div key={item.id} className={`group rounded-2xl border transition-all duration-300 ${isOpen ? "border-gray-300 bg-white shadow-lg" : "border-gray-200 bg-gray-50 hover:bg-white hover:shadow-md"}`}>
+        <div key={item.id} className={`group rounded-2xl border transition-all duration-300 ${isOpen ? "border-indigo-500/30 bg-white shadow-lg" : "border-gray-200 bg-gray-50 hover:bg-white hover:shadow-md hover:border-indigo-400/30"}`}>
           <button type="button" onClick={() => toggleItem(item.id)} className="flex w-full items-center justify-between gap-6 px-6 py-5 text-left">
             <h3 className="text-sm sm:text-base font-semibold tracking-wide text-gray-900">{item.title}</h3>
-            <span className={`flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-300 ${isOpen ? "border-gray-300 bg-gray-900 text-white" : "border-gray-300 text-gray-600 group-hover:bg-gray-100"}`}>
+            <span className={`flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-300 ${isOpen ? "border-gray-300 bg-linear-to-br from-indigo-700/60 to-purple-600/60 text-white" : "border-gray-300 text-gray-600 group-hover:bg-gray-100 group-hover:border-indigo-200"}`}>
               <ChevronDown className={`h-5 w-5 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
             </span>
           </button>

@@ -132,6 +132,25 @@ const OTHERS_BLOG_QUERY = defineQuery(`*[
     "slug": slug.current,
   }
 }`);
+
+export const GLOBAL_SANITY_SEARCH_QUERY = defineQuery(`
+  *[_type in ["product", "blog", "category"] && 
+    (name match $searchTerm || 
+     title match $searchTerm || 
+     description match $searchTerm || 
+     intro match $searchTerm)
+  ] | order(_type asc) {
+    _type,
+    _id,
+    "title": coalesce(name, title),
+    "slug": slug.current,
+    description,
+    "image": coalesce(images[0], mainImage, categoryImage),
+    price,
+    category
+  }
+`);
+
 export {
   BRANDS_QUERY,
   LATEST_BLOG_QUERY,

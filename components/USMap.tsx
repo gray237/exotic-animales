@@ -112,8 +112,8 @@ const USMap = ({ activeState, onSelect }: { activeState: string; onSelect: (s: s
               onMouseLeave={() => setHoveredState(null)}
               className={`cursor-pointer transition-all duration-300 stroke-white dark:stroke-gray-950 stroke-[1px] 
                 ${isActive 
-                  ? "fill-green-500 brightness-110 drop-shadow-md scale-[1.01]" 
-                  : "fill-gray-200 dark:fill-gray-700 hover:fill-green-400 dark:hover:fill-green-600"
+                  ? "fill-indigo-600 brightness-110 drop-shadow-md scale-[1.01]" 
+                  : "fill-gray-200 dark:fill-gray-700 hover:fill-indigo-400 dark:hover:fill-indigo-600"
                 }`}
               style={{ transformOrigin: 'center', transformBox: 'fill-box' }}
             />

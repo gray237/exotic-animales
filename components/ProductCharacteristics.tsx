@@ -31,11 +31,11 @@ const ProductCharacteristics = async ({
           </p>
           <p className="flex items-center justify-between">
             Collection:{" "}
-            <span className="font-semibold tracking-wide">2025</span>
+            <span className="font-semibold tracking-wide">2026</span>
           </p>
           <p className="flex items-center justify-between">
             Type:{" "}
-            <span className="font-semibold tracking-wide">
+            <span className="font-semibold uppercase tracking-wide">
               {product?.variant}
             </span>
           </p>

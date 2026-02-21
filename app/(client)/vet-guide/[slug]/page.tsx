@@ -3,6 +3,7 @@ import Script from "next/script";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowLeft, Smartphone } from "lucide-react";
 import { vetData } from "../vetData";
 import { eaBackground, exoticBanner1 } from "@/images";
 
@@ -54,7 +55,7 @@ const VetProfilePage = async ({ params }: { params: Promise<{ slug: string }> })
   return (
     <div className="bg-white dark:bg-gray-950 min-h-screen">
       {/* HERO SECTION */}
-      <section className="relative w-full h-[450px] flex items-center justify-center text-center">
+      <section className="relative w-full h-[300px] md:h-[350px] flex items-center justify-center text-center">
         <Image src={eaBackground} alt="Clinic Background" fill priority className="object-cover opacity-40" />
         <div className="absolute inset-0 bg-linear-to-b from-transparent to-white dark:to-gray-950" />
         
@@ -81,14 +82,6 @@ const VetProfilePage = async ({ params }: { params: Promise<{ slug: string }> })
         
         {/* LEFT: RICH DATA */}
         <div className="lg:col-span-8">
-          {/* BACK BUTTON - Moved here, above the title */}
-          <Link 
-            href="/vet-guide" 
-            className="inline-flex items-center text-green-600 dark:text-green-400 font-bold text-sm mb-4 hover:-translate-x-1 transition-transform duration-200"
-          >
-            ← Back to Directory
-          </Link>
-
           <div className="prose prose-lg dark:prose-invert max-w-none">
             <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Clinic Overview & Expertise</h2>
             <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
@@ -144,17 +137,17 @@ const VetProfilePage = async ({ params }: { params: Promise<{ slug: string }> })
         {/* RIGHT: CONTACT & ACTIONS */}
         <div className="lg:col-span-4">
           <div className="sticky top-24 space-y-6">
-            <div className="p-8 bg-gray-900 text-white rounded-4xl shadow-2xl shadow-green-500/10">
+            <div className="p-8 bg-linear-to-br from-indigo-700 to-purple-600 overflow-hidden relative group text-white rounded-4xl shadow-2xl shadow-green-500/10">
               <h3 className="text-xl font-bold mb-6">Contact Information</h3>
               
               <div className="space-y-6">
                 <div>
-                  <p className="text-[10px] font-bold uppercase text-gray-400 mb-1 tracking-tighter">Location</p>
+                  <p className="text-[10px] font-bold uppercase text-gray-200 mb-1 tracking-tighter">Location</p>
                   <p className="text-lg leading-snug">{clinic.address}</p>
                 </div>
 
                 <div>
-                  <p className="text-[10px] font-bold uppercase text-gray-400 mb-1 tracking-tighter">Direct Line</p>
+                  <p className="text-[10px] font-bold uppercase text-gray-200 mb-1 tracking-tighter">Direct Line</p>
                   <a href={`tel:${clinic.phone}`} className="text-3xl font-black text-green-400 hover:text-green-300 transition-colors">
                     {clinic.phone}
                   </a>
@@ -164,10 +157,11 @@ const VetProfilePage = async ({ params }: { params: Promise<{ slug: string }> })
                   <a href={clinic.website} target="_blank" rel="noopener noreferrer" className="block w-full text-center py-4 bg-white text-black rounded-2xl font-bold hover:bg-green-400 transition-all">
                     Official Website
                   </a>
-                  <Link href="/contact" className="block w-full text-center py-4 bg-gray-800 text-gray-400 rounded-2xl font-bold text-sm hover:text-white transition-all">
+                  <Link href="/contact" className="relative z-10 block w-full text-center py-4 bg-gray-800 text-gray-400 rounded-2xl font-bold text-sm hover:text-white transition-all">
                     Report Outdated Info
                   </Link>
                 </div>
+                <Smartphone className="absolute -bottom-4 -right-4 w-24 h-24 opacity-10 rotate-12 group-hover:rotate-0 transition-transform duration-500" />
               </div>
             </div>
 
@@ -182,6 +176,31 @@ const VetProfilePage = async ({ params }: { params: Promise<{ slug: string }> })
                 </p>
               </div>
             )}
+            {/* BACK BUTTON */}
+            <Link 
+              href="/vet-guide" 
+              className="
+                inline-flex items-center gap-3 mt-0 mb-0 px-4 py-2 -ml-4
+                rounded-full transition-all duration-300
+                text-gray-600 dark:text-gray-400 font-bold
+                hover:bg-purple-50 dark:hover:bg-purple-900/20 
+                hover:text-purple-600 dark:hover:text-purple-400
+                active:scale-95
+                group
+              "
+            >
+              <div className="relative flex items-center justify-center">
+                {/* This arrow moves slightly left on hover */}
+                <ArrowLeft 
+                  size={20} 
+                  className="transition-transform duration-300 group-hover:-translate-x-1.5" 
+                />
+              </div>
+
+              <span className="text-xs uppercase tracking-[0.15em] transition-colors">
+                Back to Guides
+              </span>
+            </Link>
           </div>
         </div>
       </section>

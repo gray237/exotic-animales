@@ -3,9 +3,11 @@
 import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Hospital, ArrowRight } from "lucide-react";
 import { vetData } from "./vetData";
 import { eaBackground, chameleonBanner } from "@/images";
-import USMap from "@/components/USMap"; // We will build this next
+import Accordion from "@/components/ui/accordions";
+import USMap from "@/components/USMap"; 
 
 const VetGuidePage = () => {
   // 1. Default to Texas as requested
@@ -36,7 +38,7 @@ const VetGuidePage = () => {
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
-            Exotic Vet <span className="text-green-400">Directory</span>
+            Exotic Vet Directory
           </h1>
           <p className="text-lg md:text-xl text-gray-200 max-w-2xl mb-8">
             Your pet’s health is our priority. Browse our curated list of 
@@ -58,7 +60,7 @@ const VetGuidePage = () => {
           {/* TEXT SECTION - Centralized & Full Width */}
           <div className="w-full text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-gray-900 dark:text-white tracking-tight">
-              Find A Vet Near You <span className="text-green-500">Exotic Veterinarians</span>
+              Find A Vet Near You <span className="text-indigo-500">Exotic Veterinarians</span>
             </h2>
             <div className="prose prose-lg dark:prose-invert text-gray-600 dark:text-gray-400 mx-auto max-w-4xl">
               <p>
@@ -90,7 +92,7 @@ const VetGuidePage = () => {
           <div className="flex items-center justify-between mb-12 gap-4 border-b border-gray-200 dark:border-white/10 pb-8">
             <div className="min-w-0">
               <h2 className="text-xl md:text-3xl font-bold text-gray-900 dark:text-white truncate uppercase tracking-tight">
-                {selectedState} <span className="text-green-500">Specialists</span>
+                {selectedState} <span className="text-indigo-500">Specialists</span>
               </h2>
               <p className="text-[10px] md:text-sm text-gray-500 font-medium uppercase tracking-widest">
                 Found: {filteredVets.length} Clinics
@@ -109,10 +111,10 @@ const VetGuidePage = () => {
                     <span className="text-lg md:text-2xl font-black text-gray-900 dark:text-white uppercase tracking-tighter">
                       {selectedState}
                     </span>
-                    <span className="text-green-500 font-bold text-xs">↓</span>
+                    <span className="text-indigo-500 font-bold text-xs">↓</span>
                   </div>
                   
-                  <div className="h-1 w-full bg-green-500 rounded-full mt-1 transition-transform duration-300 origin-right group-hover:scale-x-110" />
+                  <div className="h-1 w-full bg-indigo-500 rounded-full mt-1 transition-transform duration-300 origin-right group-hover:scale-x-110" />
                 </div>
 
                 {/* 2. INTERACTION LAYER: Hidden select that captures clicks */}
@@ -137,7 +139,7 @@ const VetGuidePage = () => {
               <div key={vet.slug} className="group bg-white dark:bg-gray-900 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-white/5">
                 <div className="p-8 flex flex-col h-full">
                   <div className="flex justify-between items-start mb-4">
-                    <span className="text-xs font-bold uppercase tracking-widest text-green-500 bg-green-50 dark:bg-green-500/10 px-3 py-1 rounded-full">
+                    <span className="text-xs font-bold uppercase tracking-widest text-white bg-indigo-600 dark:bg-green-500/10 px-3 py-1 rounded-full">
                       {vet.state}
                     </span>
                     {vet.emergency && (
@@ -145,7 +147,7 @@ const VetGuidePage = () => {
                     )}
                   </div>
                   
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-green-500 transition-colors">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-indigo-700 transition-colors">
                     {vet.name}
                   </h3>
                   <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 flex items-center gap-1">
@@ -166,9 +168,12 @@ const VetGuidePage = () => {
 
                   <Link 
                     href={`/vet-guide/${vet.slug}`}
-                    className="mt-6 w-full text-center py-3 bg-gray-900 dark:bg-white dark:text-black text-white rounded-xl font-bold hover:bg-green-500 dark:hover:bg-green-400 transition-colors"
+                    className="mt-6 shadow:md w-full flex items-center justify-center gap-3 py-4 rounded-2xl font-bold shadow-lg -translate-y-1 transition-all disabled:opacity-50 disabled:translate-y-0 bg-gray-100 dark:bg-white/5 text-gray-900 dark:text-gray-100 hover:text-white hover:shadow-purple-500/30 hover:bg-linear-to-r from-purple-600 to-indigo-700"
                   >
-                    View Clinic Details
+                    <span className="font-bold flex items-center gap-2">
+                      <Hospital size={18} /> View Clinic Details
+                    </span>
+                    <ArrowRight size={18} className="transition-transform group-hover/btn:translate-x-1" />
                   </Link>
                 </div>
               </div>
@@ -191,8 +196,26 @@ const VetGuidePage = () => {
             We are always looking to expand our directory to help exotic pet owners find the best care. 
             If you'd like your clinic to be featured on Exotic Animales, please reach out.
           </p>
-          <Link href="/contact" className="text-green-500 font-bold hover:underline">
-            Submit a Clinic Application →
+          <Link href="/contact" className="
+              inline-flex items-center gap-3 mt-0 mb-0 px-4 py-2 -ml-4
+              rounded-full transition-all duration-300
+              text-gray-600 dark:text-gray-400 font-bold
+              hover:bg-purple-50 dark:hover:bg-purple-900/20 
+              hover:text-indigo-600 dark:hover:text-indigo-400
+              active:scale-95
+              group
+            "
+          >
+            <span className="text-xs uppercase tracking-[0.15em] transition-colors">
+              Submit a Clinic Application
+            </span>
+
+            <div className="relative flex items-center justify-center">
+              <ArrowRight 
+                size={20} 
+                className="transition-transform duration-300 group-hover:translate-x-1.5" 
+              />
+            </div>
           </Link>
         </div>
       </section>
@@ -216,7 +239,7 @@ const VetGuidePage = () => {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center pt-15 md:pt-28 mb-16">
             <h2 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white tracking-tighter mb-8">
-              Before You Choose an <span className="text-blue-700 dark:text-blue-400">Exotic Vet</span>
+              Before You Choose an <span className="text-indigo-700 dark:text-blue-400">Exotic Vet</span>
             </h2>
             
             {/* Main Disclaimer - Frosted Glass Effect */}
@@ -232,20 +255,20 @@ const VetGuidePage = () => {
             
             {/* Card 1 */}
             <div className="group backdrop-blur-xl bg-white/60 dark:bg-gray-900/40 border border-white/50 dark:border-white/10 p-10 rounded-4xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-blue-600 text-white font-black mb-6 shadow-lg shadow-blue-500/30">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-indigo-600 text-white font-black mb-6 shadow-lg shadow-blue-500/30">
                 01
               </div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
                 Verify the Individual
               </h3>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed font-medium">
-                Many recommendations apply to <span className="text-blue-700 dark:text-blue-400 font-bold underline decoration-2 underline-offset-4">specific veterinarians</span> rather than the entire clinic or hospital. Exotic animal medicine is highly specialized, and not every veterinarian within the same practice may have training or hands-on experience with advanced exotic species care. When booking your appointment, confirm that you are scheduled with the veterinarian who has the appropriate background in your particular species.
+                Many recommendations apply to <span className="text-indigo-700 dark:text-blue-400 font-bold underline decoration-2 underline-offset-4">specific veterinarians</span> rather than the entire clinic or hospital. Exotic animal medicine is highly specialized, and not every veterinarian within the same practice may have training or hands-on experience with advanced exotic species care. When booking your appointment, confirm that you are scheduled with the veterinarian who has the appropriate background in your particular species.
               </p>
             </div>
 
             {/* Card 2 */}
             <div className="group backdrop-blur-xl bg-white/60 dark:bg-gray-900/40 border border-white/50 dark:border-white/10 p-10 rounded-4xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-blue-600 text-white font-black mb-6 shadow-lg shadow-blue-500/30">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-indigo-600 text-white font-black mb-6 shadow-lg shadow-blue-500/30">
                 02
               </div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
@@ -260,7 +283,7 @@ const VetGuidePage = () => {
 
           {/* FINAL ADVICE - Subtle and clean */}
           <div className="text-center max-w-3xl mx-auto">
-            <div className="inline-block p-px bg-linear-to-r from-transparent via-blue-500 to-transparent w-full mb-8 opacity-30" />
+            <div className="inline-block p-px bg-linear-to-r from-transparent via-indigo-500 to-transparent w-full mb-8 opacity-30" />
             <p className="text-gray-700 dark:text-gray-300 font-medium text-lg leading-relaxed">
               Above all, trust your instincts as a responsible owner or breeder. The right exotic 
               veterinarian should communicate clearly, demonstrate species-specific knowledge, 
@@ -277,7 +300,7 @@ const VetGuidePage = () => {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white uppercase tracking-tighter mb-4">
-              Expert <span className="text-green-500">Insights</span> & FAQ
+              Expert <span className="text-indigo-500">Insights</span> & FAQ
             </h2>
             <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Navigating the world of specialized veterinary care can be complex. We’ve compiled the most critical 
@@ -285,39 +308,42 @@ const VetGuidePage = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-start">
-            {/* COLUMN 1 */}
-            <div className="space-y-4">
-              <FAQItem 
-                question="What qualifies a vet as an 'Exotic Specialist'?"
-                answer="A true specialist often holds a Diplomate status from the American Board of Veterinary Practitioners (ABVP) in categories like Avian, Exotic Companion Mammal, or Reptile/Amphibian. This requires years of additional residency and passing rigorous examinations beyond standard DVM training."
-              />
-              <FAQItem 
-                question="Why can't I take my reptile to a standard cat and dog vet?"
-                answer="Exotic species have vastly different metabolic rates, anatomy, and stress responses. A 'generalist' may not have the specialized diagnostic equipment (like micro-endoscopes) or the specific pharmacological knowledge to safely dose medications for a 50g gecko versus a 5kg cat."
-              />
-              <FAQItem 
-                question="How often should exotic pets have wellness exams?"
-                answer="Because exotic animals are masters of hiding illness (a survival instinct), we recommend twice-yearly exams. These checkups often include fecal parasite screenings and bloodwork to catch silent issues like renal disease or nutritional deficiencies before they become emergencies."
-              />
-            </div>
-
-            {/* COLUMN 2 */}
-            <div className="space-y-4">
-              <FAQItem 
-                question="What are the signs of an exotic pet emergency?"
-                answer="Red flags include 'fluffing up' in birds, lethargy, changes in stool consistency, or a lack of appetite for more than 12-24 hours. For small mammals like rabbits, GI stasis is a critical emergency that requires immediate intervention by a specialized vet."
-              />
-              <FAQItem 
-                question="Does pet insurance cover avian and exotic treatments?"
-                answer="Yes, several providers now offer specialized exotic pet riders. We highly recommend insurance because specialized surgeries and advanced diagnostics (like CT scans for dental disease in rodents) can be significantly more expensive than standard pet care."
-              />
-              <FAQItem 
-                question="How do you verify the clinics in this directory?"
-                answer="Our analysts manually vet each clinic for board certifications, the presence of specialized equipment (like heated surgical tables and oxygen chambers), and positive peer-reviewed reputations within the exotic veterinary community."
-              />
-            </div>
-          </div>
+                    <Accordion
+            items={[
+              {
+                id: "1",
+                title:"What qualifies a vet as an 'Exotic Specialist'?",
+                content:"A true specialist often holds a Diplomate status from the American Board of Veterinary Practitioners (ABVP) in categories like Avian, Exotic Companion Mammal, or Reptile/Amphibian. This requires years of additional residency and passing rigorous examinations beyond standard DVM training.",
+              },
+              {
+                id: "2",
+                title:"Why can't I take my reptile to a standard cat and dog vet?",
+                content:"Exotic species have vastly different metabolic rates, anatomy, and stress responses. A 'generalist' may not have the specialized diagnostic equipment (like micro-endoscopes) or the specific pharmacological knowledge to safely dose medications for a 50g gecko versus a 5kg cat.",
+              },
+              {
+                id: "3",
+                title:"How often should exotic pets have wellness exams?",
+                content:"Because exotic animals are masters of hiding illness (a survival instinct), we recommend twice-yearly exams. These checkups often include fecal parasite screenings and bloodwork to catch silent issues like renal disease or nutritional deficiencies before they become emergencies.",
+              },
+              {
+                id: "4",
+                title:"What are the signs of an exotic pet emergency?",
+                content:"Red flags include 'fluffing up' in birds, lethargy, changes in stool consistency, or a lack of appetite for more than 12-24 hours. For small mammals like rabbits, GI stasis is a critical emergency that requires immediate intervention by a specialized vet.",
+              },
+              {
+                id: "5",
+                title:"Does pet insurance cover avian and exotic treatments?",
+                content:"Yes, several providers now offer specialized exotic pet riders. We highly recommend insurance because specialized surgeries and advanced diagnostics (like CT scans for dental disease in rodents) can be significantly more expensive than standard pet care.",
+              },
+              {
+                id: "6",
+                title:"How do you verify the clinics in this directory?",
+                content:"Our analysts manually vet each clinic for board certifications, the presence of specialized equipment (like heated surgical tables and oxygen chambers), and positive peer-reviewed reputations within the exotic veterinary community.",
+             },
+             ]}
+              columns={2}
+              allowMultipleOpen={true}
+            />
         </div>
       </section>
     </div>
