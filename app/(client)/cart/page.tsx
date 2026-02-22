@@ -1,5 +1,6 @@
 "use client";
 
+import React, { Suspense } from "react";
 import Container from "@/components/Container";
 import EmptyCart from "@/components/EmptyCart";
 import NoAccess from "@/components/NoAccess";
@@ -24,7 +25,7 @@ import { useRouter } from "next/navigation";
 import { urlFor } from "@/sanity/lib/image";
 import { Card, CardContent } from "@/components/ui/card";
 
-const CartPage = () => {
+const CartContent = () => {
   const { deleteCartProduct, getTotalPrice, getItemCount, getSubTotalPrice, resetCart } =
     useStore();
 
@@ -223,6 +224,19 @@ const CartPage = () => {
         <NoAccess />
       )}
     </div>
+  );
+};
+
+// 2. Create a new "CartPage" that wraps "CartContent" in Suspense
+const CartPage = () => {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-lg font-medium animate-pulse">Loading your cart...</p>
+      </div>
+    }>
+      <CartContent />
+    </Suspense>
   );
 };
 
