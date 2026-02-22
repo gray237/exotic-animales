@@ -1,5 +1,8 @@
 "use client";
 
+// ✅ ADD THIS LINE: It forces the page to be dynamic
+export const dynamic = "force-dynamic"; 
+
 import React, { Suspense } from "react";
 import Container from "@/components/Container";
 import EmptyCart from "@/components/EmptyCart";

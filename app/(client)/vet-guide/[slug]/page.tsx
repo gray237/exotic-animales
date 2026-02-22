@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+
+import { Suspense } from "react";
 import { Metadata } from "next";
 import Script from "next/script";
 import { notFound } from "next/navigation";
@@ -53,7 +56,9 @@ const VetProfilePage = async ({ params }: { params: Promise<{ slug: string }> })
   if (!clinic) notFound();
 
   return (
-    <div className="bg-white dark:bg-gray-950 min-h-screen">
+    // Wrap EVERYTHING in Suspense
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading Clinic...</div>}>
+      <div className="bg-white dark:bg-gray-950 min-h-screen">
       {/* HERO SECTION */}
       <section className="relative w-full py-15 items-center justify-center text-center">
         <Image src={eaBackground} alt="Clinic Background" fill priority className="object-cover opacity-40" />
@@ -236,6 +241,7 @@ const VetProfilePage = async ({ params }: { params: Promise<{ slug: string }> })
         })}
       </Script>
     </div>
+    </Suspense>
   );
 };
 

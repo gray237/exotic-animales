@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import FaqHero from "@/components/FaqHero";
 import FAQSection from "@/components/FAQSection";
 import { drRachel1 } from "@/images";
@@ -38,10 +38,12 @@ export const metadata = {
 // ------------------- PAGE COMPONENT -------------------
 const FaqPage = () => {
   return (
-    <div className="flex flex-col">
-      <FAQSection />
-      <FaqHero />
-    </div>
+    <Suspense fallback={<div className="py-20 text-center">Loading FAQ...</div>}>
+      <div className="flex flex-col">
+        <FAQSection />
+        <FaqHero />
+      </div>
+    </Suspense>
   );
 };
 
