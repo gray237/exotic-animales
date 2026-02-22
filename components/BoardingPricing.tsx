@@ -4,9 +4,9 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { HiOutlineInformationCircle, HiCursorArrowRays } from "react-icons/hi2";
-import { FaPaw, FaHome, FaInbox, FaCarrot } from "react-icons/fa"; // Match the Petfinity icons
-import { drRachel1 } from "@/images"; // Using an existing image for the feature card
+import { HiCursorArrowRays } from "react-icons/hi2";
+import { FaPaw, FaHome, FaInbox, FaCarrot } from "react-icons/fa"; 
+import { drRachel1 } from "@/images";
 
 const pricingData = {
   "Small Animals": {

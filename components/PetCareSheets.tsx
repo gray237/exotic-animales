@@ -5,10 +5,10 @@ import React from "react";
 import Image from "next/image";
 import ExoticPetVet from "./ExoticPetVet";
 import { FaCheckCircle, FaDownload } from "react-icons/fa";
-import { RiTruckFill, RiTimeFill, RiStethoscopeFill,
+import { RiStethoscopeFill,
         RiScissorsFill, RiHeartPulseFill, RiShieldCheckFill,
         RiRestaurantFill, RiMicroscopeFill, RiHomeHeartFill, } from "react-icons/ri";
-import { axolotlCare, ballPythonCare, beardedDragonCare, bloodPythonCare, crestedGeckoCare, deguCare, forestScorpionCare, greenSnakeCare, hamsterCare, jacksonChameleonCare, prairieDogsCare, skunksCare, sugarGliderCare, tarantulaSpiderCare, waterMonitorCare, woodTurtleCare } from "@/images";
+import { axolotlCare, ballPythonCare, beardedDragonCare, bloodPythonCare, crestedGeckoCare, forestScorpionCare, greenSnakeCare, hamsterCare, jacksonChameleonCare, prairieDogsCare, skunksCare, sugarGliderCare, waterMonitorCare, woodTurtleCare } from "@/images";
 
 const CARE_SHEETS = [
   {
@@ -142,7 +142,7 @@ const Caresheets = () => {
       </div>
 
       {/* Grid */}
-      <div className="max-w-[1400px] mx-auto px-6 py-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="max-w-350 mx-auto px-6 py-6 grid grid-cols-1 md:grid-cols-2 gap-8">
         {CARE_SHEETS.map((sheet) => (
           <div
             key={sheet.title}

@@ -11,6 +11,12 @@ import { useOutsideClick } from "@/hooks";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
+// 1. Define the link structure to replace 'any'
+interface NavLink {
+  title: string;
+  href: string;
+}
+
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
@@ -21,7 +27,6 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
   const sidebarRef = useOutsideClick<HTMLDivElement>(onClose);
   const [openItem, setOpenItem] = useState<string | null>(null);
 
-  // grab pet store featured image safely
   const petStore = headerData.find((i) => i.title === "Pet Store");
   const featuredImage = petStore?.children?.featured?.image;
 
@@ -38,7 +43,6 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
                    p-8 flex flex-col gap-6
                    text-black/80 shadow-xl overflow-y-auto"
       >
-        {/* Header */}
         <div className="flex items-center justify-between">
           <Logo showMobileText={true} /> 
           <button
@@ -49,12 +53,11 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        {/* Navigation */}
         <nav className="flex flex-col gap-4 font-semibold tracking-wide">
           {headerData.map((item) => {
             const isActive = pathname === item.href;
             const hasChildren = !!item.children;
-            const isOpen = openItem === item.title;
+            const isItemOpen = openItem === item.title;
 
             return (
               <div key={item.title}>
@@ -75,7 +78,7 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
                   {hasChildren && (
                     <button
                       onClick={() =>
-                        setOpenItem(isOpen ? null : item.title)
+                        setOpenItem(isItemOpen ? null : item.title)
                       }
                       className="p-1 text-black/70"
                     >
@@ -83,15 +86,14 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
                         size={18}
                         className={cn(
                           "transition-transform",
-                          isOpen && "rotate-180"
+                          isItemOpen && "rotate-180"
                         )}
                       />
                     </button>
                   )}
                 </div>
 
-                {/* Children */}
-                {hasChildren && isOpen && (
+                {hasChildren && isItemOpen && (
                   <div className="mt-3 ml-3 space-y-4 border-l border-black/10 pl-4">
                     {item.children.type === "mega" &&
                       item.children.sections.map((section) => (
@@ -115,8 +117,10 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
                         </div>
                       ))}
 
+                    {/* 2. Fixed the mapping here without using 'any' */}
                     {item.children.type === "dropdown" &&
-                      (item.children as any).links.map((link: any) => ( 
+                      "links" in item.children && 
+                      (item.children.links as NavLink[]).map((link) => ( 
                         <Link
                           key={link.title}
                           href={link.href}
@@ -133,7 +137,6 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
           })}
         </nav>
 
-        {/* Featured Image */}
         {featuredImage && (
           <div className="mt-6 rounded-xl overflow-hidden border border-black/10">
             <Image
@@ -145,7 +148,6 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
           </div>
         )}
 
-        {/* Social */}
         <div className="mt-4 pt-4 border-t border-black/10">
           <SocialMedia />
         </div>

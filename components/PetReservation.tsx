@@ -6,11 +6,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import toast from "react-hot-toast";
 import { 
   Loader2, User, AtSign, Phone, MapPin, Shield, 
-  PawPrint, Calendar, Info, ShoppingBag, CheckCircle2 
-} from "lucide-react";
+  PawPrint, Calendar, Info, ShoppingBag, CheckCircle2,
+  LucideIcon } from "lucide-react";
 import { FaPaperPlane } from "react-icons/fa";
 import Image from "next/image";
 import { buyFerretOnline } from "@/images";
+
 
 type ReservationType = "boarding" | "adoption";
 
@@ -45,19 +46,20 @@ const PetReservation = () => {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const loggedInUser = null; 
+      const loggedInUser: Record<string, string> | null = null; 
+      
       if (loggedInUser) {
         setFormData(prev => ({
           ...prev,
-          fullName: (loggedInUser as any).fullName || "",
-          email: (loggedInUser as any).email || "",
-          phone: (loggedInUser as any).phone || "",
-          address: (loggedInUser as any).address || "",
+          fullName: loggedInUser["fullName"] || "",
+          email: loggedInUser["email"] || "",
+          phone: loggedInUser["phone"] || "",
+          address: loggedInUser["address"] || "",
         }));
       }
     };
     fetchUserData();
-  }, []);
+  }, [setFormData]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -80,7 +82,7 @@ const PetReservation = () => {
       if (!response.ok) throw new Error();
       toast.success(`${activeTab === 'boarding' ? 'Boarding' : 'Reservation'} request sent!`);
       setFormData(prev => ({ ...prev, message: "", consent: false }));
-    } catch (error) {
+    } catch { 
       toast.error("Failed to connect to server. Please try again.");
     } finally {
       setIsSubmitting(false);
@@ -89,13 +91,11 @@ const PetReservation = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 pb-20">
-      {/* HEADER */}
       <div className="text-center mb-10">
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">Secure Reservation</h1>
         <p className="text-gray-600 dark:text-gray-400">Complete the form below to secure your spot or pet.</p>
       </div>
 
-      {/* TAB SWITCHER: Glass Design */}
       <div className="flex justify-center mb-12">
         <div className="inline-flex p-1.5 bg-gray-100/80 dark:bg-zinc-800/80 backdrop-blur-xl rounded-2xl border border-gray-200 dark:border-zinc-700 shadow-inner">
           <TabButton 
@@ -114,8 +114,6 @@ const PetReservation = () => {
       </div>
 
       <div className="flex flex-col lg:flex-row items-stretch gap-8">
-        
-        {/* RIGHT SIDE: THE FORM (ORDER 1 on Mobile, ORDER 2 on Desktop) */}
         <motion.div 
           key={activeTab}
           initial={{ opacity: 0, x: 20 }}
@@ -173,8 +171,7 @@ const PetReservation = () => {
           </form>
         </motion.div>
 
-        {/* LEFT SIDE: GUIDELINES & DYNAMIC IMAGE (ORDER 2 on Mobile, ORDER 1 on Desktop) */}
-        <aside className="w-full lg:w-[400px] order-2 lg:order-1 flex flex-col gap-6">
+        <aside className="w-full lg:w-100 order-2 lg:order-1 flex flex-col gap-6">
           <div className="p-6 rounded-3xl border bg-white/70 backdrop-blur-xl shadow-xl dark:bg-zinc-900/70 dark:border-zinc-800">
             <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
               <Shield className="text-purple-600" /> Reservation Policy
@@ -195,8 +192,7 @@ const PetReservation = () => {
             </ul>
           </div>
 
-          {/* Image Container: 3x4 on Desktop, 4x3 on Mobile */}
-          <div className="relative flex-1 w-full aspect-4/3 lg:aspect-3/4 rounded-3xl overflow-hidden shadow-2xl group min-h-[300px]">
+          <div className="relative flex-1 w-full aspect-4/3 rounded-3xl overflow-hidden shadow-2xl group min-h-75">
              <Image 
                 src={buyFerretOnline} 
                 alt="Pet" 
@@ -209,15 +205,21 @@ const PetReservation = () => {
              </p>
           </div>
         </aside>
-
       </div>
     </div>
   );
 };
 
-/* --- SUB-COMPONENTS --- */
+/* --- SUB-COMPONENTS WITH DEFINED INTERFACES --- */
 
-const TabButton = ({ active, onClick, icon, label }: any) => (
+interface TabButtonProps {
+  active: boolean;
+  onClick: () => void;
+  icon: React.ReactNode;
+  label: string;
+}
+
+const TabButton = ({ active, onClick, icon, label }: TabButtonProps) => (
   <button
     onClick={onClick}
     className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 ${
@@ -237,7 +239,19 @@ const IconWrap = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
-const Field = ({ icon: Icon, label, textarea, ...props }: any) => (
+// Shared interface for Field and MessageField props
+interface FieldProps {
+  icon: LucideIcon;
+  label: string;
+  textarea?: boolean;
+  name: string;
+  value: string | boolean;
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  placeholder?: string;
+  type?: string;
+}
+
+const Field = ({ icon: Icon, label, textarea, ...props }: FieldProps) => (
   <div className="flex flex-col gap-1">
     <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500 dark:text-zinc-500 ml-1">{label}</label>
     <div className={`flex items-center gap-3 px-4 py-1 rounded-2xl border bg-white/50 dark:bg-zinc-800/50 backdrop-blur-sm transition-all focus-within:border-purple-500 focus-within:ring-2 focus-within:ring-purple-500/20 border-gray-200 dark:border-zinc-700`}>
@@ -245,15 +259,26 @@ const Field = ({ icon: Icon, label, textarea, ...props }: any) => (
           <Icon size={16} />
         </IconWrap>
       {textarea ? (
-        <textarea {...props} rows={4} className="flex-1 bg-transparent outline-none py-2 resize-none text-sm text-gray-900 dark:text-white" />
+        <textarea 
+          {...(props as React.TextareaHTMLAttributes<HTMLTextAreaElement>)} 
+          rows={4} 
+          className="flex-1 bg-transparent outline-none py-2 resize-none text-sm text-gray-900 dark:text-white" 
+        />
       ) : (
-        <input {...props} className="flex-1 bg-transparent outline-none h-10 text-sm text-gray-900 dark:text-white" />
+        <input 
+          {...(props as React.InputHTMLAttributes<HTMLInputElement>)} 
+          className="flex-1 bg-transparent outline-none h-10 text-sm text-gray-900 dark:text-white" 
+        />
       )}
     </div>
   </div>
 );
 
-const MessageField = ({ icon: Icon, label, textarea, error, ...props }: any) => (
+interface MessageFieldProps extends FieldProps {
+  error?: string;
+}
+
+const MessageField = ({ icon: Icon, label, textarea, ...props }: MessageFieldProps) => (
   <div className="flex flex-col gap-1">
     <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500 dark:text-zinc-500 ml-1">{label}</label>
     <div className={`flex gap-3 px-4 py-3 rounded-2xl border bg-white/50 dark:bg-zinc-800/50 backdrop-blur-sm transition-all focus-within:border-purple-500 focus-within:ring-2 focus-within:ring-purple-500/20 border-gray-200 dark:border-zinc-700`}>
@@ -261,9 +286,16 @@ const MessageField = ({ icon: Icon, label, textarea, error, ...props }: any) => 
         <Icon size={16} />
       </IconWrap>
       {textarea ? (
-        <textarea {...props} rows={4} className="flex-1 bg-transparent outline-none py-1 resize-none text-sm text-gray-900 dark:text-white" />
+        <textarea 
+          {...(props as React.TextareaHTMLAttributes<HTMLTextAreaElement>)} 
+          rows={4} 
+          className="flex-1 bg-transparent outline-none py-1 resize-none text-sm text-gray-900 dark:text-white" 
+        />
       ) : (
-        <input {...props} className="flex-1 bg-transparent outline-none h-10 text-sm" />
+        <input 
+          {...(props as React.InputHTMLAttributes<HTMLInputElement>)} 
+          className="flex-1 bg-transparent outline-none h-10 text-sm" 
+        />
       )}
     </div>
   </div>

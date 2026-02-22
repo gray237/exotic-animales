@@ -9,16 +9,16 @@ import Container from "./Container";
 import { motion } from "framer-motion";
 import { Loader2, ChevronLeft, ChevronRight } from "lucide-react";
 
+const query = `*[_type == "product"]
+  | order(_createdAt desc)[0...15]{
+    ...,
+    "categories": categories[]->title
+  }`;
+
 const NewArrivals = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement | null>(null);
-
-  const query = `*[_type == "product"]
-    | order(_createdAt desc)[0...15]{
-      ...,
-      "categories": categories[]->title
-    }`;
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -34,7 +34,7 @@ const NewArrivals = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, []); // Empty array is now perfectly fine because 'query' is external
 
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return;
@@ -86,7 +86,7 @@ const NewArrivals = () => {
           {products.map((product) => (
             <motion.div
               key={product._id}
-              className="min-w-40 sm:min-w-[180px] md:min-w-[200px] lg:min-w-[220px]"
+              className="min-w-40 sm:min-w-45 md:min-w-50 lg:min-w-55"
               whileHover={{ scale: 1.03 }}
             >
               <ProductCard product={product} />

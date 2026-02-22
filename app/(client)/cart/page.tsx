@@ -19,7 +19,6 @@ import { useAuth } from "@clerk/nextjs";
 import { Trash } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { urlFor } from "@/sanity/lib/image";

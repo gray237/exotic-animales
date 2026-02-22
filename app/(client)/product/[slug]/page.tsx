@@ -39,7 +39,9 @@ export async function generateMetadata({
 
   const images: string[] = [
     ...(product.bannerImage ? [urlFor(product.bannerImage).url()] : []),
-    ...(product.images?.map((img: any) => img && urlFor(img).url()).filter(Boolean) || []),
+    ...(
+      product.images?.map((img: { asset?: unknown }) => img.asset && urlFor(img).url()).filter(Boolean) || []
+    ),
   ];
 
   return {

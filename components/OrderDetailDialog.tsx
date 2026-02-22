@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import PriceFormatter from "./PriceFormatter";
 
@@ -34,8 +34,8 @@ const PAYMENT_CONFIG: Record<
   PaymentKey,
   {
     label: string;
-    hero: any;
-    icon: any;
+    hero: StaticImageData; 
+    icon: StaticImageData; 
     instructions: React.ReactNode;
   }
 > = {
@@ -107,10 +107,11 @@ const OrderDetailDialog: React.FC<OrderDetailsDialogProps> = ({
   if (!order) return null;
 
   /* ===== SAFE PAYMENT KEY RESOLUTION ===== */
+  const rawMethod = order.paymentMethod as string | null;
   const paymentKey =
-  typeof order.paymentMethod === "string"
-    ? (order.paymentMethod.toLowerCase() as PaymentKey)
-    : null;
+    typeof rawMethod === "string"
+      ? (rawMethod.toLowerCase() as PaymentKey)
+      : null;
 
   const paymentConfig = paymentKey
     ? PAYMENT_CONFIG[paymentKey]

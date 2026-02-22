@@ -82,8 +82,8 @@ const BioactiveGuides = () => {
              transition={{ delay: 0.1 }}
              className="max-w-4xl mx-auto text-lg text-gray-600 dark:text-gray-400 leading-loose"
           >
-            Bioactive vivarium, terrarium or paludarium habitats aren't just aesthetically stunning — they provide significant biological 
-            benefits to your animals. By introducing "The Clean Up Crew" (Isopods and Springtails), 
+            Bioactive vivarium, terrarium or paludarium habitats aren&apos;t just aesthetically stunning — they provide significant biological 
+            benefits to your animals. By introducing &quot;The Clean Up Crew&quot; (Isopods and Springtails), 
             live plants, and specialized substrate layers, you recreate the nitrogen cycle in your home. 
             Our guides cover everything from drainage layers to plant selection for every climate.
           </motion.p>

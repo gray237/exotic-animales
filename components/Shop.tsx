@@ -9,7 +9,7 @@ import { useSearchParams } from "next/navigation";
 import BrandList from "./shop/BrandList";
 import PriceList from "./shop/PriceList";
 import { client } from "@/sanity/lib/client";
-import { Loader2, RotateCcw, ChevronDown } from "lucide-react";
+import { Loader2, ChevronDown } from "lucide-react";
 import NoProductAvailable from "./NoProductAvailable";
 import ProductCard from "./ProductCard";
 import {
@@ -34,36 +34,36 @@ const Shop = ({ categories, brands }: Props) => {
   const [selectedBrand, setSelectedBrand] = useState<string | null>(brandParams || null);
   const [selectedPrice, setSelectedPrice] = useState<string | null>(null);
 
-  const fetchProducts = async () => {
-    setLoading(true);
-    try {
-      let minPrice = 0;
-      let maxPrice = 10000;
-      if (selectedPrice) {
-        const [min, max] = selectedPrice.split("-").map(Number);
-        minPrice = min;
-        maxPrice = max;
-      }
-      const query = `
-      *[_type == 'product' 
-        && (!defined($selectedCategory) || references(*[_type == "category" && slug.current == $selectedCategory]._id))
-        && (!defined($selectedBrand) || references(*[_type == "brand" && slug.current == $selectedBrand]._id))
-        && price >= $minPrice && price <= $maxPrice
-      ] 
-      | order(name asc) {
-        ...,"categories": categories[]->title
-      }
-    `;
-      const data = await client.fetch(query, { selectedCategory, selectedBrand, minPrice, maxPrice });
-      setProducts(data);
-    } catch (error) {
-      console.log("Shop product fetching Error", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        let minPrice = 0;
+        let maxPrice = 10000;
+        if (selectedPrice) {
+          const [min, max] = selectedPrice.split("-").map(Number);
+          minPrice = min;
+          maxPrice = max;
+        }
+        const query = `
+        *[_type == 'product' 
+          && (!defined($selectedCategory) || references(*[_type == "category" && slug.current == $selectedCategory]._id))
+          && (!defined($selectedBrand) || references(*[_type == "brand" && slug.current == $selectedBrand]._id))
+          && price >= $minPrice && price <= $maxPrice
+        ] 
+        | order(name asc) {
+          ...,"categories": categories[]->title
+        }
+      `;
+        const data = await client.fetch(query, { selectedCategory, selectedBrand, minPrice, maxPrice });
+        setProducts(data);
+      } catch { 
+        console.log("Shop product fetching Error");
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchProducts();
   }, [selectedCategory, selectedBrand, selectedPrice]);
 
@@ -79,7 +79,7 @@ const Shop = ({ categories, brands }: Props) => {
           <Title className="text-2xl lg:text-3xl tracking-tighter font-bold text-gray-900 dark:text-white">
             Exotic Animals & Pet Supplies Shop
           </Title>
-          <p className="text-xs md:text-base font-medium text-gray-500 max-w-[650px] leading-relaxed">
+          <p className="text-xs md:text-base font-medium text-gray-500 max-w-162.5 leading-relaxed">
             Browse Exotic Animales’ shop for premium exotic pets, specialized accessories, 
             and essential husbandry supplies.
           </p>
@@ -142,7 +142,7 @@ const FilterDropdown = ({ label, active, children }: { label: string, active: bo
         <ChevronDown className={`w-3 h-3 shrink-0 transition-transform ${active ? "rotate-180" : ""}`} />
       </button>
     </PopoverTrigger>
-    <PopoverContent className="w-[280px] p-0 shadow-2xl rounded-xl border-none" align="start">
+    <PopoverContent className="w-70 p-0 shadow-2xl rounded-xl border-none" align="start">
       <div className="max-h-[60vh] overflow-y-auto custom-scrollbar">
         {children}
       </div>

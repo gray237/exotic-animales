@@ -7,10 +7,27 @@ import Image from "next/image";
 import Container from "./Container";
 import { guineaPigPremium } from "@/images";
 import { FaPaperPlane } from "react-icons/fa";
-import { Mail, Phone, MapPin, Shield, RefreshCw, CheckSquare, User, AtSign, Building, PawPrint, CreditCard, Flag, Lightbulb, } from "lucide-react";
+import { 
+  Mail, Phone, MapPin, Shield, RefreshCw, 
+  CheckSquare, User, AtSign, Building, 
+  PawPrint, Flag, Lightbulb 
+} from "lucide-react";
 
-  const ContactSection = () => {
-    const [formData, setFormData] = useState({
+// 1. Define the shape of your form data
+interface FormData {
+  fullName: string;
+  email: string;
+  phone: string;
+  company: string;
+  intent: string;
+  priority: string;
+  message: string;
+  consent: boolean;
+  companyWebsite: string;
+}
+
+const ContactSection = () => {
+  const [formData, setFormData] = useState<FormData>({
     fullName: "",
     email: "",
     phone: "",
@@ -23,8 +40,6 @@ import { Mail, Phone, MapPin, Shield, RefreshCw, CheckSquare, User, AtSign, Buil
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [charCount, setCharCount] = useState(0);
 
@@ -33,9 +48,13 @@ import { Mail, Phone, MapPin, Shield, RefreshCw, CheckSquare, User, AtSign, Buil
   useEffect(() => {
     const draft = localStorage.getItem("contactDraft");
     if (draft) {
-      const parsed = JSON.parse(draft);
-      setFormData(parsed);
-      setCharCount(parsed.message?.length || 0);
+      try {
+        const parsed = JSON.parse(draft);
+        setFormData(parsed);
+        setCharCount(parsed.message?.length || 0);
+      } catch (e) {
+        console.error("Draft parse error", e);
+      }
     }
   }, []);
 
@@ -91,7 +110,6 @@ import { Mail, Phone, MapPin, Shield, RefreshCw, CheckSquare, User, AtSign, Buil
       }
 
       toast.success("Inquiry sent successfully!");
-
       localStorage.removeItem("contactDraft");
 
       setFormData({
@@ -118,7 +136,7 @@ import { Mail, Phone, MapPin, Shield, RefreshCw, CheckSquare, User, AtSign, Buil
   return (
     <section id="contact" className="relative bg-white pb-5">
       <Container>
-        <div className="px-6 lg:px-16 mx-auto max-w-[1400px]">
+        <div className="px-6 lg:px-16 mx-auto max-w-350">
           <div className="mb-6 max-w-3xl">
             <h2 className="text-3xl font-bold text-gray-900 mb-2">
               Exotic Pet Inquiry
@@ -243,23 +261,22 @@ import { Mail, Phone, MapPin, Shield, RefreshCw, CheckSquare, User, AtSign, Buil
                   />
                 </div>
 
+                {/* Honeypot field - removed (formData as any) hack */}
                 <input
                   type="text"
                   name="companyWebsite"
-                  value={(formData as any).companyWebsite || ""}
+                  value={formData.companyWebsite}
                   onChange={handleChange}
                   className="hidden"
                   tabIndex={-1}
                   autoComplete="off"
                 />
 
-
                 <div className="mt-4">
                   <MessageField
                     icon={Mail}
                     label="Message *"
                     name="message"
-                    textarea
                     placeholder="What species are you interested in? Age, color morph, delivery timeline, and location…"
                     value={formData.message}
                     onChange={handleChange}
@@ -270,7 +287,7 @@ import { Mail, Phone, MapPin, Shield, RefreshCw, CheckSquare, User, AtSign, Buil
                   </div>
                 </div>
 
-                <label className="flex items-start gap-3 mt-2 text-gray-700">
+                <label className="flex items-start gap-3 mt-2 text-gray-700 cursor-pointer">
                   <input
                     type="checkbox"
                     name="consent"
@@ -286,7 +303,7 @@ import { Mail, Phone, MapPin, Shield, RefreshCw, CheckSquare, User, AtSign, Buil
                     type="submit"
                     disabled={isSubmitting}
                     className={`relative inline-flex items-center gap-2
-                      px-[22px] py-[11px]
+                      px-5.5 py-2.75
                       rounded-[14px] font-semibold
                       border border-purple-400/36
                       shadow-lg overflow-hidden
@@ -311,7 +328,7 @@ import { Mail, Phone, MapPin, Shield, RefreshCw, CheckSquare, User, AtSign, Buil
 
                     {!isSubmitting && (
                       <span
-                        className="absolute -top-8 -left-8 w-[120px] h-[120px]
+                        className="absolute -top-8 -left-8 w-30 h-30
                         bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.45),transparent_60%)]
                         opacity-50 pointer-events-none"
                       />
@@ -334,7 +351,20 @@ import { Mail, Phone, MapPin, Shield, RefreshCw, CheckSquare, User, AtSign, Buil
 
 export default ContactSection;
 
-/* ---------- helpers ---------- */
+/* ---------- Helpers with Strict TypeScript Interfaces ---------- */
+
+interface IconProps {
+  icon: React.ElementType;
+}
+
+interface FieldProps extends IconProps {
+  label: string;
+  name: string;
+  value: string;
+  placeholder?: string;
+  error?: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+}
 
 const IconWrap = ({ children }: { children: React.ReactNode }) => (
   <div className="w-8 h-8 rounded-lg border border-purple-100 bg-purple-50 text-purple-600 grid place-items-center shrink-0 dark:bg-purple-900/20 dark:border-purple-800">
@@ -342,7 +372,7 @@ const IconWrap = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
-const Field = ({ icon: Icon, label, textarea, error, ...props }: any) => (
+const Field = ({ icon: Icon, label, error, ...props }: FieldProps) => (
   <div className="flex flex-col gap-1">
     <label className="text-sm font-medium text-gray-700">{label}</label>
     <div
@@ -353,17 +383,25 @@ const Field = ({ icon: Icon, label, textarea, error, ...props }: any) => (
       <IconWrap>
         <Icon size={18} />
       </IconWrap>
-      {textarea ? (
-        <textarea {...props} rows={5} className="flex-1 bg-transparent outline-none resize-none" />
-      ) : (
-        <input {...props} className="flex-1 min-w-0 placeholder:truncate bg-transparent outline-none h-11" />
-      )}
+      <input 
+        {...props} 
+        className="flex-1 min-w-0 placeholder:truncate bg-transparent outline-none h-11" 
+      />
     </div>
     {error && <small className="text-red-500 text-sm">{error}</small>}
   </div>
 );
 
-const SelectField = ({ icon: Icon, options, error, ...props }: any) => (
+interface SelectFieldProps extends IconProps {
+  label: string;
+  name: string;
+  value: string;
+  options: string[];
+  error?: string;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+}
+
+const SelectField = ({ icon: Icon, options, error, ...props }: SelectFieldProps) => (
   <div className="flex flex-col gap-1 mt-3">
     <label className="text-sm font-medium text-gray-700">{props.label}</label>
     <div
@@ -385,7 +423,7 @@ const SelectField = ({ icon: Icon, options, error, ...props }: any) => (
   </div>
 );
 
-const MessageField = ({ icon: Icon, label, textarea, error, ...props }: any) => (
+const MessageField = ({ icon: Icon, label, error, ...props }: FieldProps) => (
   <div className="flex flex-col gap-1">
     <label className="text-sm font-medium text-gray-700">{label}</label>
     <div
@@ -396,17 +434,22 @@ const MessageField = ({ icon: Icon, label, textarea, error, ...props }: any) => 
       <IconWrap>
         <Icon size={18} />
       </IconWrap>
-      {textarea ? (
-        <textarea {...props} rows={5} className=" flex-1 bg-transparent outline-none resize-none" />
-      ) : (
-        <input {...props} className="flex-1 bg-transparent outline-none h-11" />
-      )}
+      <textarea 
+        {...props} 
+        rows={5} 
+        className="flex-1 bg-transparent outline-none resize-none" 
+      />
     </div>
     {error && <small className="text-red-500 text-sm">{error}</small>}
   </div>
 );
 
-const InfoRow = ({ icon: Icon, label, value }: any) => (
+interface InfoRowProps extends IconProps {
+  label: string;
+  value: string;
+}
+
+const InfoRow = ({ icon: Icon, label, value }: InfoRowProps) => (
   <div className="flex items-center gap-3 p-4 rounded-xl border bg-white/80 backdrop-blur shadow-sm hover:-translate-y-px transition">
     <IconWrap>
       <Icon size={18} />
@@ -418,7 +461,11 @@ const InfoRow = ({ icon: Icon, label, value }: any) => (
   </div>
 );
 
-const Badge = ({ icon: Icon, text }: any) => (
+interface BadgeProps extends IconProps {
+  text: string;
+}
+
+const Badge = ({ icon: Icon, text }: BadgeProps) => (
   <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-sm bg-white/80 backdrop-blur">
     <Icon size={14} /> {text}
   </span>

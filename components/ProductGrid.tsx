@@ -15,27 +15,29 @@ const ProductGrid = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const [selectedTab, setSelectedTab] = useState(productType[0]?.title || "");
-  const query = `*[_type == "product" && variant == $variant]
-  | order(popularity desc)[0...15]{
-    ...,
-    "categories": categories[]->title
-  }`;
-  const params = { variant: selectedTab.toLowerCase() };
 
   useEffect(() => {
+    // 1. Move query and params INSIDE the effect
+    const query = `*[_type == "product" && variant == $variant]
+    | order(popularity desc)[0...15]{
+      ...,
+      "categories": categories[]->title
+    }`;
+    const params = { variant: selectedTab.toLowerCase() };
+
     const fetchData = async () => {
       setLoading(true);
       try {
         const response = await client.fetch(query, params);
-        setProducts(await response);
-      } catch (error) {
-        console.log("Product fetching Error", error);
+        setProducts(response);
+      } catch {
+        console.error("Product fetching Error");
       } finally {
         setLoading(false);
       }
     };
     fetchData();
-  }, [selectedTab]);
+  }, [selectedTab]); // selectedTab is the only dependency needed now
 
   return (
     <Container className="flex flex-col my-10 w-full mx-0 lg:mx-auto px-0 lg:px-0">

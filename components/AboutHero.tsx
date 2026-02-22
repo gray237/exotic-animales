@@ -38,7 +38,7 @@ const AboutHero = () => {
               About Exotic Animales Ranch Husbandry
             </h1>
             <p className="text-lg text-gray-700 dark:text-white/90 leading-relaxed">
-              Exotic Animales Ranch is a premier, private family-owned zoological facility dedicated to the highest standards of exotic animal husbandry. We have been a sanctuary for rare species and a trusted source for hand-raised companions, thus offering the best selection of exotic reptiles, mammals, rodents, amphibians, inverts, and more. EA Ranch's professional animal care starts with family values, ensuring that every pet in our care receive individualized attention and specialized nutrition required to thrive.
+              Exotic Animales Ranch is a premier, private family-owned zoological facility dedicated to the highest standards of exotic animal husbandry. We have been a sanctuary for rare species and a trusted source for hand-raised companions, thus offering the best selection of exotic reptiles, mammals, rodents, amphibians, inverts, and more. EA Ranch&apos;s professional animal care starts with family values, ensuring that every pet in our care receive individualized attention and specialized nutrition required to thrive.
             </p>
           </div>
 

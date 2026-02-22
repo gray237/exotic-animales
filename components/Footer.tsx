@@ -20,7 +20,7 @@ const Footer = () => {
             <Logo showMobileText={true} />
             </div>
             <SubText>
-              Discover E.A Ranch, your trusted online exotic pet store for a curated selection of pure bred high-quality mammals, rare amphibians and colorful reptiles for sale. We're not just passionate about exotic animals; we're dedicated to sharing our knowledge and ensuring your satisfaction.
+              Discover E.A Ranch, your trusted online exotic pet store for a curated selection of pure bred high-quality mammals, rare amphibians and colorful reptiles for sale. We&apos;re not just passionate about exotic animals, we&apos;re dedicated to sharing our knowledge and ensuring your satisfaction.
             </SubText>
             <SocialMedia
               className="pt-2" 

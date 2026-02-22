@@ -2,11 +2,12 @@ import { bioactiveEnclosureIsopods, bioactivePlantsLighting, bioactiveEnclosureL
   microfaunaSurvival, bioactiveCleanupCrew, newbieBioactiveSetup, bioactiveEnclosureElements, cleanupCrewIsopods, tropicalVsAridEnclosures, 
   aridBioactiveBuild, dartFrogEcosystem, dartFrogTerrarium, crestedGeckoEnclosure, arborealGeckoEnclosure, ballPythonTerrarium , ballPythonEnclosure
 } from "@/images"; 
+import type { StaticImageData } from "next/image";
 
 export interface GuideSection {
   title?: string;
   content: string; 
-  image?: any;
+  image?: StaticImageData;
   imagePosition?: "left" | "right";
 }
 
@@ -19,12 +20,12 @@ export interface BioactiveGuide {
   title: string;
   slug: string;
   description: string;
-  heroImage: any;
+  heroImage: StaticImageData;
   category: string;
   readTime: string;
   difficulty: "Beginner" | "Intermediate" | "Advanced";
   introBlurb?: string;
-  bannerImage?: any;
+  bannerImage?: StaticImageData;
   textSections?: GuideSection[];
   twoColumnSections?: {
     leftTitle: string;

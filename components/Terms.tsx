@@ -12,13 +12,13 @@ const Terms = () => {
             Terms & Conditions
           </h1>
           <p className="mt-4 text-gray-700 max-w-3xl mx-auto text-lg leading-relaxed">
-            Welcome to E.A Ranch! Before bringing home your new exotic companion — whether it's a baby hedgehog, sugar glider, axolotl, fennec fox, lemur, kinkajou, or opossum — please read our terms carefully. 
+            Welcome to E.A Ranch! Before bringing home your new exotic companion — whether it&apos;s a baby hedgehog, sugar glider, axolotl, fennec fox, lemur, kinkajou, or opossum — please read our terms carefully. 
             These policies are designed to protect both you and the animals, ensuring they go to safe, loving homes and receive proper care throughout their lives.
           </p>
         </div>
       </div>
 
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-24 py-16 space-y-12 text-gray-700 leading-relaxed">
+      <div className="max-w-350 mx-auto px-6 lg:px-24 py-16 space-y-12 text-gray-700 leading-relaxed">
 
         {/* Rehoming Policy */}
         <div>

@@ -18,7 +18,7 @@ export default function ReservationPage() {
         <Suspense 
           fallback={
             <div className="min-h-[60vh] flex flex-col items-center justify-center gap-4">
-              <Loader2 className="w-10 h-10 animate-spin text-purple-600" />
+              <Loader2 className="w-10 h-10 animate-spin text-shop_dark_green" />
               <p className="text-gray-500 animate-pulse font-medium">Loading Reservation Securely...</p>
             </div>
           }

@@ -1,7 +1,7 @@
 import { legalData } from "@/app/(client)/exotic-pet-laws/legalData";
 import { bioactiveData } from "@/app/(client)/bioactive-guides/bioactiveData";
 import { vetData } from "@/app/(client)/vet-guide/vetData";
-import { adoptionData, Pet } from "@/app/(client)/adopt/adoptionData";
+import { adoptionData } from "@/app/(client)/adopt/adoptionData"; // Removed 'Pet' as it was unused
 
 export const performGlobalSearch = (query: string) => {
   const q = query.toLowerCase().trim();
@@ -46,13 +46,19 @@ export const performGlobalSearch = (query: string) => {
       matchesAny(vet.specialties)
     ),
 
-    // 4. Search Adoption Data (Assuming Pet structure has name/breed/description)
-    pets: (adoptionData as any[]).filter(pet => 
-      matches(pet.name) ||
-      matches(pet.description) ||
-      matches(pet.city) ||
-      matches(pet.state) ||
-      (pet.specialties && matchesAny(pet.specialties)) // Adoption data often shares Vet structure in your files
+    // 4. Search Adoption Data 
+    pets: adoptionData.flatMap(category => 
+      category.pets
+        .filter(pet => 
+          matches(pet.name) || 
+          matches(pet.description) || 
+          matchesAny(pet.features) ||
+          matches(category.title)
+        )
+        .map(pet => ({
+          ...pet,
+          categorySlug: category.slug 
+        }))
     )
   };
 };

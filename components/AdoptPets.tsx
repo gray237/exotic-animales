@@ -328,12 +328,12 @@ const AdoptPets = () => {
 
               {/* CTA */}
               <div className="mt-8">
-                <a
+                <Link
                   href="/adopt"
                   className="relative inline-flex items-center gap-2 px-6 py-3 rounded-[14px] border border-purple-400/36 bg-linear-to-br from-purple-500/22 to-teal-400/14 text-gray-800 font-semibold shadow-lg overflow-hidden transition-transform duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-xl"
                 >
                   Shop the Sale
-                </a>
+                </Link>
               </div>
             </div>
 

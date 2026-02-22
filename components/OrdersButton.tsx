@@ -16,7 +16,7 @@ const OrdersButton = () => {
 
         const data = await res.json();
         setOrderCount(data.count || 0);
-      } catch (error) {
+      } catch { 
         console.error("Failed to fetch orders count");
       } finally {
         setLoading(false);

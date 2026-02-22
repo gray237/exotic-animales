@@ -55,7 +55,7 @@ const VetProfilePage = async ({ params }: { params: Promise<{ slug: string }> })
   return (
     <div className="bg-white dark:bg-gray-950 min-h-screen">
       {/* HERO SECTION */}
-      <section className="relative w-full h-75 md:h-md:h-87.5 items-center justify-center text-center">
+      <section className="relative w-full py-15 items-center justify-center text-center">
         <Image src={eaBackground} alt="Clinic Background" fill priority className="object-cover opacity-40" />
         <div className="absolute inset-0 bg-linear-to-b from-transparent to-white dark:to-gray-950" />
         
@@ -68,7 +68,7 @@ const VetProfilePage = async ({ params }: { params: Promise<{ slug: string }> })
             Verified Specialist
           </div>
           
-          <h1 className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white mb-4 leading-tight">
+          <h1 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-4 leading-tight">
             {clinic.name}
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400">
@@ -103,7 +103,7 @@ const VetProfilePage = async ({ params }: { params: Promise<{ slug: string }> })
             {/* Analyst Section */}
             <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Why Exotic Animales Trusts This Clinic</h2>
             <p className="mb-6 text-gray-600 dark:text-gray-300">
-              Not all veterinarians are created equal when it comes to "non-traditional" pets. Our analysts look for clinics that invest in specialized diagnostic equipment—like micro-sized surgical tools and high-resolution imaging—necessary for animals weighing only a few grams.
+              Not all veterinarians are created equal when it comes to &quot;non-traditional&quot; pets. Our analysts look for clinics that invest in specialized diagnostic equipment—like micro-sized surgical tools and high-resolution imaging—necessary for animals weighing only a few grams.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-12">
@@ -111,13 +111,13 @@ const VetProfilePage = async ({ params }: { params: Promise<{ slug: string }> })
                 <h4 className="font-bold text-green-600 flex items-center gap-2 text-lg">
                   ✅ Pro-Active Diagnostics
                 </h4>
-                <p className="text-sm text-gray-500">This facility is known for not just "treating symptoms," but using bloodwork and imaging to find the root cause in exotic species.</p>
+                <p className="text-sm text-gray-500">This facility is known for not just treating symptoms, but using bloodwork and imaging to find the root cause in exotic species.</p>
               </div>
               <div className="space-y-4">
                 <h4 className="font-bold text-green-600 flex items-center gap-2 text-lg">
                   ✅ Exotic-Only Recovery
                 </h4>
-                <p className="text-sm text-gray-500">Reduced stress environments where sensitive animals like rabbits or birds aren't housed next to barking dogs.</p>
+                <p className="text-sm text-gray-500">Reduced stress environments where sensitive animals like rabbits or birds aren&apos;t housed next to barking dogs.</p>
               </div>
             </div>
 
@@ -126,9 +126,9 @@ const VetProfilePage = async ({ params }: { params: Promise<{ slug: string }> })
               <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Exotic Vet Screening Checklist</h3>
               <p className="text-sm mb-6 text-gray-500 italic">When calling {clinic.name}, we recommend asking these specific questions to ensure the best fit for your pet:</p>
               <ul className="space-y-4 list-none pl-0 text-gray-700 dark:text-gray-300">
-                <li className="flex gap-3"><strong>1.</strong> "How many [Your Species] do you typically see in a month?"</li>
-                <li className="flex gap-3"><strong>2.</strong> "What is your protocol for anesthesia in small exotic mammals?"</li>
-                <li className="flex gap-3"><strong>3.</strong> "Do you have a specialized incubator for recovery?"</li>
+                <li className="flex gap-3"><strong>1.</strong> &quot;How many [Your Species] do you typically see in a month?&quot;</li>
+                <li className="flex gap-3"><strong>2.</strong> &quot;What is your protocol for anesthesia in small exotic mammals?&quot;</li>
+                <li className="flex gap-3"><strong>3.</strong> &quot;Do you have a specialized incubator for recovery?&quot;</li>
               </ul>
             </div>
           </div>

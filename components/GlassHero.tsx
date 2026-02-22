@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import { FaCheckCircle, FaPaperPlane, FaPaw, FaClock, FaStar, FaLeaf } from "react-icons/fa";
 import { FiClock, FiShield } from "react-icons/fi";
@@ -16,7 +16,7 @@ type GlassHeroProps = {
   badgeText: string;
   title: string;
   description: string;
-  image: any;
+  image: string | StaticImageData;
 
   primaryCta: {
     label: string;

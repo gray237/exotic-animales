@@ -12,7 +12,13 @@ const priceArray = [
   { title: "Over $500", value: "500-20000" },
 ];
 
-const PriceList = ({ selectedPrice, setSelectedPrice }: any) => {
+// ✅ Define the props interface to replace 'any'
+interface PriceListProps {
+  selectedPrice: string | null;
+  setSelectedPrice: (value: string | null) => void;
+}
+
+const PriceList = ({ selectedPrice, setSelectedPrice }: PriceListProps) => {
   return (
     <div className="w-full bg-white p-5 lg:p-0 lg:pb-2">
       <Title className="hidden lg:block text-base font-black">Price Range</Title>

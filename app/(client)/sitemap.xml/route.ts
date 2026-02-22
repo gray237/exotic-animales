@@ -4,8 +4,28 @@ import { adoptionData } from "@/app/(client)/adopt/adoptionData";
 import { vetData } from "@/app/(client)/vet-guide/vetData";
 import { bioactiveData, BioactiveGuide } from "@/app/(client)/bioactive-guides/bioactiveData";
 
+// --- Types for Sanity Data ---
+interface SanityProduct {
+  slug: string;
+  name: string;
+  _updatedAt: string;
+  images: string[];
+}
+
+interface SanityCategory {
+  slug: string;
+  title: string;
+  _updatedAt: string;
+  mainImage: string;
+}
+
+interface SanityBlog {
+  slug: string;
+  title: string;
+  _updatedAt: string;
+}
+
 // --- XML Escaping Helper ---
-// This prevents the 'xmlParseEntityRef' error by converting & to &amp;
 const escapeXml = (unsafe: string | undefined | null) => {
   if (!unsafe) return "";
   return unsafe.replace(/[<>&"']/g, (m) => {
@@ -24,7 +44,7 @@ interface AdoptionItem {
   slug: string;
   title: string;
   updatedAt?: string;
-  categoryImage?: any;
+  categoryImage?: string | null; // Changed from any to be safer
 }
 
 interface VetItem {
@@ -35,7 +55,7 @@ interface VetItem {
 export async function GET() {
   try {
     const baseUrl = "https://www.exoticanimales.com";
-    const now = new Date().toISOString();
+    // Removed 'now' as it was unused
     const lastBulkUpdate = "2026-02-04T00:00:00.000Z"; 
 
     // --- Fetch Products ---
@@ -45,7 +65,7 @@ export async function GET() {
       _updatedAt,
       "images": images[].asset->url
     }`;
-    const products = await backendClient.fetch(productsQuery);
+    const products: SanityProduct[] = await backendClient.fetch(productsQuery);
 
     // --- Fetch Categories ---
     const categoriesQuery = `*[_type == "category" && defined(slug.current)]{
@@ -54,7 +74,7 @@ export async function GET() {
       _updatedAt,
       "mainImage": mainImage.asset->url
     }`;
-    const categories = await backendClient.fetch(categoriesQuery);
+    const categories: SanityCategory[] = await backendClient.fetch(categoriesQuery);
 
     // --- Fetch Blogs ---
     const blogsQuery = `*[_type == "blog" && defined(slug.current)]{
@@ -62,11 +82,11 @@ export async function GET() {
       "title": title,
       _updatedAt
     }`;
-    const blogs = await backendClient.fetch(blogsQuery);
+    const blogs: SanityBlog[] = await backendClient.fetch(blogsQuery);
 
     // --- Build Product URLs ---
-    const productUrls = products.map((p: any) => {
-      const images = (p.images || []).map((img: string) => `
+    const productUrls = products.map((p) => {
+      const images = (p.images || []).map((img) => `
         <image:image>
           <image:loc>${escapeXml(img)}</image:loc>
           <image:title>${escapeXml(p.name)}</image:title>
@@ -83,7 +103,7 @@ export async function GET() {
     }).join("");
 
     // --- Build Category URLs ---
-    const categoryUrls = categories.map((c: any) => {
+    const categoryUrls = categories.map((c) => {
       const imageTag = c.mainImage ? `
         <image:image>
           <image:loc>${escapeXml(c.mainImage)}</image:loc>
@@ -101,7 +121,7 @@ export async function GET() {
     }).join("");
 
     // --- Build Blog URLs ---
-    const blogUrls = blogs.map((b: any) => `
+    const blogUrls = blogs.map((b) => `
       <url>
         <loc>${baseUrl}/blog/${escapeXml(b.slug)}</loc>
         <lastmod>${b._updatedAt || lastBulkUpdate}</lastmod>
@@ -114,7 +134,7 @@ export async function GET() {
       const hasValidImage = a.categoryImage && typeof a.categoryImage === 'string';
       const imageTag = hasValidImage ? `
         <image:image>
-          <image:loc>${escapeXml(a.categoryImage)}</image:loc>
+          <image:loc>${escapeXml(a.categoryImage as string)}</image:loc>
           <image:title>${escapeXml(a.title)}</image:title>
         </image:image>` : "";
 
@@ -139,10 +159,13 @@ export async function GET() {
 
     // --- Build Bioactive Guide URLs ---
     const bioactiveUrls = (bioactiveData as BioactiveGuide[]).map((g) => {
-      const hasValidImage = g.heroImage && typeof g.heroImage === 'string';
-      const imageTag = hasValidImage ? `
+      const imageUrl = typeof g.heroImage === 'string' 
+        ? g.heroImage 
+        : g.heroImage?.src; 
+
+      const imageTag = imageUrl ? `
         <image:image>
-          <image:loc>${escapeXml(g.heroImage)}</image:loc>
+          <image:loc>${escapeXml(imageUrl)}</image:loc>
           <image:title>${escapeXml(g.title)}</image:title>
         </image:image>` : "";
 

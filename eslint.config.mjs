@@ -10,6 +10,17 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
+  // 1. This must be a separate object at the top of the array
+  {
+    ignores: [
+      "**/node_modules/**",
+      "**/.next/**",
+      "**/dist/**",
+      "**/public/**",
+      "next-env.d.ts",
+    ],
+  },
+  // 2. Your existing config
   ...compat.extends("next/core-web-vitals", "next/typescript"),
 ];
 

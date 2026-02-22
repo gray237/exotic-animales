@@ -87,11 +87,14 @@ const CategoryPage = async (
     <div className="w-full">
       {/* ===== HERO BANNER (NO PADDING) ===== */}
       {category?.bannerImage && (
-        <div className="w-full h-[220px] sm:h-[300px] md:h-[380px] lg:h-[450px] overflow-hidden">
-          <img
+        <div className="relative w-full h-55 sm:h-75 md:h-95 lg:h-112.5 overflow-hidden">
+          <Image
             src={urlFor(category.bannerImage).url()}
             alt={category?.title || "Category Banner"}
-            className="w-full h-full object-cover"
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
           />
         </div>
       )}
@@ -102,7 +105,7 @@ const CategoryPage = async (
         <div className="h-5" />
 
         {/* ===== PAGE TITLE ===== */}
-        <div className="container mx-auto max-w-[1400px] mb-5">
+        <div className="container mx-auto max-w-350 mb-5">
           <h2 className="text-3xl font-bold text-darkColor">
             Products by Category:{" "}
             <span className="text-green-600 capitalize">{slug}</span>
@@ -114,14 +117,14 @@ const CategoryPage = async (
 
         {/* ===== CATEGORY DESCRIPTION ===== */}
         {category?.description && (
-          <div className="container mx-auto mt-12 max-w-[1400px] prose prose-lg text-gray-800 leading-relaxed">
+          <div className="container mx-auto mt-12 max-w-350 prose prose-lg text-gray-800 leading-relaxed">
             <div dangerouslySetInnerHTML={{ __html: category.description }} />
           </div>
         )}
 
         {/* ===== WHY SHOP WITH US ===== */}
         {category?.whyShopWithUs && (
-          <div className="container mx-auto flex flex-col md:flex-row items-center gap-6 max-w-[1400px] pt-2.5 pb-5">
+          <div className="container mx-auto flex flex-col md:flex-row items-center gap-6 max-w-350 pt-2.5 pb-5">
             {category?.image && (
               <div className="overflow-hidden border border-shop_orange/30 hover:border-shop_orange hoverEffect w-36 h-36 md:w-40 md:h-40 p-2 rounded-md shrink-0">
                 <Image

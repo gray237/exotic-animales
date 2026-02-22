@@ -64,7 +64,7 @@ const VetGuidePage = () => {
             </h2>
             <div className="prose prose-lg dark:prose-invert text-gray-600 dark:text-gray-400 mx-auto max-w-4xl">
               <p>
-                Our directory isn't just a list of names—it's a curated selection of clinics that meet the "USDA Standard". 
+                Our directory isn&apos;t just a list of names — it&apos;s a curated selection of clinics that meet the &quot;USDA Standard&quot;. 
                 We look for facilities that prioritize specialized diagnostic equipment and practitioners who hold board certifications 
                 in exotic companion mammals. Use the interactive map below to locate exotic animal specialists and veterinarians across 
                 the United States. Click your state to view a list of local vets, organized by county.
@@ -194,7 +194,7 @@ const VetGuidePage = () => {
           <h2 className="text-3xl font-bold mb-4">Are you a Specialized Vet?</h2>
           <p className="text-gray-600 dark:text-gray-400 mb-8">
             We are always looking to expand our directory to help exotic pet owners find the best care. 
-            If you'd like your clinic to be featured on Exotic Animales, please reach out.
+            If you&apos;d like your clinic to be featured on Exotic Animales, please reach out.
           </p>
           <Link href="/contact" className="
               inline-flex items-center gap-3 mt-0 mb-0 px-4 py-2 -ml-4
@@ -351,29 +351,3 @@ const VetGuidePage = () => {
 };
 
 export default VetGuidePage;
-
-const FAQItem = ({ question, answer }: { question: string; answer: string }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-
-  return (
-    <div className="border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-green-500/50">
-      <button 
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full p-6 text-left flex justify-between items-center gap-4 focus:outline-none"
-      >
-        <span className="font-bold text-gray-900 dark:text-white md:text-lg leading-tight">
-          {question}
-        </span>
-        <span className={`text-green-500 font-bold transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
-          {isOpen ? '−' : '+'}
-        </span>
-      </button>
-      
-      <div className={`transition-all duration-300 ease-in-out ${isOpen ? 'max-h-125 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
-        <div className="px-6 pb-6 text-gray-600 dark:text-gray-400 text-sm md:text-base leading-relaxed border-t border-gray-50 dark:border-white/5 pt-4">
-          {answer}
-        </div>
-      </div>
-    </div>
-  );
-};

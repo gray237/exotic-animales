@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { getAllBrands } from "@/sanity/queries";
+import { Brand } from "@/sanity.types"; 
 import { 
   GitCompareArrows, 
   Headset, 
@@ -22,11 +23,12 @@ const extraData = [
 ];
 
 const ShopByBrands = () => {
-  const [brands, setBrands] = useState<any[]>([]);
+  const [brands, setBrands] = useState<Brand[]>([]);
   const [isPaused, setIsPaused] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  
+  const pauseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const fetchBrands = async () => {
@@ -46,13 +48,10 @@ const ShopByBrands = () => {
         behavior: "smooth",
       });
 
-      // Force Pause
       setIsPaused(true);
 
-      // Reset timer if clicked again
       if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
 
-      // Resume after 5 seconds
       pauseTimeoutRef.current = setTimeout(() => {
         setIsPaused(false);
       }, 5000);
@@ -63,7 +62,7 @@ const ShopByBrands = () => {
     <div className="mb-10 lg:mb-20 bg-shop_light_bg p-5 lg:p-7 rounded-md border border-shop_light_green/10 overflow-hidden">
       {/* HEADER SECTION */}
       <div className="flex items-center justify-between mb-6 border-b border-shop_dark_green/10 pb-3">
-        <Title>Shop By Breed</Title>
+        <Title>Popular Exotic Pet Species</Title>
         
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">

@@ -5,6 +5,7 @@ import Title from "@/components/Title";
 import { getDealProducts } from "@/sanity/queries";
 import React from "react";
 import { smallExoticPetsSale } from "@/images";
+import { Product } from "@/sanity.types";
 
 // ------------------- STATIC METADATA -------------------
 export const metadata = {
@@ -40,7 +41,10 @@ export const metadata = {
 
 // ------------------- PAGE COMPONENT -------------------
 const DealsPage = async () => {
-  const products = await getDealProducts();
+  const data = await getDealProducts();
+
+  const products = (data as unknown) as Product[];
+
   return (
     <div className="py-10 bg-deal-bg">
       <Container>
@@ -49,8 +53,8 @@ const DealsPage = async () => {
         </Title>
         <NewLitters />
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5">
-          {products?.map((product: any) => (
-            <ProductCard key={product?._id} product={product} />
+          {products?.map((product) => (
+            <ProductCard key={product._id} product={product} />
           ))}
         </div>
       </Container>

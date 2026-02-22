@@ -59,52 +59,58 @@ const rightFaqs = [
   },
 ];
 
+const FAQItem = ({ faq, isOpen, onToggle }: { 
+  faq: typeof leftFaqs[0]; 
+  isOpen: boolean; 
+  onToggle: () => void 
+}) => {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState(0);
+
+  useEffect(() => {
+    if (contentRef.current) {
+      setHeight(contentRef.current.scrollHeight);
+    }
+  }, [faq.answer]); // Recalculate if the answer changes
+
+  return (
+    <div className="border border-gray-200 bg-white dark:bg-gray-800 rounded-lg shadow-md transition-shadow duration-300 ease-in-out hover:shadow-lg">
+      <button
+        onClick={onToggle}
+        className="w-full flex justify-between items-center font-semibold text-gray-900 dark:text-white cursor-pointer px-4 py-4 text-left"
+      >
+        <span>{faq.question}</span>
+        <FaChevronDown
+          className={`text-gray-500 dark:text-gray-400 transition-transform duration-300 ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        />
+      </button>
+      <div
+        ref={contentRef}
+        style={{ maxHeight: isOpen ? `${height}px` : "0px" }}
+        className="text-gray-600 dark:text-gray-300 px-4 overflow-hidden transition-[max-height] duration-500 ease-in-out"
+      >
+        <div className="py-2">{faq.answer}</div>
+      </div>
+    </div>
+  );
+};
+
+// 2. The main Accordion component now just maps the sub-component
 const Accordion = ({ faqs }: { faqs: typeof leftFaqs }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const toggleFAQ = (index: number) => {
-    setOpenIndex(prev => (prev === index ? null : index));
-  };
-
   return (
     <div className="flex flex-col gap-4">
-      {faqs.map((faq, idx) => {
-        const isOpen = openIndex === idx;
-        const contentRef = useRef<HTMLDivElement>(null);
-        const [height, setHeight] = useState(0);
-
-        useEffect(() => {
-          if (contentRef.current) {
-            setHeight(contentRef.current.scrollHeight);
-          }
-        }, [contentRef, faq.answer, isOpen]);
-
-        return (
-          <div
-            key={idx}
-            className="border border-gray-200 bg-white dark:bg-gray-800 rounded-lg shadow-md transition-shadow duration-300 ease-in-out hover:shadow-lg"
-          >
-            <button
-              onClick={() => toggleFAQ(idx)}
-              className="w-full flex justify-between items-center font-semibold text-gray-900 dark:text-white cursor-pointer px-4 py-4 text-left"
-            >
-              <span>{faq.question}</span>
-              <FaChevronDown
-                className={`text-gray-500 dark:text-gray-400 transition-transform duration-300 ${
-                  isOpen ? "rotate-180" : ""
-                }`}
-              />
-            </button>
-            <div
-              ref={contentRef}
-              style={{ maxHeight: isOpen ? `${height}px` : "0px" }}
-              className="text-gray-600 dark:text-gray-300 px-4 overflow-hidden transition-[max-height] duration-500 ease-in-out"
-            >
-              <div className="py-2">{faq.answer}</div>
-            </div>
-          </div>
-        );
-      })}
+      {faqs.map((faq, idx) => (
+        <FAQItem
+          key={idx}
+          faq={faq}
+          isOpen={openIndex === idx}
+          onToggle={() => setOpenIndex(openIndex === idx ? null : idx)}
+        />
+      ))}
     </div>
   );
 };
@@ -112,12 +118,9 @@ const Accordion = ({ faqs }: { faqs: typeof leftFaqs }) => {
 const ContactFaq = () => {
   return (
     <section id="faq" aria-labelledby="faqTitle" className="py-16">
-      <div className="px-6 lg:px-16 mx-auto max-w-[1400px]">
+      <div className="px-6 lg:px-16 mx-auto max-w-350">
         <div className="mb-6">
-          <h2
-            id="faqTitle"
-            className="text-3xl font-extrabold text-gray-900 mb-2"
-          >
+          <h2 id="faqTitle" className="text-3xl font-extrabold text-gray-900 mb-2">
             FAQ
           </h2>
           <p className="text-gray-600 text-lg">

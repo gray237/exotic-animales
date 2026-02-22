@@ -11,6 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import { useAuth, useUser } from "@clerk/nextjs";
 import useStore from "@/store";
 import { useState } from "react";
+import Image from "next/image";
 import toast from "react-hot-toast";
 import { urlFor } from "@/sanity/lib/image";
 
@@ -109,8 +110,12 @@ const CheckoutPage = () => {
 
       toast.success("Order placed successfully!");
       window.location.href = `/success?orderNumber=${data.orderNumber}&paymentMethod=${paymentMethod}`;
-    } catch (err: any) {
-      toast.error(err.message || "Checkout failed");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        toast.error(err.message);
+      } else {
+        toast.error("Checkout failed");
+      }
     }
   };
 
@@ -165,10 +170,12 @@ const CheckoutPage = () => {
                   <CardContent className="flex items-center gap-4">
                     {imageUrl && (
                       <div className="border p-1 rounded-md w-32 h-32 shrink-0 overflow-hidden">
-                        <img
+                        <Image
                           src={imageUrl}
-                          className="w-full h-full object-cover rounded-sm"
                           alt={product.name || "Product"}
+                          fill
+                          sizes="128px"
+                          className="object-cover rounded-sm"
                         />
                       </div>
                     )}
@@ -296,7 +303,7 @@ const CheckoutPage = () => {
                       </span>{" "}
                       <p className="text-sm text-gray-600 leading-6 mt-1">
                         A nonrefundable deposit of <strong>${TRANSPORT_DEPOSIT_FEE}</strong> is
-                        required to book your exotic pet's transport. Private transporters or
+                        required to book your exotic pet&apos;s transport. Private transporters or
                         multi-stop transports of larger animals will require
                         a larger deposit (up to 75-100% of the delivery fee).
                       </p>
@@ -343,7 +350,7 @@ const CheckoutPage = () => {
                       className="flex items-center gap-3 p-2 border rounded-md hover:shadow-md cursor-pointer"
                     >
                       <RadioGroupItem value={key} id={key} />
-                      <img src={logo.src} className="w-10 h-10" />
+                      <Image src={logo.src} alt={key} width={40} height={40} className="object-contain" />
                       <Label htmlFor={key} className="font-medium">{key}</Label>
                     </div>
                   ))}
