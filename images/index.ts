@@ -1,3 +1,4 @@
+import exoticPetsLogo from "/logo.png";
 import paypalLogo from "./paypalLogo.png";
 import emptyCart from "./emptyCart.png";
 import paypalIcon from "./icons/paypal-icon.png";
@@ -9,7 +10,6 @@ import chameleonBanner from "./banner/chameleon-banner.png";
 import exoticBanner1 from "./banner/exotic-pet-store-banner-1.jpg";
 import exoticBanner2 from "./banner/exotic-pet-store-banner-2.jpg";
 import exoticBanner3 from "./banner/exotic-pet-store-banner-3.jpg";
-import exoticPetsLogo from "./icons/exotic-pets-logo.png";
 import axolotlCare from "./banner/axolotl-care-sheet.jpg";
 import ballPythonCare from "./banner/ball-python-care-sheet.jpg";
 import beardedDragonCare from "./banner/bearded-dragon-care-sheet.jpg";

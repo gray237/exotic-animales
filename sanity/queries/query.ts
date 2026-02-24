@@ -39,12 +39,10 @@ const MY_ORDERS_QUERY = defineQuery(`
   status,
   totalPrice,
   amountDiscount,
-
   paymentMethod,
-
+  deliveryOption,
   customerName,
   email,
-
   address {
     name,
     address,
@@ -54,7 +52,6 @@ const MY_ORDERS_QUERY = defineQuery(`
     country,
     phone
   },
-
   products[] {
     quantity,
     product->{

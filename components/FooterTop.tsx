@@ -40,7 +40,7 @@ const data: ContactItemData[] = [
 
 const FooterTop = () => {
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 border-b">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 border-b">
       {data?.map((item, index) => (
         <div
           key={index}
@@ -51,7 +51,7 @@ const FooterTop = () => {
             <h3 className="font-semibold text-gray-900 group-hover:text-black hoverEffect">
               {item?.title}
             </h3>
-            <p className="text-gray-600 text-sm mt-1 group-hover:text-gray-900 hoverEffect">
+            <p className="text-gray-600 text-sm mt-1 group-hover:text-indigo-900 hoverEffect">
               {item?.subtitle}
             </p>
           </div>

@@ -10,7 +10,7 @@ import {
 } from "./ui/tooltip";
 import PriceFormatter from "./PriceFormatter";
 import { format } from "date-fns";
-import { X } from "lucide-react";
+import { X, Truck } from "lucide-react";
 import { useState } from "react";
 import OrderDetailDialog from "./OrderDetailDialog";
 import toast from "react-hot-toast";
@@ -19,69 +19,79 @@ const OrdersComponent = ({ orders }: { orders: MY_ORDERS_QUERYResult }) => {
   const [selectedOrder, setSelectedOrder] = useState<
     MY_ORDERS_QUERYResult[number] | null
   >(null);
+
   const handleDelete = () => {
     toast.error("Delete method applied for Admin");
   };
+
   return (
     <>
       <TableBody>
-        <TooltipProvider>
+        <TooltipProvider delayDuration={300}>
           {orders.map((order) => (
-            <Tooltip key={order?.orderNumber}>
+            <Tooltip key={order?._id}>
               <TooltipTrigger asChild>
                 <TableRow
-                  className="cursor-pointer hover:bg-gray-100 h-12"
+                  className="cursor-pointer hover:bg-gray-50 h-14 border-b transition-colors group"
                   onClick={() => setSelectedOrder(order)}
                 >
-                  <TableCell className="font-medium">
-                    {order.orderNumber?.slice(-10) ?? "N/A"}...
+                  <TableCell className="font-bold text-gray-900 pl-6">
+                    {/* ✅ Removed slice logic - shows full EXO-XXXXXX ID */}
+                    {order.orderNumber ?? "N/A"}
                   </TableCell>
-                  <TableCell className="hidden md:table-cell">
-                    {order?.orderDate &&
-                      format(new Date(order.orderDate), "dd/MM/yyyy")}
+
+                  <TableCell className="hidden md:table-cell text-gray-600 font-medium">
+                    {order?.orderDate
+                      ? format(new Date(order.orderDate), "MMM dd, yyyy")
+                      : "N/A"}
                   </TableCell>
-                  <TableCell>{order.customerName}</TableCell>
-                  <TableCell className="hidden sm:table-cell">
+
+                  <TableCell className="font-medium text-gray-800">
+                    {order.customerName}
+                  </TableCell>
+
+                  <TableCell className="hidden sm:table-cell text-gray-500">
                     {order.email}
                   </TableCell>
+
                   <TableCell>
                     <PriceFormatter
-                      amount={order?.totalPrice}
-                      className="text-black font-medium"
+                      amount={order?.totalPrice ?? 0}
+                      className="text-black font-bold"
                     />
                   </TableCell>
+
                   <TableCell>
                     {order?.status && (
                       <span
-                        className={`px-2 py-1 rounded-full text-xs font-semibold ${
-                          order.status === "paid"
-                            ? "bg-green-100 text-green-800"
-                            : "bg-yellow-100 text-yellow-800"
+                        className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${
+                          order.status.toLowerCase() === "paid"
+                            ? "bg-green-100 text-green-700"
+                            : "bg-yellow-100 text-yellow-700"
                         }`}
                       >
-                        {order?.status.charAt(0).toUpperCase() +
-                          order?.status.slice(1)}
+                        {order.status}
                       </span>
                     )}
                   </TableCell>
 
                   <TableCell className="hidden sm:table-cell">
-                    {order?.invoice && (
-                      <p className="font-medium line-clamp-1">
-                        {order?.invoice ? order?.invoice?.number : "----"}
-                      </p>
-                    )}
+                    <div className="flex items-center gap-2 text-gray-600 font-medium capitalize">
+                      <Truck size={14} className="text-gray-400" />
+                      {(order as any)?.deliveryOption || "Standard"}
+                    </div>
                   </TableCell>
+
                   <TableCell
                     onClick={(event) => {
                       event.stopPropagation();
                       handleDelete();
                     }}
-                    className="flex items-center justify-center group"
+                    className="text-right pr-6"
                   >
                     <X
-                      size={20}
-                      className="group-hover:text-shop_dark_green hoverEffect"
+                      size={18}
+                      className="inline-block text-gray-300 group-hover:text-red-500 transition-colors"
                     />
                   </TableCell>
                 </TableRow>

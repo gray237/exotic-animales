@@ -238,6 +238,7 @@ export type Order = {
     address?: string;
     name?: string;
   };
+  deliveryOption?: string;
   status?: "pending" | "processing" | "paid" | "shipped" | "out_for_delivery" | "delivered" | "cancelled";
   orderDate?: string;
 };

@@ -86,6 +86,8 @@ const CheckoutPage = () => {
       const payloadItems = groupedItems.map((item) => ({
         product: {
           _id: item.product?._id || "",
+          name: item.product?.name || "Exotic Animal", 
+          price: item.product?.price || 0,    
         },
         quantity: useStore.getState().getItemCount(item.product?._id || ""),
       }));
@@ -156,44 +158,62 @@ const CheckoutPage = () => {
           {/* LEFT */}
           <div className="lg:col-span-2 space-y-4">
             {groupedItems.map((item, idx) => {
-              const product = item?.product;
-              if (!product) return null;
+            const product = item?.product;
+            if (!product) return null;
 
-              const qty = useStore.getState().getItemCount(product._id || "");
-              const price = product.price ?? 0;
-              const imageUrl = product.images?.[0]
-                ? urlFor(product.images[0]).url()
-                : "";
+            const qty = useStore.getState().getItemCount(product._id || "");
+            const price = product.price ?? 0;
+            const imageUrl = product.images?.[0]
+              ? urlFor(product.images[0]).url()
+              : "";
 
-              return (
-                <Card key={idx} className="border border-white/30">
-                  <CardContent className="flex items-center gap-4">
-                    {imageUrl && (
-                      <div className="border p-1 rounded-md w-32 h-32 shrink-0 overflow-hidden">
+            return (
+              <Card key={idx} className="border border-white/30 overflow-hidden shadow-sm">
+                <CardContent className="flex items-center gap-4 py-4 px-4 md:px-6">
+                  {imageUrl && (
+                    <div className="relative w-32 h-32 shrink-0 border-2 border-gray-200 rounded-lg p-1 bg-white overflow-hidden">
+                      <div className="relative w-full h-full overflow-hidden rounded-md">
                         <Image
                           src={imageUrl}
                           alt={product.name || "Product"}
                           fill
+                          className="object-cover"
                           sizes="128px"
-                          className="object-cover rounded-sm"
                         />
                       </div>
-                    )}
-                    <div className="flex-1 flex flex-col justify-between h-full">
-                      <div>
-                        <p className="font-semibold text-lg">{product.name || "Product"}</p>
-                        {product.variant && <p className="text-sm text-gray-600">Variant: {product.variant}</p>}
-                        {product.status && <p className="text-sm text-gray-600">Status: {product.status}</p>}
-                      </div>
-                      <div className="flex items-center justify-between mt-2">
-                        <PriceFormatter amount={price * qty} />
-                        <QuantityButtons product={product} />
-                      </div>
                     </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
+                  )}
+                  
+                  <div className="flex-1 flex flex-col justify-between self-stretch">
+                    <div className="space-y-1">
+                      <h3 className="font-bold text-base md:text-lg text-gray-900 line-clamp-1">
+                        {product.name || "Unnamed Product"}
+                      </h3>
+                      {product.variant && (
+                        <p className="text-xs md:text-sm text-gray-500 capitalize">
+                          Variant: <span className="font-medium text-gray-700">{product.variant}</span>
+                        </p>
+                      )}
+                      {product.status && (
+                        <p className="text-xs md:text-sm text-gray-500 capitalize">
+                          Status: <span className="font-medium text-gray-700">{product.status}</span>
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="flex items-center justify-between mt-2">
+                      <PriceFormatter 
+                        amount={price * qty} 
+                        className="text-lg font-black text-gray-900" 
+                      />
+                      {/* Keeping your QuantityButtons exactly as they were */}
+                      <QuantityButtons product={product} />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
 
             {/* Delivery + Options */}
             <Card>
@@ -350,7 +370,8 @@ const CheckoutPage = () => {
                       className="flex items-center gap-3 p-2 border rounded-md hover:shadow-md cursor-pointer"
                     >
                       <RadioGroupItem value={key} id={key} />
-                      <Image src={logo.src} alt={key} width={40} height={40} className="object-contain" />
+                      <Image src={logo.src} alt={key} 
+                      width={40} height={40} className="object-contain" />
                       <Label htmlFor={key} className="font-medium">{key}</Label>
                     </div>
                   ))}

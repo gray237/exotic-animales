@@ -214,7 +214,7 @@ const GuideSlugPage = async ({ params }: { params: Promise<{ slug: string }> }) 
                 rounded-full transition-all duration-300
                 text-gray-600 dark:text-gray-400 font-bold
                 hover:bg-purple-50 dark:hover:bg-purple-900/20 
-                hover:text-purple-600 dark:hover:text-purple-400
+                hover:text-indigo-600 dark:hover:text-indigo-400
                 active:scale-95
                 group
               "
