@@ -115,7 +115,7 @@ export async function POST(req: NextRequest) {
                   </tr>
                 </thead>
                 <tbody>
-                ${items.map((i: any) => {
+                ${items.map((i: OrderItem) => { 
                   const name = i.product?.name || "Exotic Animal";
                   const price = i.product?.price || 0;
                   
@@ -130,7 +130,7 @@ export async function POST(req: NextRequest) {
                     </tr>
                   `;
                 }).join("")}
-              </tbody>
+                </tbody>
               </table>
 
               <table width="100%" cellpadding="0" cellspacing="0">

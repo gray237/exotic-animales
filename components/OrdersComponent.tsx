@@ -15,10 +15,16 @@ import { useState } from "react";
 import OrderDetailDialog from "./OrderDetailDialog";
 import toast from "react-hot-toast";
 
-const OrdersComponent = ({ orders }: { orders: MY_ORDERS_QUERYResult }) => {
-  const [selectedOrder, setSelectedOrder] = useState<
-    MY_ORDERS_QUERYResult[number] | null
-  >(null);
+// 1. ✅ TYPE DEFINITION: This solves the "Property does not exist" error
+// We extract the base order type and manually add the missing deliveryOption
+type OrderBase = NonNullable<MY_ORDERS_QUERYResult>[number];
+
+interface OrderWithExtras extends OrderBase {
+  deliveryOption?: string;
+}
+
+const OrdersComponent = ({ orders }: { orders: OrderWithExtras[] }) => {
+  const [selectedOrder, setSelectedOrder] = useState<OrderWithExtras | null>(null);
 
   const handleDelete = () => {
     toast.error("Delete method applied for Admin");
@@ -36,7 +42,6 @@ const OrdersComponent = ({ orders }: { orders: MY_ORDERS_QUERYResult }) => {
                   onClick={() => setSelectedOrder(order)}
                 >
                   <TableCell className="font-bold text-gray-900 pl-6">
-                    {/* ✅ Removed slice logic - shows full EXO-XXXXXX ID */}
                     {order.orderNumber ?? "N/A"}
                   </TableCell>
 
@@ -78,7 +83,8 @@ const OrdersComponent = ({ orders }: { orders: MY_ORDERS_QUERYResult }) => {
                   <TableCell className="hidden sm:table-cell">
                     <div className="flex items-center gap-2 text-gray-600 font-medium capitalize">
                       <Truck size={14} className="text-gray-400" />
-                      {(order as any)?.deliveryOption || "Standard"}
+                      {/* ✅ FIX: Accessing the field directly from our new type */}
+                      {order.deliveryOption || "Standard"}
                     </div>
                   </TableCell>
 
@@ -103,6 +109,8 @@ const OrdersComponent = ({ orders }: { orders: MY_ORDERS_QUERYResult }) => {
           ))}
         </TooltipProvider>
       </TableBody>
+
+      {/* 2. ✅ DIALOG FIX: Pass the order to the dialog */}
       <OrderDetailDialog
         order={selectedOrder}
         isOpen={!!selectedOrder}
